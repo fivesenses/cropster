@@ -1,18 +1,15 @@
+##
+# Converts a Hash into a Cropster::Response::Project
+#
 module Cropster::Response
+  class Project < Cropster::Response::FormattedResponseItem
+    attr_accessor :name, :description, :is_archived
 
-  class Project
-    
-    attr_accessor :id, 
-                  :name
-
-    def initialize(data)
-      load_from_data(data)
-    end
-
-    def load_from_data(data)
-      @id   = data['id'].present? ? data['id'].to_i : 0
-      @name = data['name']
+    def load_attributes(attributes)
+      return if attributes.nil?
+      @name = attributes[:name]
+      @description = attributes[:description]
+      @is_archived = attributes[:isArchived]
     end
   end
-
 end

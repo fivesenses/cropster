@@ -14,62 +14,88 @@ And then execute:
 Or install it yourself as:
 
     $ gem install cropster
-    
+
 Setup Initializer
 
-    CropsterClient = Cropster::Client.new(
-                  :client_username => ENV['CROPSTER_USERNAME'], 
-                  :client_password => ENV['CROPSTER_PASSWORD'],
-                  :group_code => ENV['CROPSTER_GROUP_CODE'])
-                  
+    client = Cropster::Client.new({
+      api_key:    ENV['CROPSTER_API_KEY'],
+      api_secret: ENV['CROPSTER_API_SECRET'],
+      group_code: ENV['CROPSTER_GROUP_CODE']
+    })
+
+Optional keys for the client initialization include:
+
+    test_mode: (true | false)
+    api_path: "api/v2"
 
 ## Usage
 
-###Green Lots Request
+### Certificates
+#### List Certificates
+    Cropster::Certificate.new(client).certificates({})
+#### Get a Certificate
+    Cropster::Certificate.new(client).certificate("ID")
+#### Create a Certificate
+    Cropster::Certificate.new(client).create_certificat(certificate_data)
+#### Update a Certificate
+    Cropster::Certificate.new(client).
+      update_certificate("ID", certificate_data)
 
-    CropsterClient.green_lots
+### Contacts
+#### List Contacts
+    Cropster::Contact.new(client).contacts({})
+#### Get a Contact
+    Cropster::Contact.new(client).contact("ID")
 
-###Green Lots Response
+### Groups
+#### List Groups
+    Cropster::Group.new(client).groups({})
+#### Get a Group
+    Cropster::Group.new(client).group("CROR")
 
-    [{"id"=>632684,
-      "idTag"=>"PG-0036",
-      "name"=>"Ethiopia ORG Sidamo Suke Quto",
-      "location"=>{"id"=>55789, "name"=>"Some Location"},
-      "creationDate"=>1399379937000,
-      "project"=>{"id"=>3076, "name"=>"Ethiopian Washed Blender BC-WETH"},
-      "weight"=>{"amount"=>7.141, "unit"=>"BAG60KG"}},
-     {"id"=>630173,
-      "idTag"=>"PG-0064",
-      "name"=>"Peru ORG Perene River",
-      "location"=>{"id"=>55789, "name"=>"Some Location"},
-      "creationDate"=>1399306071000,
-      "project"=>{"id"=>3293, "name"=>"Iced BC-ICED"},
-      "weight"=>{"amount"=>17.086, "unit"=>"BAG69KG"}}]
-      
-###Roasted Lots Request
-    
-    CropsterClient.roasts
-    
-###Roasted Lots Response
-    
-    [{"id"=>669245,
-      "idTag"=>"PR-10237",
-      "name"=>"Costa Rica Vista el Valle Zapote",
-      "location"=>{"id"=>55789, "name"=>"Some Location"},
-      "creationDate"=>1401121036000,
-      "project"=>{"id"=>3289, "name"=>"Costa Rica SO"},
-      "weight"=>{"amount"=>30.0, "unit"=>"LBS"}},
-     {"id"=>669220,
-      "idTag"=>"PR-10236",
-      "name"=>"Retrofit IV NYC",
-      "location"=>{"id"=>55789, "name"=>"Some Location"},
-      "creationDate"=>1401120213000,
-      "project"=>nil,
-      "weight"=>{"amount"=>48.0, "unit"=>"LBS"}}]
-      
-###Example Optional Params
-    CropsterClient.green_lots({page: 1, perPage: 200, locationId: 55789})
-*perPage max is 200
+### Locations
+#### List Locations
+    Cropster::Location.new(client).locations({})
+#### Get a Location
+    Cropster::Location.new(client).location("ID")
+
+### Lots
+#### Get a Lot
+    Cropster::Lot.new(client).lot("ID")
+#### List Lots
+    Cropster::Lot.new(client).lots
+#### Create a Lot
+    Cropster::Lot.new(client).create_lot(lot_data)
+#### Update a Lot
+    Cropster::Lot.new(client).update_lot("ID", lot_data)
+
+### Machines
+#### Get a Machine
+    Cropster::Machine.new(client).machine("ID")
+#### List Machines
+    Cropster::Machine.new(client).machines
+
+### Processing
+#### List Processings
+    Cropster::Processing.new(client).processings({})
+#### Get a Processing (roast)
+    Cropster::Processing.new(client).processing("ID")
+
+### Projects
+#### List Projects
+    Cropster::Project.new(client).projects({})
+#### Get a Project
+    Cropster::Project.new(client).project("ID")
+
+### Source Contacts
+#### Get a Source Contact
+    Cropster::SourceContact.new(client).source_contact("ID")
+
+### Varieties
+#### List Varieties
+    Cropster::Variety.new(client).varieties({})
+#### Get a Variety
+    Cropster::Variety.new(client).variety("ID")
 
 ## Contributing
 

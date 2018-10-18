@@ -1,35 +1,49 @@
+##
+# Provides the interface between the results from the API query and the
+# conversion of the Hash to a Ruby object
+#
 module Cropster::Response
-
   class ResponseHandler
-    require 'cropster/response/green_lot'
-    require 'cropster/response/roast_batch'
-
     attr_accessor :data_set
     attr_accessor :compiled_data
 
-    def initialize
+    # Constructor
+    # @param klass [String] the class being converted
+    # @data_set [Hash | Array] the result from the API
+    def initialize(klass, data_set)
       @compiled_data = []
-    end
-
-    def green_lots(data_set)
       @data_set = data_set
-      compile_data_with_model('GreenLot')
+      compile_data(klass)
     end
 
-    def roast_batches(data_set)
-      @data_set = data_set
-      compile_data_with_model('RoastBatch')
-    end
+    # Builds the object to be compiled
+    # @param klass [String] the class being converted
+    def compile_data(klass)
+      model = Object.const_get("Cropster::Response::" + klass)
 
-    def compile_data_with_model(model)
-      model = Object.const_get("Cropster::Response::" + model)
-
-      data_set.each do |data|
-        @compiled_data << model.new(data) if !data.empty?
-      end
-
+      process(model, @data_set)
       @compiled_data
     end
-  end
 
+    # Processes the Hash or Array from the API into ruby objects
+    # @param model [Object] the object being constructed
+    # @data_set [Hash | Array] the data to be converted
+    def process(model, data_set)
+      if @data_set.is_a?(Array)
+        @data_set.each do |data|
+          process_data(model, data)
+        end
+      else
+        process_data(model, @data_set)
+      end
+    end
+
+    # Converts the Hash into symbols and then converts the object
+    # @param model [Object] the object being constructed
+    # @param data [Hash] the data to be converted
+    def process_data(model, data)
+      data.deep_symbolize_keys!
+      @compiled_data << model.new(data) if !data.empty?
+    end
+  end
 end
