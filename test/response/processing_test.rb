@@ -18,8 +18,8 @@ class Cropster::Response::ProcessingTest < Test::Unit::TestCase
       "id": "AA",
       "attributes": {
         "worker": "John Doe",
-        "startedDate": 1462904878082,
-        "endedDate": 1462904878082,
+        "startDate": 1462904878082,
+        "endDate": 1462904878082,
         "duration": 10000,
         "notes": "My processing notes",
         "startWeight": {

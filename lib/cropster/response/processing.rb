@@ -15,8 +15,8 @@ module Cropster::Response
 
     def load_attributes(attributes)
       @worker = attributes[:worker]
-      @started_at = load_date(attributes[:startedDate])
-      @ended_at = load_date(attributes[:endedDate])
+      @started_at = load_date(attributes[:startDate])
+      @ended_at = load_date(attributes[:endDate])
       @duration = attributes[:duration]
       @notes = attributes[:notes]
       @start_weight = load_weight(attributes[:startWeight])
