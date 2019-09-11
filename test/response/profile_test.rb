@@ -5,14 +5,14 @@ class Cropster::Response::ProfileTest < Test::Unit::TestCase
     profile = Cropster::Response::Profile.new(valid_response)
     assert_match(/AA/, profile.id)
     assert_match(/Dark Chocolate Blend/, profile.name)
-    assert_equal -0.0735, profile.calculated_weight_change
-    assert_equal -0.1, profile.weight_change
+    assert_equal(-0.0735, profile.calculated_weight_change)
+    assert_equal(-0.1, profile.weight_change)
+    assert_equal 60, profile.batch_size.amount
     assert profile.is_active
     refute profile.is_archived
     assert_not_nil profile.created_at
     assert_not_nil profile.last_modified_at
     assert_not_nil profile.profile_lot_references_last_modified_at
-    assert_nil profile.batch_size
     assert_nil profile.erp_id
     assert_nil profile.new_lot_name
     assert_nil profile.notes
@@ -23,7 +23,7 @@ class Cropster::Response::ProfileTest < Test::Unit::TestCase
       "type": "profiles",
       "id": "AA",
       "attributes": {
-        "batchSize": nil,
+        "batchSize": { "amount": 60.0, "unit": "Kg" },
         "calculatedWeightChange": -0.0735,
         "createdDate": 1302561695000,
         "erpId": nil,

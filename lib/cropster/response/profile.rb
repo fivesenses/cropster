@@ -10,7 +10,7 @@ module Cropster::Response
 
     def load_attributes(attributes)
       return if attributes.nil?
-      @batch_size = attributes[:batchSize]
+      @batch_size = load_weight(attributes[:batchSize])
       @calculated_weight_change = attributes[:calculatedWeightChange]
       @created_at = load_date(attributes[:createdDate])
       @erp_id = attributes[:erpId]
