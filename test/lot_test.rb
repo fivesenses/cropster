@@ -25,17 +25,17 @@ class Cropster::LotTest < Test::Unit::TestCase
   def test_lots_failure
     register_fixtures
     load_fixture(:get_lots_failure)
-    assert_raise ServiceUnavailableError do
+    assert_raise CropsterUnavailableError do
       Cropster::Lot.new(cropster_client).lots
     end
   end
 
-  def test_lots_by_ids_success
-    register_fixtures
-    load_fixture(:get_lots_by_ids_success)
-    lots = Cropster::Lot.new(cropster_client).lots_by_ids("AA,BB")
-    # assert_equal 2, lots.length
-  end
+  # def test_lots_by_ids_success
+  #   register_fixtures
+  #   load_fixture(:get_lots_by_ids_success)
+  #   lots = Cropster::Lot.new(cropster_client).lots_by_ids("AA,BB")
+  #   assert_equal 2, lots.length
+  # end
 
   def test_create_lot_success
     register_fixtures

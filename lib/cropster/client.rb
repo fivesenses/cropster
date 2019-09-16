@@ -67,8 +67,34 @@ module Cropster
     # @param opts [Hash] options to filter the request
     # @return [String]
     def uri_options(filter_type, opts)
-      opts = opts.merge({ group: @group_code })
-      URI.encode(opts.map{|k,v| "filter[#{filter_type}][#{k}]=#{v}"}.join("&"))
+      sort_opts = nil
+      filter_opts = nil
+      page_opts = nil
+
+      if opts.has_key?(:sort)
+        sort_opts = { sort: { filter_type => opts[:sort] } }.to_query
+      end
+
+      if opts.has_key?(:filter) || opts.has_key?("filter")
+        filter_opts = { filter: { filter_type => opts[:filter].merge({ group: @group_code }) } }.to_query
+        # filter_opts = build_options(:filter, filter_type, opts[:filter].merge({ group: @group_code }))
+      else
+        filter_opts = { filter: { filter_type => { group: @group_code } } }.to_query
+      end
+
+      if opts.has_key?(:page)
+        opts[:page].to_query
+      end
+
+      # opts = opts.merge({ group: @group_code })
+      [filter_opts, sort_opts, page_opts].compact.join("&")
+      # URI.encode([filter_opts, sort_opts, page_opts].join("&"))
+      # URI.encode(opts.map{|k,v| "filter[#{filter_type}][#{k}]=#{v}"}.join("&"))
+    end
+
+    def build_options(parameter_type, filter_type, opts)
+      { parameter_type => { filter_type => opts } }.to_query
+      # opts.map{|k, v| "#{parameter_type}[#{filter_type}][#{k}]=#{v}"}.join("&")
     end
 
     protected

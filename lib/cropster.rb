@@ -1,5 +1,6 @@
 require 'typhoeus'
 require 'json'
+require 'active_support/all'
 
 require 'cropster/constants'
 require "cropster/base"
@@ -59,4 +60,4 @@ require 'cropster/response/source_contact'
 require 'cropster/response/user'
 require 'cropster/response/variety'
 
-ServiceUnavailableError = Class.new(StandardError)
+CropsterUnavailableError = Class.new(StandardError)
