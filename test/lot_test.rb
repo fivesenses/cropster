@@ -34,7 +34,7 @@ class Cropster::LotTest < Test::Unit::TestCase
     register_fixtures
     load_fixture(:get_lots_by_ids_success)
     lots = Cropster::Lot.new(cropster_client).lots_by_ids("AA,BB")
-    # assert_equal 2, lots.length
+    assert_equal 2, lots.length
   end
 
   def test_create_lot_success

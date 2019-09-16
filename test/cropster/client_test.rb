@@ -22,8 +22,10 @@ class Cropster::ClientTest < Test::Unit::TestCase
 
   test "should merge filter uri options" do
     client = cropster_client
-    uri = client.uri_options("processings", { profile: "id" })
-    assert_equal "filter[processings][profile]=id&filter[processings][group]=CROR", uri
+    uri = client.uri_options("processings", { filter: { profile: "id" } })
+    result =  "filter%5Bprocessings%5D%5Bgroup%5D=CROR&filter%5Bprocessings%5D%5Bprofile%5D=id"
+
+    assert_equal result, uri
   end
 
   # test "should merge sort uri options" do
