@@ -77,19 +77,15 @@ module Cropster
 
       if opts.has_key?(:filter) || opts.has_key?("filter")
         filter_opts = { filter: { filter_type => opts[:filter].merge({ group: @group_code }) } }.to_query
-        # filter_opts = build_options(:filter, filter_type, opts[:filter].merge({ group: @group_code }))
       else
         filter_opts = { filter: { filter_type => { group: @group_code } } }.to_query
       end
 
-      if opts.has_key?(:page)
-        opts[:page].to_query
+      if opts.has_key?(:page) || opts.has_key?("page")
+        page_opts = { page: opts[:page].merge({ size: 50}) }.to_query
       end
 
-      # opts = opts.merge({ group: @group_code })
       [filter_opts, sort_opts, page_opts].compact.join("&")
-      # URI.encode([filter_opts, sort_opts, page_opts].join("&"))
-      # URI.encode(opts.map{|k,v| "filter[#{filter_type}][#{k}]=#{v}"}.join("&"))
     end
 
     def build_options(parameter_type, filter_type, opts)
