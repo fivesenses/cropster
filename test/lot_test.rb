@@ -20,7 +20,7 @@ class Cropster::LotTest < Test::Unit::TestCase
     assert_equal "USD", lot.price.currency
     assert_equal 220, lot.initial_weight.amount
     assert_equal "KG", lot.initial_weight.unit
-    assert_equal 3.5, lot.actual_weight.amount
+    assert_equal 3.5, lot.weight.amount
     assert_equal "PR-0101", lot.id_tag
     assert_equal ["FULLY_WASHED"], lot.processing_methods
     assert_equal "2018/2019", lot.crop_year
