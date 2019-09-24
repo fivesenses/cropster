@@ -42,7 +42,12 @@ date: Thu, 26 Apr 2018 07:52:12 GMT
       "grade": "AAA",
       "notes": "First coffee from our new partner",
       "processingStep": "coffee.roasting",
-      "purchaseOrderNumber": "PO-1234"
+      "purchaseOrderNumber": "PO-1234",
+      "processingMethods": ["FULLY_WASHED"],
+      "arrivalDate": 1483858900000,
+      "countriesOfOrigin": ["NI"],
+      "cropYear": "2018/2019",
+      "shippingContainerNumber": "2"
     },
     "relationships": {
       "sourceContacts": {

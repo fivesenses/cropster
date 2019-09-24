@@ -6,7 +6,10 @@ module Cropster::Response
     attr_accessor :id_tag, :name, :created_at, :consumed_at,
                   :location, :weight, :price, :project,
                   :initial_weight, :tracking_number, :grade, :sales_number,
-                  :notes, :processing_step, :purchase_order_number
+                  :notes, :processing_step, :purchase_order_number,
+                  :source_contacts, :processing_methods, :arrived_at,
+                  :countries_of_origin, :crop_year, :shipping_container_number
+
 
     def load_from_data(data)
       super
@@ -28,6 +31,12 @@ module Cropster::Response
       @weight = load_weight(attributes[:actualWeight])
       @initial_weight = load_weight(attributes[:initialWeight])
       @price = load_price(attributes[:price], attributes[:priceBaseUnit])
+      @arrived_at = load_date(attributes[:arrivalDate])
+      @source_contacts = attributes[:sourceContacts]
+      @processing_methods = attributes[:processingMethods]
+      @countries_of_origin = attributes[:countriesOfOrigin]
+      @crop_year = attributes[:cropYear]
+      @shipping_container_number = attributes[:shippingContainerNumber]
     end
 
     def fairtrade?
