@@ -25,8 +25,8 @@ module Cropster::Response
     end
 
     def load_relationships(data)
-      load_data(data[:variety], :varieties)
-      load_data(data[:sourceContacts], :source_contacts)
+      load_data(data[:variety], :varieties) unless data[:variety].blank?
+      load_data(data[:sourceContacts], :source_contacts) unless data[:sourceContacts].blank?
       load_data(data[:latestSensorialQc], :sensorial_qcs)
       load_data(data[:project], :projects)
       load_data(data[:group], :groups)
@@ -40,15 +40,9 @@ module Cropster::Response
     end
 
     def load_data(data, key)
-      return if data.nil?
-      return if data[:data].nil?
-      if data[:data].is_a?(Hash)
-        @result[key] << data[:data][:id]
-      elsif data[:data].is_a?(Array)
-        data[:data].each do |row|
-          @result[key] << row[:id]
-        end
-      end
+      relationship_data = Cropster::Response::RelationshipData.new(data)
+      relationship_data.process
+      @result[key] = relationship_data.processed_data
     end
   end
 end
