@@ -1,3 +1,5 @@
+require 'oj'
+
 ##
 # An object to hold authentication data and to provide the transport mechanism
 # for interacting with the Cropster API
@@ -56,9 +58,8 @@ module Cropster
     #
     # @param response [Typoeus::Response]
     def data_set(response)
-      JSON.parse(response.body)["data"]
-    rescue
-      {}
+      Oj.load(response.body)["data"]
+      # JSON.parse(response.body)["data"]
     end
 
     # Builds the filter URL from the provided options
@@ -70,6 +71,7 @@ module Cropster
       sort_opts = nil
       filter_opts = nil
       page_opts = nil
+      include_opts = nil
 
       if opts.has_key?(:sort)
         sort_opts = { sort: { filter_type => opts[:sort] } }.to_query
@@ -85,12 +87,11 @@ module Cropster
         page_opts = { page: opts[:page].merge({ size: 50}) }.to_query
       end
 
-      [filter_opts, sort_opts, page_opts].compact.join("&")
-    end
+      if opts.has_key?(:include) || opts.has_key?("include")
+        include_opts = { include: { filter_type => opts[:include] } }.to_query
+      end
 
-    def build_options(parameter_type, filter_type, opts)
-      { parameter_type => { filter_type => opts } }.to_query
-      # opts.map{|k, v| "#{parameter_type}[#{filter_type}][#{k}]=#{v}"}.join("&")
+      [filter_opts, sort_opts, page_opts, include_opts].compact.join("&")
     end
 
     protected

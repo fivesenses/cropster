@@ -36,17 +36,22 @@ class Cropster::ClientTest < Test::Unit::TestCase
     assert_equal result, uri
   end
 
-  # test "should merge sort uri options" do
-  #   client = cropster_client
-  #   uri = client.uri_options("processings", { sort: { startDate: "desc" } })
-  #   assert_equal "sort[processings][startDate]=desc&filter[processings][group]=CROR", uri
-  # end
 
   test "should build options" do
     client = cropster_client
 
-    options = client.build_options("filter", "processings", { profile: { id: 'FOO' } })
-    result = "filter%5Bprocessings%5D%5Bprofile%5D%5Bid%5D=FOO"
+    options = client.uri_options("processings", { filter: { profile: { id: 'FOO' } } })
+    result = "filter%5Bprocessings%5D%5Bgroup%5D=CROR&filter%5Bprocessings%5D%5Bprofile%5D%5Bid%5D=FOO"
+
+    assert_equal result, options
+  end
+
+  test "should build include options" do
+    client = cropster_client
+
+    options = client.uri_options("lots", { include: "sourceContacts.all"} )
+    result = "filter%5Blots%5D%5Bgroup%5D=CROR&include%5Blots%5D=sourceContacts.all"
+
     assert_equal result, options
   end
 end
