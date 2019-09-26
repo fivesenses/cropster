@@ -8,6 +8,7 @@ require "cropster/hash"
 require "cropster/string"
 require "cropster/version"
 require "cropster/client"
+require "cropster/uri_options_builder"
 
 require "cropster/contact"
 require "cropster/certificate"

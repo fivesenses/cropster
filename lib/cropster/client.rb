@@ -68,30 +68,7 @@ module Cropster
     # @param opts [Hash] options to filter the request
     # @return [String]
     def uri_options(filter_type, opts)
-      sort_opts = nil
-      filter_opts = nil
-      page_opts = nil
-      include_opts = nil
-
-      if opts.has_key?(:sort)
-        sort_opts = { sort: { filter_type => opts[:sort] } }.to_query
-      end
-
-      if opts.has_key?(:filter) || opts.has_key?("filter")
-        filter_opts = { filter: { filter_type => opts[:filter].merge({ group: @group_code }) } }.to_query
-      else
-        filter_opts = { filter: { filter_type => { group: @group_code } } }.to_query
-      end
-
-      if opts.has_key?(:page) || opts.has_key?("page")
-        page_opts = { page: opts[:page].merge({ size: 50}) }.to_query
-      end
-
-      if opts.has_key?(:include) || opts.has_key?("include")
-        include_opts = { include: { filter_type => opts[:include] } }.to_query
-      end
-
-      [filter_opts, sort_opts, page_opts, include_opts].compact.join("&")
+      Cropster::UriOptionsBuilder.new(filter_type, opts, @group_code).uri
     end
 
     protected
