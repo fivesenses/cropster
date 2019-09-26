@@ -51,9 +51,13 @@ date: Thu, 26 Apr 2018 07:52:12 GMT
     },
     "relationships": {
       "sourceContacts": {
+        "data": [
+          {"id": "foo", "type": "sourceContacts"},
+          {"id": "bar", "type": "sourceContacts"}
+        ],
         "links": {
-          "self": "https://c-sar.cropster.com/api/v2/lots/AA/relationships/sourceContacts",
-          "related": "https://c-sar.cropster.com/api/v2/lots/AA/sourceContacts"
+          "self":"https://c-sar.cropster.com/api/v2/lots/n6aeMJ/relationships/sourceContacts",
+          "related":"https://c-sar.cropster.com/api/v2/lots/n6aeMJ/sourceContacts"
         }
       },
       "latestSensorialQc": {
@@ -112,16 +116,6 @@ date: Thu, 26 Apr 2018 07:52:12 GMT
         "data": {
           "type": "locations",
           "id": "AA"
-        }
-      },
-      "processing": {
-        "data": {
-          "id": "AA",
-          "type": "processings"
-        },
-        "links": {
-          "self": "https://c-sar.cropster.com/api/v2/lots/AA/relationships/processing",
-          "related": "https://c-sar.cropster.com/api/v2/lots/AA/processing"
         }
       }
     },

@@ -1,17 +1,18 @@
 require 'test_helper'
 
 class Cropster::LotTest < Test::Unit::TestCase
-  def test_initialize
-    lot = Cropster::Lot.new(cropster_client)
-    assert_not_nil lot
-    assert_equal "Cropster::Client", lot.client.class.to_s
-  end
+  # def test_initialize
+  #   lot = Cropster::Lot.new(cropster_client)
+  #   assert_not_nil lot
+  #   assert_equal "Cropster::Client", lot.client.class.to_s
+  # end
 
   def test_lot_success
     register_fixtures
     load_fixture(:get_lot_success)
     lot = Cropster::Lot.new(cropster_client).lot("AA")
     assert_equal "Ethiopia Yirgacheffe", lot.name
+    assert_equal ["foo", "bar"], lot.source_contacts
     assert lot.weight.is_a?(Cropster::Response::Weight)
     assert lot.created_at.is_a?(Time)
     assert lot.consumed_at.is_a?(Time)

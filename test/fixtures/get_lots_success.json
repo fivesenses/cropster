@@ -47,6 +47,11 @@ date: Thu, 26 Apr 2018 07:52:12 GMT
       },
       "relationships": {
         "sourceContacts": {
+          "data":[
+            {"id":"yvqnqM","type":"sourceContacts"},
+            {"id":"Apzlz7","type":"sourceContacts"},
+            {"id":"NV2L2G","type":"sourceContacts"}
+          ],
           "links": {
             "self": "https://c-sar.cropster.com/api/v2/lots/AA/relationships/sourceContacts",
             "related": "https://c-sar.cropster.com/api/v2/lots/AA/sourceContacts"
@@ -108,16 +113,6 @@ date: Thu, 26 Apr 2018 07:52:12 GMT
           "data": {
             "type": "locations",
             "id": "AA"
-          }
-        },
-        "processing": {
-          "data": {
-            "id": "AA",
-            "type": "processings"
-          },
-          "links": {
-            "self": "https://c-sar.cropster.com/api/v2/lots/AA/relationships/processing",
-            "related": "https://c-sar.cropster.com/api/v2/lots/AA/processing"
           }
         }
       },
