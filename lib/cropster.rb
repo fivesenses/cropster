@@ -8,6 +8,7 @@ require "cropster/hash"
 require "cropster/string"
 require "cropster/version"
 require "cropster/client"
+require "cropster/uri_options_builder"
 
 require "cropster/contact"
 require "cropster/certificate"
@@ -55,6 +56,7 @@ require 'cropster/response/profile_lot_reference'
 require 'cropster/response/project'
 require 'cropster/response/property'
 require 'cropster/response/relationship'
+require 'cropster/response/relationship_data'
 require 'cropster/response/roasting_action'
 require 'cropster/response/source_contact'
 require 'cropster/response/user'

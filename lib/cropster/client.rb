@@ -1,3 +1,5 @@
+require 'oj'
+
 ##
 # An object to hold authentication data and to provide the transport mechanism
 # for interacting with the Cropster API
@@ -56,9 +58,8 @@ module Cropster
     #
     # @param response [Typoeus::Response]
     def data_set(response)
-      JSON.parse(response.body)["data"]
-    rescue
-      {}
+      Oj.load(response.body)["data"]
+      # JSON.parse(response.body)["data"]
     end
 
     # Builds the filter URL from the provided options
@@ -67,30 +68,7 @@ module Cropster
     # @param opts [Hash] options to filter the request
     # @return [String]
     def uri_options(filter_type, opts)
-      sort_opts = nil
-      filter_opts = nil
-      page_opts = nil
-
-      if opts.has_key?(:sort)
-        sort_opts = { sort: { filter_type => opts[:sort] } }.to_query
-      end
-
-      if opts.has_key?(:filter) || opts.has_key?("filter")
-        filter_opts = { filter: { filter_type => opts[:filter].merge({ group: @group_code }) } }.to_query
-      else
-        filter_opts = { filter: { filter_type => { group: @group_code } } }.to_query
-      end
-
-      if opts.has_key?(:page) || opts.has_key?("page")
-        page_opts = { page: opts[:page].merge({ size: 50}) }.to_query
-      end
-
-      [filter_opts, sort_opts, page_opts].compact.join("&")
-    end
-
-    def build_options(parameter_type, filter_type, opts)
-      { parameter_type => { filter_type => opts } }.to_query
-      # opts.map{|k, v| "#{parameter_type}[#{filter_type}][#{k}]=#{v}"}.join("&")
+      Cropster::UriOptionsBuilder.new(filter_type, opts, @group_code).uri
     end
 
     protected
