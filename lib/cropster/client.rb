@@ -56,8 +56,7 @@ module Cropster
     #
     # @param response [Typoeus::Response]
     def data_set(response)
-      Oj.load(response.body)["data"]
-      # JSON.parse(response.body)["data"]
+      JSON.parse(response.body)["data"]
     end
 
     # Builds the filter URL from the provided options
