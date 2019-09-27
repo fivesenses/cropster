@@ -1,5 +1,3 @@
-require 'oj'
-
 ##
 # An object to hold authentication data and to provide the transport mechanism
 # for interacting with the Cropster API
