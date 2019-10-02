@@ -6,7 +6,7 @@ module Cropster::Response
     attr_accessor :id, :type, :link
     attr_accessor :source_contacts, :sensorial_qcs, :projects,
       :varieties, :groups, :certificates, :alerts, :locations,
-      :processings, :machines, :profiles, :lots
+      :processings, :machines, :profiles, :lots, :contact, :lot, :contact_role
 
     # Constructor
     # @param data [Hash] the data to convert into a Cropster::Response subclass
@@ -53,6 +53,9 @@ module Cropster::Response
       @machines = relationships[:machines]
       @profiles = relationships[:profiles]
       @lots = relationships[:lots]
+      @contact = relationships[:contact]
+      @lot = relationships[:lot]
+      @contact_role = relationships[:contactRole]
     end
 
     def load_project(data)
