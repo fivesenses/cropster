@@ -9,7 +9,7 @@ class Cropster::SourceContactTest < Test::Unit::TestCase
   end
 
   def register_fixtures
-    url = fixture_url("source_contacts/AA")
+    url = fixture_url("sourceContacts/AA")
     register_fixture(:get_source_contact_success, :get, url)
   end
 end
