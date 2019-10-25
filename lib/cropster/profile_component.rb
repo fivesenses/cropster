@@ -10,7 +10,7 @@ module Cropster
     # @param id [String] the id of the required ProfileComponent
     # @return [Cropster::Response::ProfileComponent]
     def profile_component(id)
-      find_by_id("profile_components", id).first
+      find_by_id("profileComponents", id).first
     end
 
     # Find a collection of ProfileComponent objects
@@ -18,7 +18,7 @@ module Cropster
     # @param opts [Hash] options to filter the request
     # @return [Array] of Cropster::Response::ProfileComponent objects
     def profile_components(opts={})
-      find_collection("profile_components", opts)
+      find_collection("profileComponents", opts)
     end
 
     # Process the response from Cropster into appriate objects

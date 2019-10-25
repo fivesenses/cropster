@@ -10,7 +10,7 @@ module Cropster
     # @param id [String] the id of the required ProcessingCurve
     # @return [Cropster::Response::ProcessingCurve]
     def processing_curve(id)
-      find_by_id("processing_curves", id).first
+      find_by_id("processingCurves", id).first
     end
 
     # Find a collection of ProcessingCurve objects
@@ -18,7 +18,7 @@ module Cropster
     # @param opts [Hash] options to filter the request
     # @return [Array] of Cropster::Response::ProcessingCurve objects
     def processing_curves(opts={})
-      find_collection("processing_curves", opts)
+      find_collection("processingCurves", opts)
     end
 
     # Process the response from Cropster into appriate objects
