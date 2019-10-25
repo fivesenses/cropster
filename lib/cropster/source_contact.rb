@@ -9,7 +9,7 @@ module Cropster
     # @param id [String] the id of the required SourceContact
     # @return [Cropster::Response::SourceContact]
     def source_contact(id)
-      find_by_id("source_contacts", id).first
+      find_by_id("sourceContacts", id).first
     end
 
     # Find a collection of SourceContact objects
@@ -24,7 +24,7 @@ module Cropster
     # @param data [Hash] the new SourceContact
     # @return [Cropster::Response::SourceContact]
     def create_source_contact(data)
-      create("source_contacts", data).first
+      create("sourceContacts", data).first
     end
 
     # Updates an existing source_contact, currently only supports updating 
@@ -34,7 +34,7 @@ module Cropster
     # @param data [Hash] containing the fields to be updated
     # @return [Cropster::Response::SourceContact]
     def update_source_contact(id, data)
-      update("source_contacts", id, data).first
+      update("sourceContacts", id, data).first
     end
 
     # Process the response from Cropster into appriate objects

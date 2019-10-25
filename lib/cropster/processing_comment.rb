@@ -10,7 +10,7 @@ module Cropster
     # @param id [String] the id of the required ProcessingComment
     # @return [Cropster::Response::ProcessingComment]
     def processing_comment(id)
-      find_by_id("processing_comments", id).first
+      find_by_id("processingComments", id).first
     end
 
     # Find a collection of ProcessingComment objects
@@ -18,7 +18,7 @@ module Cropster
     # @param opts [Hash] options to filter the request
     # @return [Array] of Cropster::Response::ProcessingComment objects
     def processing_comments(opts={})
-      find_collection("processing_comments", opts)
+      find_collection("processingComments", opts)
     end
 
     # Process the response from Cropster into appriate objects
