@@ -15,7 +15,7 @@ module Cropster
     # Find a collection of Project objects
     # @param opts [Hash] options to filter the request
     # @return [Array] of Cropster::Response::Project objects
-    def projects(opts={})
+    def projects(opts = {})
       find_collection("projects", opts)
     end
 
@@ -27,7 +27,7 @@ module Cropster
       create("projects", data).first
     end
 
-    # Updates an existing lot, currently only supports updating 
+    # Updates an existing lot, currently only supports updating
     # @name and @accepted attributes.
     #
     # @param id [String] the ID of the Project to be updated
@@ -36,11 +36,13 @@ module Cropster
     def update_project(id, data)
       update("projects", id, data).first
     end
+
     # Process the response from Cropster into appriate objects
     # @param response [Typhoeus::Response]
     def process(response)
-      Cropster::Response::ResponseHandler.
-        new("Project", data_set(response)).compiled_data
+      Cropster::Response::ResponseHandler
+        .new("Project", data_set(response))
+        .compiled_data
     end
   end
 end

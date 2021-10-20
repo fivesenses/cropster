@@ -15,15 +15,16 @@ module Cropster
     # Find a collection of Processing Objects
     # @param opts [Hash] options to filter the request
     # @return [Array] of Cropster::Response::Processing objects
-    def processings(opts={})
+    def processings(opts = {})
       find_collection("processings", opts)
     end
 
     # Process the response from Cropster into appriate objects
     # @param response [Typhoeus::Response]
     def process(response)
-      Cropster::Response::ResponseHandler.
-        new("Processing", data_set(response)).compiled_data
+      Cropster::Response::ResponseHandler
+        .new("Processing", data_set(response))
+        .compiled_data
     end
   end
 end

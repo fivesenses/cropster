@@ -9,11 +9,11 @@ module Cropster
     # Constructor
     # @param opts [Hash] the authentication information for Cropster
     def initialize(opts = {})
-      @test_mode       = opts[:test_mode] ||= false
-      @api_path        = opts[:api_path] ||= Cropster::API_PATH
-      @api_key         = opts[:api_key] ||= ENV['CROPSTER_API_KEY']
-      @api_secret      = opts[:api_secret] ||= ENV['CROPSTER_API_SECRET']
-      @group_code      = opts[:group_code] ||= ENV['CROPSTER_GROUP_CODE']
+      @test_mode = opts[:test_mode] ||= false
+      @api_path = opts[:api_path] ||= Cropster::API_PATH
+      @api_key = opts[:api_key] ||= ENV["CROPSTER_API_KEY"]
+      @api_secret = opts[:api_secret] ||= ENV["CROPSTER_API_SECRET"]
+      @group_code = opts[:group_code] ||= ENV["CROPSTER_GROUP_CODE"]
     end
 
     # Helper method to build the URL for accessing Cropster
@@ -26,8 +26,10 @@ module Cropster
     # @param url [String] the url to GET
     # @return [Typhoeus::Response]
     def get(url)
-      Typhoeus::Request.get(base_url + url,
-                            userpwd: authentication)
+      Typhoeus::Request.get(
+        base_url + url,
+        userpwd: authentication
+      )
     end
 
     # Perform the HTTP POST request
@@ -36,9 +38,11 @@ module Cropster
     # @param data [Hash] the data to POST
     # @return Typhoeus::Response
     def post(url, data)
-      Typhoeus::Request.post(base_url + url,
-                             body: data,
-                             userpwd: authentication)
+      Typhoeus::Request.post(
+        base_url + url,
+        body: data,
+        userpwd: authentication
+      )
     end
 
     # Perform the HTTP PATCH request
@@ -47,9 +51,11 @@ module Cropster
     # @param data [Hash] the update data
     # @return Typhoeus::Response
     def patch(url, data)
-      Typhoeus::Request.patch(base_url + url,
-                              body: data,
-                              userpwd: authentication)
+      Typhoeus::Request.patch(
+        base_url + url,
+        body: data,
+        userpwd: authentication
+      )
     end
 
     # Extract the data from the response
@@ -69,12 +75,13 @@ module Cropster
     end
 
     protected
+
     def authentication
       "#{@api_key}:#{@api_secret}"
     end
 
     def host
-      @test_mode ?  Cropster::SERVER_TEST : Cropster::SERVER_PRODUCTION
+      @test_mode ? Cropster::SERVER_TEST : Cropster::SERVER_PRODUCTION
     end
   end
 end

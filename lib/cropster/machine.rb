@@ -15,15 +15,16 @@ module Cropster
     # Find a collection of Machine objects
     # @param opts [Hash] options to filter the request
     # @return [Array] of Cropster::Response::Machine objects
-    def machines(opts={})
+    def machines(opts = {})
       find_collection("machines", opts)
     end
 
     # Process the response from Cropster into appriate objects
     # @param response [Typhoeus::Response]
     def process(response)
-      Cropster::Response::ResponseHandler.
-        new("Machine", data_set(response)).compiled_data
+      Cropster::Response::ResponseHandler
+        .new("Machine", data_set(response))
+        .compiled_data
     end
   end
 end

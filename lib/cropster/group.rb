@@ -15,15 +15,16 @@ module Cropster
     # Find a collection of Group objects
     # @param opts [Hash] options to filter the request
     # @return [Array] of Cropster::Response::Group objects
-    def groups(opts={})
+    def groups(opts = {})
       find_collection("groups", opts)
     end
 
     # Process the response from Cropster into Cropster::Response::Groups
     # @param response [Typhoeus::Response]
     def process(response)
-      Cropster::Response::ResponseHandler.
-        new("Group", data_set(response)).compiled_data
+      Cropster::Response::ResponseHandler
+        .new("Group", data_set(response))
+        .compiled_data
     end
   end
 end

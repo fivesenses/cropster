@@ -13,6 +13,5 @@ module Cropster::Response
       @timezone = attributes[:timezone]
       @active = attributes[:active]
     end
-
   end
 end

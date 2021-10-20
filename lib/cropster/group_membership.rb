@@ -17,7 +17,7 @@ module Cropster
     #
     # @param opts [Hash] options to filter the request
     # @return [Array] of Cropster::Response::GroupMembership objects
-    def group_memberships(opts={})
+    def group_memberships(opts = {})
       find_collection("group_memberships", opts)
     end
 
@@ -25,9 +25,9 @@ module Cropster
     #
     # @param response [Typhoeus::Response]
     def process(response)
-      Cropster::Response::ResponseHandler.
-        new("GroupMembership", data_set(response)).compiled_data
+      Cropster::Response::ResponseHandler
+        .new("GroupMembership", data_set(response))
+        .compiled_data
     end
-
   end
 end

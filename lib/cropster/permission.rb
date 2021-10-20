@@ -17,7 +17,7 @@ module Cropster
     #
     # @param opts [Hash] options to filter the request
     # @return [Array] of Cropster::Response::Permission objects
-    def permissions(opts={})
+    def permissions(opts = {})
       find_collection("permissions", opts)
     end
 
@@ -25,8 +25,9 @@ module Cropster
     #
     # @param response [Typhoeus::Response]
     def process(response)
-      Cropster::Response::ResponseHandler.
-        new("Permission", data_set(response)).compiled_data
+      Cropster::Response::ResponseHandler
+        .new("Permission", data_set(response))
+        .compiled_data
     end
   end
 end

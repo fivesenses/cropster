@@ -17,7 +17,7 @@ module Cropster
     #
     # @param opts [Hash] options to filter the request
     # @return [Array] of Cropster::Response::Profile objects
-    def profiles(opts={})
+    def profiles(opts = {})
       find_collection("profiles", opts)
     end
 
@@ -25,8 +25,9 @@ module Cropster
     #
     # @param response [Typhoeus::Response]
     def process(response)
-      Cropster::Response::ResponseHandler.
-        new("Profile", data_set(response)).compiled_data
+      Cropster::Response::ResponseHandler
+        .new("Profile", data_set(response))
+        .compiled_data
     end
   end
 end

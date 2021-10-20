@@ -43,7 +43,7 @@ module Cropster::Response
     # @param data [Hash] the data to be converted
     def process_data(model, data)
       data.deep_symbolize_keys!
-      @compiled_data << model.new(data) if !data.empty?
+      @compiled_data << model.new(data) unless data.empty?
     end
   end
 end

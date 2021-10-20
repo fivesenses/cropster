@@ -15,7 +15,7 @@ module Cropster
     # Find a collection of Contact objects
     # @param opts [Hash] options to filter the request
     # @return [Array] of Cropster::Response::Contact objects
-    def contacts(opts={})
+    def contacts(opts = {})
       find_collection("contacts", opts)
     end
 
@@ -39,8 +39,9 @@ module Cropster
     # Process the response from Cropster into appriate objects
     # @param response [Typhoeus::Response]
     def process(response)
-      Cropster::Response::ResponseHandler.
-        new("Contact", data_set(response)).compiled_data
+      Cropster::Response::ResponseHandler
+        .new("Contact", data_set(response))
+        .compiled_data
     end
   end
 end

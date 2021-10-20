@@ -17,7 +17,7 @@ module Cropster
     #
     # @param opts [Hash] options to filter the request
     # @return [Array] of Cropster::Response::ProcessingCurve objects
-    def processing_curves(opts={})
+    def processing_curves(opts = {})
       find_collection("processingCurves", opts)
     end
 
@@ -25,9 +25,9 @@ module Cropster
     #
     # @param response [Typhoeus::Response]
     def process(response)
-      Cropster::Response::ResponseHandler.
-        new("ProcessingCurve", data_set(response)).compiled_data
+      Cropster::Response::ResponseHandler
+        .new("ProcessingCurve", data_set(response))
+        .compiled_data
     end
-
   end
 end
