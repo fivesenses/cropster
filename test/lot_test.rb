@@ -17,7 +17,7 @@ class Cropster::LotTest < Test::Unit::TestCase
     assert_equal 220, lot.initial_weight.amount
     assert_equal "KG", lot.initial_weight.unit
     assert_equal 3.5, lot.weight.amount
-    assert_equal 10, lot.low_stock_threshold
+    assert_equal 10, lot.low_stock_threshold.amount
     assert_equal "PR-0101", lot.id_tag
     assert_equal ["FULLY_WASHED"], lot.processing_methods
     assert_equal "2018/2019", lot.crop_year
@@ -110,7 +110,11 @@ class Cropster::LotTest < Test::Unit::TestCase
           },
           "processingStep": "coffee.green",
           "name": "Yirgacheffe Test Sample",
-          "isSample": true
+          "isSample": true,
+          "lowStockThreshold": {
+            "weight": 10,
+            "unit": "KG"
+          }
         },
         "relationships": {
           "group": {
