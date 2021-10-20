@@ -28,7 +28,13 @@ date: Thu, 26 Apr 2018 07:52:12 GMT
       "initialWeight": {
         "amount": 100,
         "unit": "KG"
-      }
+      },
+      "lowStockThreshold": {
+        "amount": 10,
+        "unit": "KG"
+      },
+      "estimatedNumberOfWeeksUntilRunningOut": 1,
+      "hasRunningOutEstimation": true
     },
     "relationships": {
       "project": {

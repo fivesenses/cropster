@@ -43,7 +43,13 @@ date: Thu, 26 Apr 2018 07:52:12 GMT
         "grade": "AAA",
         "notes": "First coffee from our new partner",
         "processingStep": "coffee.roasting",
-        "purchaseOrderNumber": "PO-1234"
+        "purchaseOrderNumber": "PO-1234",
+        "lowStockThreshold": {
+          "amount": 10,
+          "unit": "KG"
+        },
+        "estimatedNumberOfWeeksUntilRunningOut": 1,
+        "hasRunningOutEstimation": true
       },
       "relationships": {
         "sourceContacts": {
@@ -103,6 +109,16 @@ date: Thu, 26 Apr 2018 07:52:12 GMT
           "links": {
             "self": "https://c-sar.cropster.com/api/v2/api/v2/lots/AA/relationships/alerts",
             "related": "https://c-sar.cropster.com/api/v2/api/v2/lots/AA/alerts"
+          }
+        },
+        "processing": {
+          "data": {
+            "id":"MXdq0L",
+            "type":"processings"
+          },
+          "links": {
+            "self":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/relationships/processing",
+            "related":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/processing"
           }
         },
         "location": {

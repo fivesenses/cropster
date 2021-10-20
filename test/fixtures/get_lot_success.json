@@ -47,7 +47,13 @@ date: Thu, 26 Apr 2018 07:52:12 GMT
       "arrivalDate": 1483858900000,
       "countriesOfOrigin": ["NI"],
       "cropYear": "2018/2019",
-      "shippingContainerNumber": "2"
+      "shippingContainerNumber": "2",
+      "lowStockThreshold": {
+        "amount": 10,
+        "unit": "KG"
+      },
+      "estimatedNumberOfWeeksUntilRunningOut": 1,
+      "hasRunningOutEstimation": true
     },
     "relationships": {
       "sourceContacts": {
@@ -106,6 +112,16 @@ date: Thu, 26 Apr 2018 07:52:12 GMT
         "links": {
           "self": "https://c-sar.cropster.com/api/v2/api/v2/lots/AA/relationships/alerts",
           "related": "https://c-sar.cropster.com/api/v2/api/v2/lots/AA/alerts"
+        }
+      },
+      "processing": {
+        "data": {
+          "id":"MXdq0L",
+          "type":"processings"
+        },
+        "links": {
+          "self":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/relationships/processing",
+          "related":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/processing"
         }
       },
       "location": {

@@ -1,12 +1,6 @@
-require 'test_helper'
+require "test_helper"
 
 class Cropster::LotTest < Test::Unit::TestCase
-  # def test_initialize
-  #   lot = Cropster::Lot.new(cropster_client)
-  #   assert_not_nil lot
-  #   assert_equal "Cropster::Client", lot.client.class.to_s
-  # end
-
   def test_lot_success
     register_fixtures
     load_fixture(:get_lot_success)
@@ -17,16 +11,19 @@ class Cropster::LotTest < Test::Unit::TestCase
     assert lot.created_at.is_a?(Time)
     assert lot.consumed_at.is_a?(Time)
     assert lot.arrived_at.is_a?(Time)
+    assert lot.low_stock_threshold.is_a?(Cropster::Response::Weight)
     assert_equal 4, lot.price.amount
     assert_equal "USD", lot.price.currency
     assert_equal 220, lot.initial_weight.amount
     assert_equal "KG", lot.initial_weight.unit
     assert_equal 3.5, lot.weight.amount
+    assert_equal 10, lot.low_stock_threshold
     assert_equal "PR-0101", lot.id_tag
     assert_equal ["FULLY_WASHED"], lot.processing_methods
     assert_equal "2018/2019", lot.crop_year
     assert_equal "2", lot.shipping_container_number
     assert_equal ["NI"], lot.countries_of_origin
+    assert lot.has_running_out_estimation
   end
 
   def test_lots_success
