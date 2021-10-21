@@ -28,28 +28,28 @@ module Cropster
     end
 
     def build_filter_options
-      if @opts.has_key?(:filter) || @opts.has_key?("filter")
-        @filter_opts = { filter: { @filter_type => @opts[:filter].merge({ group: @group_code }) } }.to_query
+      @filter_opts = if @opts.has_key?(:filter) || @opts.has_key?("filter")
+        {filter: {@filter_type => @opts[:filter].merge({group: @group_code})}}.to_query
       else
-        @filter_opts = { filter: { @filter_type => { group: @group_code } } }.to_query
+        {filter: {@filter_type => {group: @group_code}}}.to_query
       end
     end
 
     def build_sort_options
       if @opts.has_key?(:sort)
-        @sort_opts = { sort: { @filter_type => @opts[:sort] } }.to_query
+        @sort_opts = {sort: {@filter_type => @opts[:sort]}}.to_query
       end
     end
 
     def build_page_options
       if @opts.has_key?(:page) || @opts.has_key?("page")
-        @page_opts = { page: @opts[:page].merge({ size: DEFAULT_PAGE_SIZE }) }.to_query
+        @page_opts = {page: @opts[:page].merge({size: DEFAULT_PAGE_SIZE})}.to_query
       end
     end
 
     def build_include_options
       if @opts.has_key?(:include) || @opts.has_key?("include")
-        @include_opts = { include: { @filter_type => @opts[:include] } }.to_query
+        @include_opts = {include: {@filter_type => @opts[:include]}}.to_query
       end
     end
 

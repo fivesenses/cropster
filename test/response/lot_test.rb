@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class Cropster::Response::LotTest < Test::Unit::TestCase
   def test_initialize
@@ -57,7 +57,13 @@ class Cropster::Response::LotTest < Test::Unit::TestCase
         "grade": "AAA",
         "notes": "First coffee from our new partner",
         "processingStep": "coffee.roasting",
-        "purchaseOrderNumber": "PO-1234"
+        "purchaseOrderNumber": "PO-1234",
+        "lowStockThreshold": {
+          "amount": 10,
+          "unit": "KG"
+        },
+        "estimatedNumberOfWeeksUntilRunningOut": 1,
+        "hasRunningOutEstimation": true
       },
       "relationships": {
         "sourceContacts": {

@@ -5,7 +5,6 @@
 #
 module Cropster
   class Location < Cropster::Base
-
     # Find a single Location
     #
     # @param id [String] the id of the required Location
@@ -18,7 +17,7 @@ module Cropster
     #
     # @params opts [Hash] options to filter the request
     # @return [Array] of Cropster::Response::Location objects
-    def locations(opts={})
+    def locations(opts = {})
       find_collection("locations", opts)
     end
 
@@ -43,8 +42,9 @@ module Cropster
     #
     # @param response [Typhoeus::Response]
     def process(response)
-      Cropster::Response::ResponseHandler.
-        new("Location", data_set(response)).compiled_data
+      Cropster::Response::ResponseHandler
+        .new("Location", data_set(response))
+        .compiled_data
     end
   end
 end

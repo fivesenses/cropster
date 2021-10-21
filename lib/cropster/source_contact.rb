@@ -27,7 +27,7 @@ module Cropster
       create("sourceContacts", data).first
     end
 
-    # Updates an existing source_contact, currently only supports updating 
+    # Updates an existing source_contact, currently only supports updating
     # @name and @accepted attributes.
     #
     # @param id [String] the ID of the SourceContact to be updated
@@ -40,8 +40,9 @@ module Cropster
     # Process the response from Cropster into appriate objects
     # @param response [Typhoeus::Response]
     def process(response)
-      Cropster::Response::ResponseHandler.
-        new("SourceContact", data_set(response)).compiled_data
+      Cropster::Response::ResponseHandler
+        .new("SourceContact", data_set(response))
+        .compiled_data
     end
   end
 end

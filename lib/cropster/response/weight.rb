@@ -11,18 +11,23 @@ module Cropster::Response
     end
 
     def load_from_data(data)
-      @amount = data[:amount] ||= 0
-      @unit   = data[:unit] ||= ""
+      if data.nil?
+        @amount = 0
+        @unit = "KG"
+      else
+        @amount = data[:amount] ||= 0
+        @unit = data[:unit] ||= ""
+      end
     end
 
     def grams
-      if unit_of_measure == 'QUINTAL'
+      if unit_of_measure == "QUINTAL"
         total_amount.to_f * 46000
-      elsif unit_of_measure == 'LBS'
+      elsif unit_of_measure == "LBS"
         total_amount.to_f * 453.59237
-      elsif unit_of_measure == 'KG'
+      elsif unit_of_measure == "KG"
         total_amount.to_f * 1000
-      else 
+      else
         raise "unknown unit conversion #{unit_of_measure}"
       end
     end
@@ -36,33 +41,31 @@ module Cropster::Response
     end
 
     def unit_of_measure
-      if @unit.include?('LBS')
-        'LBS'
-      elsif @unit.include?('KG')
-        'KG'
-      elsif @unit.include?('QUINTAL')
-        'QUINTAL'
+      if @unit.include?("LBS")
+        "LBS"
+      elsif @unit.include?("KG")
+        "KG"
+      elsif @unit.include?("QUINTAL")
+        "QUINTAL"
       else
         raise "unknown units in #{@unit}"
       end
     end
 
     def unit_value
-      @unit.gsub(/[^0-9]/, '').to_i 
+      @unit.gsub(/[^0-9]/, "").to_i
     end
 
     def unit_type
-      if unit_of_measure == 'LBS'
-        ''
+      if unit_of_measure == "LBS"
+        ""
       else
-        @unit.gsub(/[?0-9]/, ' ').split(' ')[0]
+        @unit.gsub(/[?0-9]/, " ").split(" ")[0]
       end
     end
 
     def package_weight_grams
       amount > 0 ? (grams / amount.to_f) : 0
     end
-
   end
-
 end

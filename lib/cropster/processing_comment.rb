@@ -17,7 +17,7 @@ module Cropster
     #
     # @param opts [Hash] options to filter the request
     # @return [Array] of Cropster::Response::ProcessingComment objects
-    def processing_comments(opts={})
+    def processing_comments(opts = {})
       find_collection("processingComments", opts)
     end
 
@@ -25,9 +25,9 @@ module Cropster
     #
     # @param response [Typhoeus::Response]
     def process(response)
-      Cropster::Response::ResponseHandler.
-        new("ProcessingComment", data_set(response)).compiled_data
+      Cropster::Response::ResponseHandler
+        .new("ProcessingComment", data_set(response))
+        .compiled_data
     end
-
   end
 end

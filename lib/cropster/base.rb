@@ -8,8 +8,8 @@ module Cropster
 
     # @param client [Cropster::Client] An instance of the Cropster::Client
     # with appropriate authorization data
-    def initialize(client=nil)
-      @client= client.nil? ? Cropster::Client.new() : client
+    def initialize(client = nil)
+      @client = client.nil? ? Cropster::Client.new : client
     end
 
     # Finds a single object on the Cropster API
@@ -29,7 +29,7 @@ module Cropster
     # @param ids [String] A comma separated string of ID's (eg "AA,BB")
     #
     # @return [Array] an array of the
-    # Cropster::Response::FormattedResponseItem subclass objects 
+    # Cropster::Response::FormattedResponseItem subclass objects
     def find_by_ids(object_url, ids)
       response = get("/#{object_url}/#{ids}")
       handle_error(response)
@@ -72,9 +72,11 @@ module Cropster
     end
 
     # A method to be overridden to process the data returned via the API
-    def process(response); end
+    def process(response)
+    end
 
     protected
+
     # Builds the filter URL from the provided options
     #
     # @param filter [String] the object name to filter
@@ -85,6 +87,7 @@ module Cropster
     end
 
     private
+
     def group_code
       @client.group_code
     end
@@ -116,7 +119,7 @@ module Cropster
     end
 
     def base_url
-      "#{@client.base_url}"
+      @client.base_url.to_s
     end
   end
 end

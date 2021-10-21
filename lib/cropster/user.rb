@@ -17,7 +17,7 @@ module Cropster
     #
     # @param opts [Hash] options to filter the request
     # @return [Array] of Cropster::Response::user objects
-    def users(opts={})
+    def users(opts = {})
       find_collection("users", opts)
     end
 
@@ -25,8 +25,9 @@ module Cropster
     #
     # @param response [Typhoeus::Response]
     def process(response)
-      Cropster::Response::ResponseHandler.
-        new("User", data_set(response)).compiled_data
+      Cropster::Response::ResponseHandler
+        .new("User", data_set(response))
+        .compiled_data
     end
   end
 end

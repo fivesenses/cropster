@@ -5,7 +5,6 @@
 
 module Cropster
   class Certificate < Cropster::Base
-
     # Find a single Certificate
     #
     # @param id [String] the id of the required Certificate
@@ -34,8 +33,9 @@ module Cropster
     # Process the response from Cropster into appropriate objects
     # @param response [Typhoeus::Response]
     def process(response)
-      Cropster::Response::ResponseHandler.
-        new("Certificate", data_set(response)).compiled_data
+      Cropster::Response::ResponseHandler
+        .new("Certificate", data_set(response))
+        .compiled_data
     end
   end
 end

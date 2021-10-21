@@ -17,7 +17,7 @@ module Cropster
     #
     # @param opts [Hash] options to filter the request
     # @return [Array] of Cropster::Response::ProfileLotReference objects
-    def profile_lot_references(opts={})
+    def profile_lot_references(opts = {})
       find_collection("profile_lot_references", opts)
     end
 
@@ -33,8 +33,9 @@ module Cropster
     #
     # @param response [Typhoeus::Response]
     def process(response)
-      Cropster::Response::ResponseHandler.
-        new("ProfileLotReference", data_set(response)).compiled_data
+      Cropster::Response::ResponseHandler
+        .new("ProfileLotReference", data_set(response))
+        .compiled_data
     end
   end
 end

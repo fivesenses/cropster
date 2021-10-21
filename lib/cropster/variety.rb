@@ -15,7 +15,7 @@ module Cropster
     # Find a collection of Variety objects
     # @param opts [Hash] options to filter the request
     # @return [Array] of Cropster::Response::Variety objects
-    def varieties(opts={})
+    def varieties(opts = {})
       find_collection("varieties", opts)
     end
 
@@ -27,7 +27,7 @@ module Cropster
       create("varieties", data).first
     end
 
-    # Updates an existing variety, currently only supports updating 
+    # Updates an existing variety, currently only supports updating
     # @name and @accepted attributes.
     #
     # @param id [String] the ID of the Variety to be updated
@@ -37,12 +37,12 @@ module Cropster
       update("varieties", id, data).first
     end
 
-
     # Process the response from Cropster into appriate objects
     # @param response [Typhoeus::Response]
     def process(response)
-      Cropster::Response::ResponseHandler.
-        new("Variety", data_set(response)).compiled_data
+      Cropster::Response::ResponseHandler
+        .new("Variety", data_set(response))
+        .compiled_data
     end
   end
 end
