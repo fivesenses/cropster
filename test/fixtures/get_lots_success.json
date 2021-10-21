@@ -1,140 +1,19 @@
 HTTP/1.1 200 OK
-server: Cowboy
-x-apiary-ratelimit-limit: 120
-x-apiary-ratelimit-remaining: 119
-content-type: application/vnd.api+json;charset=UTF-8
-access-control-allow-origin: *
-access-control-allow-methods: OPTIONS,GET,HEAD,POST,PUT,DELETE,TRACE,CONNECT
-access-control-max-age: 10
-x-apiary-transaction-id: 5ae1852c807d360a0002517c
-content-length: 3579
-date: Thu, 26 Apr 2018 07:52:12 GMT
+Content-Type: application/vnd.api+json;charset=utf-8
+Transfer-Encoding: chunked
+Connection: close
+Date: Wed, 20 Oct 2021 01:22:07 GMT
+Server: openresty/1.15.8.2
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: DENY
+X-Content-Type-Options: nosniff
+Vary: Accept-Encoding
+X-Cache: Miss from cloudfront
+Via: 1.1 186569055b3bce44b6aca4db41c494e9.cloudfront.net (CloudFront)
+X-Amz-Cf-Pop: PER50-C1
+X-Amz-Cf-Id: mKoRo85sE8gFGCCADqrAfFe7lKpHBtgqWuEwNQlgCYie2J-Osy_xrQ==
 
-{
-  "data": [
-    {
-      "type": "lots",
-      "id": "AA",
-      "attributes": {
-        "isSample": false,
-        "creationDate": 1373858900000,
-        "consumedDate": 1483858900000,
-        "initialWeight": {
-          "amount": 220,
-          "unit": "KG"
-        },
-        "actualWeight": {
-          "amount": 3.5,
-          "unit": "KG"
-        },
-        "accepted": "notRated",
-        "name": "Ethiopia Yirgacheffe",
-        "idTag": "PR-0101",
-        "trackingNumber": "KP923874",
-        "price": {
-          "amount": 4,
-          "currency": "USD"
-        },
-        "priceBaseUnit": {
-          "amount": 1,
-          "unit": "LBS"
-        },
-        "salesNumber": "TR-16-12244",
-        "grade": "AAA",
-        "notes": "First coffee from our new partner",
-        "processingStep": "coffee.roasting",
-        "purchaseOrderNumber": "PO-1234",
-        "lowStockThreshold": {
-          "amount": 10,
-          "unit": "KG"
-        },
-        "estimatedNumberOfWeeksUntilRunningOut": 1,
-        "hasRunningOutEstimation": true
-      },
-      "relationships": {
-        "sourceContacts": {
-          "data":[
-            {"id":"yvqnqM","type":"sourceContacts"},
-            {"id":"Apzlz7","type":"sourceContacts"},
-            {"id":"NV2L2G","type":"sourceContacts"}
-          ],
-          "links": {
-            "self": "https://c-sar.cropster.com/api/v2/lots/AA/relationships/sourceContacts",
-            "related": "https://c-sar.cropster.com/api/v2/lots/AA/sourceContacts"
-          }
-        },
-        "latestSensorialQc": {
-          "links": {
-            "self": "https://c-sar.cropster.com/api/v2/lots/AA/relationships/latestSensorialQc",
-            "related": "https://c-sar.cropster.com/api/v2/lots/AA/latestSensorialQc"
-          },
-          "data": {
-            "type": "sensorialQcs",
-            "id": "ORIJ"
-          }
-        },
-        "project": {
-          "links": {
-            "self": "https://c-sar.cropster.com/api/v2/lots/AA/relationships/project",
-            "related": "https://c-sar.cropster.com/api/v2/lots/AA/project"
-          }
-        },
-        "variety": {
-          "links": {
-            "self": "https://c-sar.cropster.com/api/v2/lots/AA/relationships/variety",
-            "related": "https://c-sar.cropster.com/api/v2/lots/AA/variety"
-          },
-          "data": {
-            "type": "varieties",
-            "id": "AA"
-          }
-        },
-        "group": {
-          "links": {
-            "self": "https://c-sar.cropster.com/api/v2/lots/AA/relationships/group",
-            "related": "https://c-sar.cropster.com/api/v2/lots/AA/group"
-          },
-          "data": {
-            "type": "groups",
-            "id": "CROR"
-          }
-        },
-        "certificates": {
-          "links": {
-            "self": "https://c-sar.cropster.com/api/v2/lots/AA/relationships/certificates",
-            "related": "https://c-sar.cropster.com/api/v2/lots/AA/certificates"
-          }
-        },
-        "alerts": {
-          "links": {
-            "self": "https://c-sar.cropster.com/api/v2/api/v2/lots/AA/relationships/alerts",
-            "related": "https://c-sar.cropster.com/api/v2/api/v2/lots/AA/alerts"
-          }
-        },
-        "processing": {
-          "data": {
-            "id":"MXdq0L",
-            "type":"processings"
-          },
-          "links": {
-            "self":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/relationships/processing",
-            "related":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/processing"
-          }
-        },
-        "location": {
-          "links": {
-            "self": "https://c-sar.cropster.com/api/v2/lots/AA/relationships/location",
-            "related": "https://c-sar.cropster.com/api/v2/lots/AA/location"
-          },
-          "data": {
-            "type": "locations",
-            "id": "AA"
-          }
-        }
-      },
-      "links": {
-        "self": "https://c-sar.cropster.com/api/v2/lots/AA"
-      }
-    }
-  ]
-}
+{"data":[{"id":"7JWDj0","type":"lots","attributes":{"isSample":false,"notes":"","lowStockThreshold":null,"salesNumber":"675-4RM","estimatedNumberOfWeeksUntilRunningOut":null,"idTag":"PR-92382","icoNumber":null,"isActive":true,"sampleType":null,"actualWeight":{"amount":38.25,"unit":"KG","amountSI":38.25},"processingStep":"coffee.roasting","expectedWeight":null,"price":{"amount":2.22,"currency":"USD"},"erpId":null,"trackingNumber":"GCC-000119","ratingNotes":"","unbalancedWeight":null,"consumedDate":null,"lastModifiedDate":1634692924000,"processingMethods":["FULLY_WASHED"],"accepted":"notRated","creationDate":1634692063000,"arrivalDate":null,"countriesOfOrigin":["CO"],"cropYear":null,"purchaseOrderNumber":null,"grade":null,"name":"Decaf, Risaralda - Colombia","hasRunningOutEstimation":false,"shippingContainerNumber":"4","initialWeight":{"amount":38.25,"unit":"KG","amountSI":38.25},"priceBaseUnit":{"amount":1.0,"unit":"LBS","amountSI":0.453592}},"relationships":{"sourceLots":{"links":{"self":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/relationships/sourceLots","related":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/sourceLots"}},"sourceBatchMix":{"links":{"self":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/relationships/sourceBatchMix","related":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/sourceBatchMix"}},"blendProfile":{"data":null,"links":{"self":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/relationships/blendProfile","related":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/blendProfile"}},"latestSampleGroupSensorialQc":{"links":{"self":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/relationships/latestSampleGroupSensorialQc","related":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/latestSampleGroupSensorialQc"}},"scheduledProcessing":{"links":{"self":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/relationships/scheduledProcessing","related":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/scheduledProcessing"}},"outgoingTransactions":{"links":{"self":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/relationships/outgoingTransactions","related":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/outgoingTransactions"}},"processingAlerts":{"links":{"self":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/relationships/processingAlerts","related":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/processingAlerts"}},"physicalResults":{"links":{"self":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/relationships/physicalResults","related":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/physicalResults"}},"sourceContacts":{"data":[],"links":{"self":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/relationships/sourceContacts","related":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/sourceContacts"}},"project":{"data":{"id":"MYDN","type":"projects"},"links":{"self":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/relationships/project","related":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/project"}},"sourceBatch":{"links":{"self":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/relationships/sourceBatch","related":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/sourceBatch"}},"lotShareLink":{"data":null,"links":{"self":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/relationships/lotShareLink","related":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/lotShareLink"}},"cocoaPhysicalResults":{"links":{"self":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/relationships/cocoaPhysicalResults","related":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/cocoaPhysicalResults"}},"incomingTransactions":{"links":{"self":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/relationships/incomingTransactions","related":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/incomingTransactions"}},"latestSensorialQc":{"data":null,"links":{"self":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/relationships/latestSensorialQc","related":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/latestSensorialQc"}},"sensorialQcs":{"links":{"self":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/relationships/sensorialQcs","related":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/sensorialQcs"}},"certificates":{"links":{"self":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/relationships/certificates","related":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/certificates"}},"variety":{"data":null,"links":{"self":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/relationships/variety","related":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/variety"}},"usedInProfiles":{"links":{"self":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/relationships/usedInProfiles","related":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/usedInProfiles"}},"processing":{"data":{"id":"MXdq0L","type":"processings"},"links":{"self":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/relationships/processing","related":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/processing"}},"sampleGroup":{"data":null,"links":{"self":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/relationships/sampleGroup","related":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/sampleGroup"}},"location":{"data":{"id":"EMZ0","type":"locations"},"links":{"self":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/relationships/location","related":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/location"}},"destinationLots":{"links":{"self":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/relationships/destinationLots","related":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/destinationLots"}},"group":{"data":{"id":"5SC","type":"groups"},"links":{"self":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/relationships/group","related":"https://c-sar.cropster.com/api/v2/lots/7JWDj0/group"}}},"links":{"self":"https://c-sar.cropster.com/api/v2/lots/7JWDj0"}},{"id":"7JXmMl","type":"lots","attributes":{"isSample":false,"notes":"","lowStockThreshold":null,"salesNumber":"675-4RM","estimatedNumberOfWeeksUntilRunningOut":1,"idTag":"PG-1082","icoNumber":null,"isActive":true,"sampleType":null,"actualWeight":{"amount":1.857,"unit":"BAG35KG","amountSI":65.0},"processingStep":"coffee.green","expectedWeight":null,"price":{"amount":2.22,"currency":"USD"},"erpId":"FSC-0119","trackingNumber":"GCC-000119","ratingNotes":"","unbalancedWeight":null,"consumedDate":null,"lastModifiedDate":1634692922000,"processingMethods":["FULLY_WASHED"],"accepted":"notRated","creationDate":1626657561000,"arrivalDate":null,"countriesOfOrigin":["CO"],"cropYear":null,"purchaseOrderNumber":null,"grade":null,"name":"Risaralda-Decaf-T10-2019/20-4-CO","hasRunningOutEstimation":true,"shippingContainerNumber":"4","initialWeight":{"amount":28.0,"unit":"BAG35KG","amountSI":980.0},"priceBaseUnit":{"amount":1.0,"unit":"LBS","amountSI":0.453592}},"relationships":{"sourceLots":{"links":{"self":"https://c-sar.cropster.com/api/v2/lots/7JXmMl/relationships/sourceLots","related":"https://c-sar.cropster.com/api/v2/lots/7JXmMl/sourceLots"}},"sourceBatchMix":{"links":{"self":"https://c-sar.cropster.com/api/v2/lots/7JXmMl/relationships/sourceBatchMix","related":"https://c-sar.cropster.com/api/v2/lots/7JXmMl/sourceBatchMix"}},"blendProfile":{"data":null,"links":{"self":"https://c-sar.cropster.com/api/v2/lots/7JXmMl/relationships/blendProfile","related":"https://c-sar.cropster.com/api/v2/lots/7JXmMl/blendProfile"}},"latestSampleGroupSensorialQc":{"links":{"self":"https://c-sar.cropster.com/api/v2/lots/7JXmMl/relationships/latestSampleGroupSensorialQc","related":"https://c-sar.cropster.com/api/v2/lots/7JXmMl/latestSampleGroupSensorialQc"}},"scheduledProcessing":{"links":{"self":"https://c-sar.cropster.com/api/v2/lots/7JXmMl/relationships/scheduledProcessing","related":"https://c-sar.cropster.com/api/v2/lots/7JXmMl/scheduledProcessing"}},"outgoingTransactions":{"links":{"self":"https://c-sar.cropster.com/api/v2/lots/7JXmMl/relationships/outgoingTransactions","related":"https://c-sar.cropster.com/api/v2/lots/7JXmMl/outgoingTransactions"}},"processingAlerts":{"links":{"self":"https://c-sar.cropster.com/api/v2/lots/7JXmMl/relationships/processingAlerts","related":"https://c-sar.cropster.com/api/v2/lots/7JXmMl/processingAlerts"}},"physicalResults":{"links":{"self":"https://c-sar.cropster.com/api/v2/lots/7JXmMl/relationships/physicalResults","related":"https://c-sar.cropster.com/api/v2/lots/7JXmMl/physicalResults"}},"sourceContacts":{"data":[],"links":{"self":"https://c-sar.cropster.com/api/v2/lots/7JXmMl/relationships/sourceContacts","related":"https://c-sar.cropster.com/api/v2/lots/7JXmMl/sourceContacts"}},"project":{"data":{"id":"MYDN","type":"projects"},"links":{"self":"https://c-sar.cropster.com/api/v2/lots/7JXmMl/relationships/project","related":"https://c-sar.cropster.com/api/v2/lots/7JXmMl/project"}},"sourceBatch":{"links":{"self":"https://c-sar.cropster.com/api/v2/lots/7JXmMl/relationships/sourceBatch","related":"https://c-sar.cropster.com/api/v2/lots/7JXmMl/sourceBatch"}},"lotShareLink":{"data":null,"links":{"self":"https://c-sar.cropster.com/api/v2/lots/7JXmMl/relationships/lotShareLink","related":"https://c-sar.cropster.com/api/v2/lots/7JXmMl/lotShareLink"}},"cocoaPhysicalResults":{"links":{"self":"https://c-sar.cropster.com/api/v2/lots/7JXmMl/relationships/cocoaPhysicalResults","related":"https://c-sar.cropster.com/api/v2/lots/7JXmMl/cocoaPhysicalResults"}},"incomingTransactions":{"links":{"self":"https://c-sar.cropster.com/api/v2/lots/7JXmMl/relationships/incomingTransactions","related":"https://c-sar.cropster.com/api/v2/lots/7JXmMl/incomingTransactions"}},"latestSensorialQc":{"data":null,"links":{"self":"https://c-sar.cropster.com/api/v2/lots/7JXmMl/relationships/latestSensorialQc","related":"https://c-sar.cropster.com/api/v2/lots/7JXmMl/latestSensorialQc"}},"sensorialQcs":{"links":{"self":"https://c-sar.cropster.com/api/v2/lots/7JXmMl/relationships/sensorialQcs","related":"https://c-sar.cropster.com/api/v2/lots/7JXmMl/sensorialQcs"}},"certificates":{"links":{"self":"https://c-sar.cropster.com/api/v2/lots/7JXmMl/relationships/certificates","related":"https://c-sar.cropster.com/api/v2/lots/7JXmMl/certificates"}},"variety":{"data":null,"links":{"self":"https://c-sar.cropster.com/api/v2/lots/7JXmMl/relationships/variety","related":"https://c-sar.cropster.com/api/v2/lots/7JXmMl/variety"}},"usedInProfiles":{"links":{"self":"https://c-sar.cropster.com/api/v2/lots/7JXmMl/relationships/usedInProfiles","related":"https://c-sar.cropster.com/api/v2/lots/7JXmMl/usedInProfiles"}},"processing":{"data":null,"links":{"self":"https://c-sar.cropster.com/api/v2/lots/7JXmMl/relationships/processing","related":"https://c-sar.cropster.com/api/v2/lots/7JXmMl/processing"}},"sampleGroup":{"data":null,"links":{"self":"https://c-sar.cropster.com/api/v2/lots/7JXmMl/relationships/sampleGroup","related":"https://c-sar.cropster.com/api/v2/lots/7JXmMl/sampleGroup"}},"location":{"data":{"id":"EMZ0","type":"locations"},"links":{"self":"https://c-sar.cropster.com/api/v2/lots/7JXmMl/relationships/location","related":"https://c-sar.cropster.com/api/v2/lots/7JXmMl/location"}},"destinationLots":{"links":{"self":"https://c-sar.cropster.com/api/v2/lots/7JXmMl/relationships/destinationLots","related":"https://c-sar.cropster.com/api/v2/lots/7JXmMl/destinationLots"}},"group":{"data":{"id":"5SC","type":"groups"},"links":{"self":"https://c-sar.cropster.com/api/v2/lots/7JXmMl/relationships/group","related":"https://c-sar.cropster.com/api/v2/lots/7JXmMl/group"}}},"links":{"self":"https://c-sar.cropster.com/api/v2/lots/7JXmMl"}} ] }
