@@ -11,8 +11,13 @@ module Cropster::Response
     end
 
     def load_from_data(data)
-      @amount = data[:amount] ||= 0
-      @unit = data[:unit] ||= ""
+      if data.nil?
+        @amount = 0
+        @unit = 0
+      else
+        @amount = data[:amount] ||= 0
+        @unit = data[:unit] ||= ""
+      end
     end
 
     def grams
