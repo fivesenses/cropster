@@ -13,7 +13,7 @@ module Cropster::Response
     def load_from_data(data)
       if data.nil?
         @amount = 0
-        @unit = ""
+        @unit = "KG"
       else
         @amount = data[:amount] ||= 0
         @unit = data[:unit] ||= ""
