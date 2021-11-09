@@ -4,7 +4,7 @@
 # https://cropstercore.docs.apiary.io/#reference/production-&-lots/profile-components
 #
 module Cropster
-  class ProfileComponentComponent < Cropster::Base
+  class ProfileComponent < Cropster::Base
     # Find a single ProfileComponent
     #
     # @param id [String] the id of the required ProfileComponent
