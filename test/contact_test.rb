@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class Cropster::ContactTest < Test::Unit::TestCase
   def test_contact_success
