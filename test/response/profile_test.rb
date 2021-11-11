@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class Cropster::Response::ProfileTest < Test::Unit::TestCase
   def test_initialize
@@ -23,7 +23,10 @@ class Cropster::Response::ProfileTest < Test::Unit::TestCase
       "type": "profiles",
       "id": "AA",
       "attributes": {
-        "batchSize": { "amount": 60.0, "unit": "Kg" },
+        "batchSize": {
+          "amount": 60.0,
+          "unit": "Kg"
+        },
         "calculatedWeightChange": -0.0735,
         "createdDate": 1302561695000,
         "erpId": nil,

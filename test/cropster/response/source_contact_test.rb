@@ -9,10 +9,10 @@ class Cropster::Response::SourceContactTest < Test::Unit::TestCase
 
   def valid_response
     {
-      "id":"06zgEL",
-      "type":"sourceContacts",
-      "relationships":{
-        "lot":{
+      "id": "06zgEL",
+      "type": "sourceContacts",
+      "relationships": {
+        "lot": {
           "data":{
             "id":"n6aeeK",
             "type":"lots"

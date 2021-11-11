@@ -29,9 +29,17 @@ module Cropster
 
     def build_filter_options
       @filter_opts = if @opts.has_key?(:filter) || @opts.has_key?("filter")
-        {filter: {@filter_type => @opts[:filter].merge({group: @group_code})}}.to_query
+        {
+          filter: {
+            @filter_type => @opts[:filter].merge({group: @group_code})
+          }
+        }.to_query
       else
-        {filter: {@filter_type => {group: @group_code}}}.to_query
+        {
+          filter: {
+            @filter_type => {group: @group_code}
+          }
+        }.to_query
       end
     end
 
