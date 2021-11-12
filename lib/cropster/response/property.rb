@@ -10,6 +10,5 @@ module Cropster::Response
       @name = attributes[:name]
       @value = attributes[:value]
     end
-
   end
 end

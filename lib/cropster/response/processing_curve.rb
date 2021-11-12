@@ -17,6 +17,5 @@ module Cropster::Response
       @unit = attributes[:unit]
       @values = load_values(attributes[:values])
     end
-
   end
 end
