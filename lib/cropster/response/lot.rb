@@ -47,10 +47,14 @@ module Cropster
       end
 
       def load_sensorial_qc(sensorial_qcs)
+        return if sensorial_qcs[:data].nil?
+
         @sensorial_qc_id = sensorial_qcs[:data][:id]
       end
 
       def load_processing(processings)
+        return if processings[:data].nil?
+
         @processing_id = processings[:data][:id]
       end
 
