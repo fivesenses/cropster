@@ -11,9 +11,12 @@ module Cropster
         :source_contacts, :processing_methods, :arrived_at,
         :countries_of_origin, :crop_year, :shipping_container_number,
         :low_stock_threshold, :estimated_number_of_weeks_until_running_out,
-        :has_running_out_estimation
+        :has_running_out_estimation, :processing_id, :sensorial_qc_id
+
       def load_from_data(data)
         super
+        load_processing(data[:relationships][:processing])
+        load_sensorial_qc(data[:relationships][:latestSensorialQc])
       end
 
       def load_attributes(attributes)
@@ -41,6 +44,14 @@ module Cropster
         @low_stock_threshold = load_weight(attributes[:lowStockThreshold])
         @estimated_number_of_weeks_until_running_out = attributes[:estimatedNumberOfWeeksUntilRunningOut]
         @has_running_out_estimation = attributes[:hasRunningOutEstimation]
+      end
+
+      def load_sensorial_qc(sensorial_qcs)
+        @sensorial_qc_id = sensorial_qcs[:data][:id]
+      end
+
+      def load_processing(processings)
+        @processing_id = processings[:data][:id]
       end
 
       def fairtrade?
