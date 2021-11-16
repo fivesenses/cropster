@@ -3,7 +3,8 @@
 #
 module Cropster::Response
   class ProfileComponent < Cropster::Response::FormattedResponseItem
-    attr_accessor :percentage, :name, :profile_id, :profile_type
+    attr_accessor :percentage, :name, :profile_id, :profile_type,
+      :lot_id, :lot_type
 
     def load_attributes(attributes)
       return if attributes.nil?
@@ -12,12 +13,19 @@ module Cropster::Response
       @name = attributes[:name]
     end
 
+    def load_lots(lots)
+      return if lots.nil?
+
+      @lot_id = lots[:id]
+      @lot_type = lots[:type]
+    end
+
     # @param relationships [Hash]
     def load_relationships(relationships)
       return if relationships.nil?
 
-      @profile = relationships[:profile]
-      load_profile(@profile)
+      load_profile(relationships[:profile])
+      load_lots(relationships[:lots][:data]&.first)
     end
 
     # @param profile [Hash]

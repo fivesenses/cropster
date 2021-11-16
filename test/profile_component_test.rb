@@ -12,6 +12,10 @@ class Cropster::ProfileComponentTest < Test::Unit::TestCase
     assert_equal "6XdV8", profile_component.id
     assert_equal 1, profile_component.percentage
     assert_nil profile_component.name
+    assert_equal "WbyyYN", profile_component.lot_id
+    assert_equal "lots", profile_component.lot_type
+    assert_equal "bGaX2", profile_component.profile_id
+    assert_equal "profiles", profile_component.profile_type
   end
 
   test "should get a collection of ProfileComponents" do
