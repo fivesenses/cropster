@@ -24,6 +24,8 @@ class Cropster::LotTest < Test::Unit::TestCase
     assert_equal "4", lot.shipping_container_number
     assert_equal ["CO"], lot.countries_of_origin
     assert lot.has_running_out_estimation
+    assert_equal "MYDN", lot.project
+    assert_equal "EMZ0", lot.location
   end
 
   def test_lots_success

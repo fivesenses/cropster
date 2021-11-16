@@ -17,6 +17,8 @@ module Cropster
         super
         load_processing(data[:relationships][:processing])
         load_sensorial_qc(data[:relationships][:latestSensorialQc])
+        load_project(data[:relationships][:project])
+        load_location(data[:relationships][:location])
       end
 
       def load_attributes(attributes)
@@ -53,9 +55,24 @@ module Cropster
       end
 
       def load_processing(processings)
+        return if processings.nil?
         return if processings[:data].nil?
 
         @processing_id = processings[:data][:id]
+      end
+
+      def load_project(project)
+        return if project.nil?
+        return if project[:data].nil?
+
+        @project = project[:data][:id]
+      end
+
+      def load_location(location)
+        return if location.nil?
+        return if location[:data].nil?
+
+        @location = location[:data][:id]
       end
 
       def fairtrade?
