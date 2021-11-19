@@ -16,6 +16,7 @@ class Cropster::Response::ProfileTest < Test::Unit::TestCase
     assert_nil profile.erp_id
     assert_nil profile.new_lot_name
     assert_nil profile.notes
+    assert_equal "AA", profile.profile_components.first[:id]
   end
 
   def valid_response

@@ -5,10 +5,11 @@ module Cropster
   module Response
     class FormattedResponseItem
       attr_accessor :id, :type, :link
+
       attr_accessor :source_contacts, :sensorial_qcs, :projects,
         :varieties, :groups, :certificates, :alerts, :locations,
         :processings, :machines, :profiles, :lots, :contact, :lot, :contact_role,
-        :processing
+        :processing, :profile_components
 
       # Constructor
       # @param data [Hash] the data to convert into a Cropster::Response subclass
@@ -56,6 +57,7 @@ module Cropster
         @processing = relationships[:processing] # if relationships.has_key?(:processing)
         @machines = relationships[:machines]
         @profiles = relationships[:profiles]
+        @profile_components = relationships[:profileComponents]
         @lots = relationships[:lots]
         @contact = relationships[:contact]
         @lot = relationships[:lot]
