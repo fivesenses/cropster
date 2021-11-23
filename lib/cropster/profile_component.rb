@@ -19,10 +19,8 @@ module Cropster
     # @param opts [Hash] options to filter the request
     # @return [Array] of Cropster::Response::ProfileComponent objects
     def profile_components(opts = {})
-      # find_collection("profileComponents", opts)
-      response = get("/profileComponents?filter[profileComponents][profile][group]=#{@client.group_code}")
-      handle_error(response)
-      process(response)
+      opts = opts.merge({filter: {profileComponents: {profile: {group: @client.group_code}}}})
+      find_collection("profileComponents", opts)
     end
 
     # Process the response from Cropster into appriate objects
