@@ -19,8 +19,11 @@ module Cropster
     # @param opts [Hash] options to filter the request
     # @return [Array] of Cropster::Response::ProfileComponent objects
     def profile_components(opts = {})
-      opts = opts.merge({filter: {profileComponents: {profile: {group: @client.group_code}}}})
-      find_collection("profileComponents", opts)
+      base_url = "/profileComponents?filter[profileComponents][profile][group]="
+      response = get("#{base_url}#{@client.group_code}&#{opts.to_query}")
+
+      handle_error(response)
+      process(response)
     end
 
     # Process the response from Cropster into appriate objects

@@ -32,7 +32,7 @@ class Cropster::ProfileComponentTest < Test::Unit::TestCase
   def register_fixtures
     url = fixture_url("profileComponents/6XdV8")
     register_fixture(:get_profile_component_200, :get, url)
-    url = fixture_url("profileComponents?filter[profileComponents][group]=CROR&filter[profileComponents][profileComponents][profile][group]=CROR&page[size]=9999")
+    url = fixture_url("profileComponents?filter[profileComponents][profile][group]=CROR&page[size]=9999")
     register_fixture(:get_profile_components_200, :get, url)
   end
 end
