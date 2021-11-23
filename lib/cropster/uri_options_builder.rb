@@ -51,7 +51,11 @@ module Cropster
 
     def build_page_options
       if @opts.has_key?(:page) || @opts.has_key?("page")
-        @page_opts = {page: @opts[:page].merge({size: DEFAULT_PAGE_SIZE})}.to_query
+        @page_opts = if @opts[:page].has_key?(:size)
+          {page: @opts[:page]}.to_query
+        else
+          {page: @opts[:page].merge({size: DEFAULT_PAGE_SIZE})}.to_query
+        end
       end
     end
 
