@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class Cropster::Response::ProcessingCurveTest < Test::Unit::TestCase
   def test_initialize
@@ -8,7 +8,6 @@ class Cropster::Response::ProcessingCurveTest < Test::Unit::TestCase
     assert_equal 808, curve.duration
     assert_equal 4, curve.values.length
     assert_equal 411.9, curve.values.first[:value]
-
   end
 
   def valid_response

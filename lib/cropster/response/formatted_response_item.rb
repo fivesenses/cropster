@@ -46,7 +46,6 @@ module Cropster
       def load_relationships(relationships)
         relationships = Cropster::Response::Relationship.new(relationships).result
         @source_contacts = relationships[:source_contacts]
-        @sensorial_qcs = relationships[:sensorial_qcs]
         @projects = relationships[:projects]
         @varieties = relationships[:varieties]
         @groups = relationships[:groups]
@@ -62,6 +61,11 @@ module Cropster
         @contact = relationships[:contact]
         @lot = relationships[:lot]
         @contact_role = relationships[:contactRole]
+        @sensorial_sheet = relationships[:sensorialSheet]
+        @sensorial_sheet_items = relationships[:sensorialSheetItems]
+        @sensorial_result = relationships[:sensorialResult]
+        @sensorial_result_items = relationships[:sensorialResultItems]
+        @sensorial_qcs = relationships[:sensorial_qcs]
       end
 
       def load_project(data)
