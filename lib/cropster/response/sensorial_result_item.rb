@@ -7,9 +7,9 @@ module Cropster::Response
     def load_attributes(attributes)
       return if attributes.nil?
 
-      @calculated_quality = attributes["calculatedQuality"]
-      @intensity = attributes["intensity"]
-      @quality = attributes["quality"]
+      @calculated_quality = attributes[:calculatedQuality]
+      @intensity = attributes[:intensity]
+      @quality = attributes[:quality]
     end
   end
 end

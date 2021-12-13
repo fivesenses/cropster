@@ -20,11 +20,11 @@ class Cropster::Response::LotTest < Test::Unit::TestCase
     assert_equal "USD", item.price.currency
     assert_equal ["AA"], item.varieties
     assert_equal ["CROR"], item.groups
-    assert_equal ["ORIJ"], item.sensorial_qcs
+    assert_equal ["AAAA", "BBBB"], item.sensorial_qcs
     assert_equal ["AA"], item.processings
     assert_equal "https://c-sar.cropster.com/api/v2/lots/AA", item.link
     assert_equal "AA", item.processing_id
-    assert_equal "ORIJ", item.sensorial_qc_id
+    assert_equal "ORIJ", item.latest_sensorial_qc_id
   end
 
   def valid_response
@@ -88,6 +88,21 @@ class Cropster::Response::LotTest < Test::Unit::TestCase
           "links": {
             "self": "https://c-sar.cropster.com/api/v2/lots/AA/relationships/project",
             "related": "https://c-sar.cropster.com/api/v2/lots/AA/project"
+          }
+        },
+        "sensorialQcs": {
+          "data": [
+            {
+              "type": "sensorialQcs",
+              "id": "AAAA"
+            }, {
+              "type": "sensorialQcs",
+              "id": "BBBB"
+            }
+          ],
+          "links": {
+            "self": "https://c-sar.cropster.com/api/v2/lots/id/relationships/sensorialQcs",
+            "related": "https://c-sar.cropster.com/api/v2/lots/id/sensorialQcs"
           }
         },
         "variety": {

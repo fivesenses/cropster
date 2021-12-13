@@ -1,8 +1,9 @@
-require 'test_helper'
+require "test_helper"
 
 class Cropster::Response::ProjectTest < Test::Unit::TestCase
   def test_initialize
     project = Cropster::Response::Project.new(valid_response)
+    assert_match(/AA/, project.id)
     assert_match(/projects/, project.type)
     assert_match(/My Project/, project.name)
     assert_match(/More project details/, project.description)

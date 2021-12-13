@@ -4,21 +4,41 @@
 module Cropster
   module Response
     class Lot < Cropster::Response::FormattedResponseItem
-      attr_accessor :id_tag, :name, :created_at, :consumed_at,
-        :location, :weight, :price, :project,
-        :initial_weight, :tracking_number, :grade, :sales_number,
-        :notes, :processing_step, :purchase_order_number,
-        :source_contacts, :processing_methods, :arrived_at,
-        :countries_of_origin, :crop_year, :shipping_container_number,
-        :low_stock_threshold, :estimated_number_of_weeks_until_running_out,
-        :has_running_out_estimation, :processing_id, :sensorial_qc_id
+      attr_accessor :id_tag,
+        :name,
+        :created_at,
+        :consumed_at,
+        :location,
+        :weight,
+        :price,
+        :project,
+        :initial_weight,
+        :tracking_number,
+        :grade,
+        :sales_number,
+        :notes,
+        :processing_step,
+        :purchase_order_number,
+        :source_contacts,
+        :processing_methods,
+        :arrived_at,
+        :countries_of_origin,
+        :crop_year,
+        :shipping_container_number,
+        :low_stock_threshold,
+        :estimated_number_of_weeks_until_running_out,
+        :has_running_out_estimation,
+        :processing_id,
+        :latest_sensorial_qc_id,
+        :sensorial_qcs
 
       def load_from_data(data)
         super
         load_processing(data[:relationships][:processing])
-        load_sensorial_qc(data[:relationships][:latestSensorialQc])
         load_project(data[:relationships][:project])
         load_location(data[:relationships][:location])
+        load_latest_sensorial_qc(data[:relationships][:latestSensorialQc])
+        load_sensorial_qcs(data[:relationships][:sensorialQcs])
       end
 
       def load_attributes(attributes)
@@ -48,10 +68,10 @@ module Cropster
         @has_running_out_estimation = attributes[:hasRunningOutEstimation]
       end
 
-      def load_sensorial_qc(sensorial_qcs)
+      def load_latest_sensorial_qc(sensorial_qcs)
         return if sensorial_qcs[:data].nil?
 
-        @sensorial_qc_id = sensorial_qcs[:data][:id]
+        @latest_sensorial_qc_id = sensorial_qcs[:data][:id]
       end
 
       def load_processing(processings)
@@ -73,6 +93,16 @@ module Cropster
         return if location[:data].nil?
 
         @location = location[:data][:id]
+      end
+
+      def load_sensorial_qcs(sensorial_qcs)
+        return if sensorial_qcs.nil?
+        return if sensorial_qcs[:data].nil?
+
+        @sensorial_qcs = []
+        sensorial_qcs[:data].each do |sensorial_qc|
+          @sensorial_qcs << sensorial_qc[:id]
+        end
       end
 
       def fairtrade?
