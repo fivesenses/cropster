@@ -99,7 +99,6 @@ module Cropster
       end
 
       def load_sensorial_qc(sensorial_qc)
-        puts "SENSORIAL QC #{sensorial_qc}"
         return if sensorial_qc.nil?
         return if sensorial_qc[:data].nil?
 

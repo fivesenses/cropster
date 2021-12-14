@@ -11,5 +11,11 @@ module Cropster
     def sensorial_descriptor(id)
       find_by_id("sensorialDescriptors", id).first
     end
+
+    def process(response)
+      Cropster::Response::ResponseHandler
+        .new("SensorialDescriptor", data_set(response))
+        .compiled_data
+    end
   end
 end

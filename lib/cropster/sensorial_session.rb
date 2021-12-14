@@ -15,5 +15,11 @@ module Cropster
     def sensorial_sessions(opts = {})
       find_collection("sensorialSessions", opts)
     end
+
+    def process(response)
+      Cropster::Response::ResponseHandler
+        .new("SensorialSession", data_set(response))
+        .compiled_data
+    end
   end
 end

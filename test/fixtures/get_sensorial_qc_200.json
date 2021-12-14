@@ -1,0 +1,89 @@
+HTTP/1.1 200 OK
+Content-Type: application/vnd.api+json;charset=utf-8
+Transfer-Encoding: chunked
+Connection: close
+Date: Fri, 12 Nov 2021 08:40:35 GMT
+Server: openresty/1.15.8.2
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: DENY
+X-Content-Type-Options: nosniff
+Vary: Accept-Encoding
+X-Cache: Miss from cloudfront
+Via: 1.1 428e2a08293137149f3e5137ec4cd473.cloudfront.net (CloudFront)
+X-Amz-Cf-Pop: PER50-C1
+X-Amz-Cf-Id: bvSSOogaitJ-fiBYNqp3WLerV1IcjVv9odFx3fp19U6ri8rcU0CpnA==
+
+{
+  "data" : {
+    "id" : "id",
+    "type" : "sensorialQcs",
+    "attributes" : {
+      "idTag" : "idTag",
+      "category" : null,
+      "createdDate" : 1575281700412,
+      "description" : null,
+      "isActive" : null,
+      "lab" : null,
+      "lastModifiedDate" : 1575281700412,
+      "resultSummary" : {
+        "averageScore" : "76.0",
+        "samplesCount" : 1,
+        "minSpread" : "-0.0",
+        "maxSpread" : "+0.0"
+      },
+      "resultType" : "resultType",
+      "sampleCode" : "sampleCode",
+      "scheduleDate" : null,
+      "weight" : null
+    },
+    "relationships" : {
+      "group" : {
+        "data" : {
+          "id" : "AAAA",
+          "type" : "groups"
+        },
+        "links" : {
+          "self" : "https://c-sar.cropster.com/api/v2/sensorialQcs/id/relationships/group",
+          "related" : "https://c-sar.cropster.com/api/v2/sensorialQcs/id/group"
+        }
+      },
+      "lot" : {
+        "data" : {
+          "id" : "AAAA",
+          "type" : "lots"
+        },
+        "links" : {
+          "self" : "https://c-sar.cropster.com/api/v2/sensorialQcs/id/relationships/lot",
+          "related" : "https://c-sar.cropster.com/api/v2/sensorialQcs/id/lot"
+        }
+      },
+      "sensorialResults" : {
+        "data" : [ ],
+        "links" : {
+          "self" : "https://c-sar.cropster.com/api/v2/sensorialQcs/id/relationships/sensorialResults",
+          "related" : "https://c-sar.cropster.com/api/v2/sensorialQcs/id/sensorialResults"
+        }
+      },
+      "sensorialSession" : {
+        "data" : {
+          "id" : "AAAA",
+          "type" : "sensorialSessions"
+        },
+        "links" : {
+          "self" : "https://c-sar.cropster.com/api/v2/sensorialQcs/id/relationships/sensorialSession",
+          "related" : "https://c-sar.cropster.com/api/v2/sensorialQcs/id/sensorialSession"
+        }
+      },
+      "sensorialSheet" : {
+        "data" : null,
+        "links" : {
+          "self" : "https://c-sar.cropster.com/api/v2/sensorialQcs/id/relationships/sensorialSheet",
+          "related" : "https://c-sar.cropster.com/api/v2/sensorialQcs/id/sensorialSheet"
+        }
+      }
+    }
+  }
+}

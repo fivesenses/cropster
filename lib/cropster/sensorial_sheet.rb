@@ -14,5 +14,11 @@ module Cropster
     def sensorial_sheets(opts = {})
       find_collection("sensorialSheets", opts)
     end
+
+    def process(response)
+      Cropster::Response::ResponseHandler
+        .new("SensorialSheet", data_set(response))
+        .compiled_data
+    end
   end
 end
