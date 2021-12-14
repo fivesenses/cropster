@@ -12,7 +12,7 @@ module Cropster
     end
 
     def sensorial_result_items(opts = {})
-      find_all("sensorialResultItems", opts)
+      find_collection("sensorialResultItems", opts)
     end
   end
 end

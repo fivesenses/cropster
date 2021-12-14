@@ -13,7 +13,7 @@ module Cropster
     end
 
     def sensorial_qcs(opts = {})
-      find_all("sensorialQcs", opts)
+      find_collection("sensorialQcs", opts)
     end
   end
 end

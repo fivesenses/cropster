@@ -12,7 +12,7 @@ module Cropster
     end
 
     def sensorial_sheets(opts = {})
-      find_all("sensorialSheets", opts)
+      find_collection("sensorialSheets", opts)
     end
   end
 end
