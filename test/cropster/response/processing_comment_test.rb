@@ -11,22 +11,22 @@ class Cropster::Response::ProcessingCommentTest < Test::Unit::TestCase
 
   def valid_response
     {
-      "type": "processingComments",
-      "id": "AA",
-      "attributes": {
-        "note": "Foo Bar",
-        "createdDate": 1302585664000,
-        "time": 147001,
-        "event": "turningPoint"
+      type: "processingComments",
+      id: "AA",
+      attributes: {
+        note: "Foo Bar",
+        createdDate: 1302585664000,
+        time: 147001,
+        event: "turningPoint"
       },
-      "relationships": {
-        "processing": {
-          "links": {
-            "related": "https://c-sar.cropster.com/api/v2/processingComments/AA/processing"
+      relationships: {
+        processing: {
+          links: {
+            related: "https://c-sar.cropster.com/api/v2/processingComments/AA/processing"
           },
-          "data": {
-            "type": "processings",
-            "id": "AA"
+          data: {
+            type: "processings",
+            id: "AA"
           }
         }
       }

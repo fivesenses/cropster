@@ -3,7 +3,7 @@
 
 module Cropster::Response
   class SensorialDescriptor < Cropster::Response::FormattedResponseItem
-    attr_accessor :intensity, :is_positive
+    attr_accessor :intensity, :is_positive, :flavor_id
 
     def initialize(data)
       @values = []
