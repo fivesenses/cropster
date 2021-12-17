@@ -7,7 +7,7 @@ module Cropster
     # @param id [String]
     # @return [Cropster::Response::Flavor]
     def flavor(id)
-      find_by_id("flavor", id).first
+      find_by_id("flavors", id).first
     end
 
     # Find a collection of flavors

@@ -102,7 +102,9 @@ module Cropster
 
     # Raises an error if the API returns an error code
     def handle_error(response)
-      raise CropsterUnavailableError unless response.code == 200
+      raise CropsterBadRequestError, response.body if response.code == 400
+      raise CropsterNotFoundError, response.body if response.code == 404
+      raise CropsterUnavailableError, response.body unless response.code == 200
     end
 
     # Perform the actual interaction with the Cropster API

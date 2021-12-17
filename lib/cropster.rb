@@ -79,3 +79,5 @@ require "cropster/response/user"
 require "cropster/response/variety"
 
 CropsterUnavailableError = Class.new(StandardError)
+CropsterBadRequestError = Class.new(StandardError)
+CropsterNotFoundError = Class.new(StandardError)
