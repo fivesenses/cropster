@@ -20,7 +20,7 @@ module Cropster
 
     # @param response [Typhoeus::Response]
     def process(response)
-      Cropster::ResponseHandler
+      Cropster::Response::ResponseHandler
         .new("Flavor", data_set(response))
         .compiled_data
     end
