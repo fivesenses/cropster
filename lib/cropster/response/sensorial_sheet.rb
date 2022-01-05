@@ -38,6 +38,7 @@ module Cropster::Response
 
     def load_sensorial_sheet_items(items)
       return if items.nil?
+      return if items[:data].nil?
 
       @sensorial_sheet_items = []
       items[:data].each do |item|

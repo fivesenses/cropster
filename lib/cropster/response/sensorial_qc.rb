@@ -3,10 +3,26 @@
 #
 module Cropster::Response
   class SensorialQc < Cropster::Response::FormattedResponseItem
-    attr_accessor :id, :type, :created_at, :last_modified_at, :sample_code,
-      :schedule_date, :description, :weight, :result_average_score, :result_samples_count,
-      :result_spread_min, :result_spread_max, :active, :category, :lab, :result_type,
-      :lot_id, :sensorial_session_id, :sensorial_sheet_id, :sensorial_results
+    attr_accessor :id,
+      :type,
+      :created_at,
+      :last_modified_at,
+      :sample_code,
+      :schedule_date,
+      :description,
+      :weight,
+      :result_average_score,
+      :result_samples_count,
+      :result_spread_min,
+      :result_spread_max,
+      :active,
+      :category,
+      :lab,
+      :result_type,
+      :lot_id,
+      :sensorial_session_id,
+      :sensorial_sheet_id,
+      :sensorial_results
 
     def load_from_data(data)
       super
