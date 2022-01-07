@@ -18,6 +18,7 @@ module Cropster::Response
 
     def load_from_data(data)
       super(data)
+      @sensorial_sheet_items = []
       load_sensorial_sheet_items(data[:relationships][:sensorialSheetItems])
     end
 

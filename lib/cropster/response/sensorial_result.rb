@@ -18,6 +18,7 @@ module Cropster::Response
 
     def load_from_data(data)
       super(data)
+      @sensorial_result_items = []
       load_relationships(data[:relationships])
       load_lot(@lot)
       load_sensorial_qc(data[:relationships][:sensorialQc])
@@ -37,6 +38,15 @@ module Cropster::Response
       @is_taken_into_account = attributes[:isTakenIntoAccount]
       @notes = attributes[:notes]
       @roast_level = attributes[:roastLevel]
+    end
+
+    def load_sensorial_result_items(items)
+      return if items.nil?
+      return if items[:data].nil?
+
+      items[:data].each do |item|
+        @sensorial_result_items << item[:id]
+      end
     end
   end
 end

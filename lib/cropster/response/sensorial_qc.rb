@@ -26,6 +26,7 @@ module Cropster::Response
 
     def load_from_data(data)
       super
+      @sensorial_results = []
       load_lot(data[:relationships][:lot])
       load_sensorial_session(data[:relationships][:sensorial_session])
       load_sensorial_sheet(data[:relationships][:sensorial_sheet])
@@ -50,6 +51,16 @@ module Cropster::Response
       @result_spread_min = attributes[:resultSummary][:minSpread]
       @result_spread_max = attributes[:resultSummary][:maxSpread]
       @result_type = attributes[:resultType]
+    end
+
+    def load_sensorial_results(items)
+      return if items.nil?
+      return if items[:data].nil?
+
+      @sensorial_results = []
+      items[:data].each do |item|
+        @sensorial_results << item[:id]
+      end
     end
   end
 end
