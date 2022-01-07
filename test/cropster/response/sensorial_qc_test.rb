@@ -13,6 +13,9 @@ class Cropster::Response::SensorialQcTest < Test::Unit::TestCase
     assert_equal "labName", qc.lab
     assert_match(/This is the/, qc.description)
     assert_equal "AAAA", qc.lot_id
+    assert_equal ["wXnyGL", "2PZAek", "8DzQMJ"], qc.sensorial_results
+    assert_equal "AAAA", qc.sensorial_session_id
+    assert_equal "BBBB", qc.sensorial_sheet_id
   end
 
   def valid_response
@@ -60,10 +63,21 @@ class Cropster::Response::SensorialQcTest < Test::Unit::TestCase
           }
         },
         "sensorialResults": {
-          "data": [],
-          "links": {
-            "self": "https://c-sar.cropster.com/api/v2/sensorialQcs/id/relationships/sensorialResults",
-            "related": "https://c-sar.cropster.com/api/v2/sensorialQcs/id/sensorialResults"
+          "data": [
+            {
+              "id": "wXnyGL",
+              "type": "sensorialResults"
+            }, {
+              "id": "2PZAek",
+              "type": "sensorialResults"
+            }, {
+              "id": "8DzQMJ",
+              "type": "sensorialResults"
+            }
+          ],
+          "links":{
+            "self": "https://c-sar.cropster.com/api/v2/sensorialQcs/pygBN/relationships/sensorialResults",
+            "related": "https://c-sar.cropster.com/api/v2/sensorialQcs/pygBN/sensorialResults"
           }
         },
         "sensorialSession": {
@@ -77,7 +91,10 @@ class Cropster::Response::SensorialQcTest < Test::Unit::TestCase
           }
         },
         "sensorialSheet": {
-          "data": nil,
+          "data": {
+            "id": "BBBB",
+            "type": "sensorialSheets"
+          },
           "links": {
             "self": "https://c-sar.cropster.com/api/v2/sensorialQcs/id/relationships/sensorialSheet",
             "related": "https://c-sar.cropster.com/api/v2/sensorialQcs/id/sensorialSheet"

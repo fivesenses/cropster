@@ -28,9 +28,9 @@ module Cropster::Response
       super
       @sensorial_results = []
       load_lot(data[:relationships][:lot])
-      load_sensorial_session(data[:relationships][:sensorial_session])
-      load_sensorial_sheet(data[:relationships][:sensorial_sheet])
-      load_sensorial_results(data[:relationships][:sensorial_results])
+      load_sensorial_session(data[:relationships][:sensorialSession])
+      load_sensorial_sheet(data[:relationships][:sensorialSheet])
+      load_sensorial_results(data[:relationships][:sensorialResults])
     end
 
     # @param [:Hash] attributes
