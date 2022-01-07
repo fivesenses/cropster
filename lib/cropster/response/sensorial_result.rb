@@ -13,6 +13,7 @@ module Cropster::Response
       :lot_id,
       :sensorial_qc_id,
       :sensorial_result_items_data,
+      :sensorial_result_items,
       :sensorial_session_id,
       :sensorial_sheet_id
 
@@ -44,6 +45,7 @@ module Cropster::Response
       return if items.nil?
       return if items[:data].nil?
 
+      @sensorial_result_items = []
       items[:data].each do |item|
         @sensorial_result_items << item[:id]
       end
