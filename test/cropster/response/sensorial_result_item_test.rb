@@ -5,6 +5,10 @@ class Cropster::Response::SensorialResultItemTest < Test::Unit::TestCase
     result_item = Cropster::Response::SensorialResultItem.new(valid_response)
     assert_equal "AA", result_item.id
     assert_equal 1.0, result_item.calculated_quality
+    assert_equal 3.0, result_item.intensity
+    assert_equal 5.0, result_item.quality
+    assert_equal "AAAA", result_item.sensorial_result_id
+    assert_equal "AAAA", result_item.sensorial_sheet_item_id
   end
 
   def valid_response
@@ -13,8 +17,8 @@ class Cropster::Response::SensorialResultItemTest < Test::Unit::TestCase
       "type": "sensorialResultItems",
       "attributes": {
         "calculatedQuality": 1.0,
-        "intensity": nil,
-        "quality": nil
+        "intensity": 3.0,
+        "quality": 5.0
       },
       "relationships": {
         "sensorialDescriptors": {
