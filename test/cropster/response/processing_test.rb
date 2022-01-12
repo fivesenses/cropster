@@ -10,6 +10,8 @@ class Cropster::Response::ProcessingTest < Test::Unit::TestCase
     assert_equal(["AA"], processing.lots)
     assert_equal(["AA"], processing.machines)
     assert_equal(["AA"], processing.profiles)
+    assert_equal(["AAAA", "BBBB"], processing.comments)
+    assert_equal(["AAAA", "BBBB"], processing.measures)
   end
 
   def valid_response
@@ -76,15 +78,29 @@ class Cropster::Response::ProcessingTest < Test::Unit::TestCase
           }
         },
         "processingComments": {
+          "data": [ {
+            "type": "processingComments",
+            "id": "AAAA"
+          }, {
+            "type": "processingComments",
+            "id": "BBBB"
+          } ],
           "links": {
-            "self": "https://c-sar.cropster.com/api/v2/processings/AA/relationships/processingComments",
-            "related": "https://c-sar.cropster.com/api/v2/processings/AA/processingComments"
+            "self": "https://c-sar.cropster.com/api/v2/processings/id/relationships/processingComments",
+            "related": "https://c-sar.cropster.com/api/v2/processings/id/processingComments"
           }
         },
         "processingMeasures": {
+          "data": [ {
+            "type": "processingMeasures",
+            "id": "AAAA"
+          }, {
+            "type": "processingMeasures",
+            "id": "BBBB"
+          } ],
           "links": {
-            "self": "https://c-sar.cropster.com/api/v2/processings/AA/relationships/processingMeasures",
-            "related": "https://c-sar.cropster.com/api/v2/processings/AA/processingMeasures"
+            "self": "https://c-sar.cropster.com/api/v2/processings/id/relationships/processingMeasures",
+            "related": "https://c-sar.cropster.com/api/v2/processings/id/processingMeasures"
           }
         },
         "processingCurves": {

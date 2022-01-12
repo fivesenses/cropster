@@ -3,12 +3,15 @@
 module Cropster::Response
   class SensorialResultItem < Cropster::Response::FormattedResponseItem
     attr_accessor :sensorial_result_id, :sensorial_sheet_item_id,
-      :calculated_quality, :intensity, :quality
+      :calculated_quality, :intensity, :quality, :sensorial_descriptors
 
     def load_from_data(data)
       super(data)
+      @sensorial_descriptors = []
+
       load_sensorial_result(data[:relationships][:sensorialResult])
       load_sensorial_sheet_item(data[:relationships][:sensorialSheetItem])
+      load_sensorial_descriptors(data[:relationships][:sensorialDescriptors])
     end
 
     def load_attributes(attributes)
@@ -33,6 +36,17 @@ module Cropster::Response
       return if sensorial_sheet_item[:data].nil?
 
       @sensorial_sheet_item_id = sensorial_sheet_item[:data][:id]
+    end
+
+    def load_sensorial_descriptors(descriptors)
+      return if descriptors.nil?
+      return if descriptors[:data].nil?
+
+      @sensorial_descriptors = []
+
+      descriptors[:data].each do |item|
+        @sensorial_descriptors << item[:id]
+      end
     end
   end
 end

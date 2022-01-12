@@ -9,8 +9,10 @@ module Cropster::Response
 
     def load_from_data(data)
       super
-      load_measures(data[:attributes][:measures])
-      load_comments(data[:attributes][:comments])
+      @comments = []
+      @measures = []
+      load_measures(data[:relationships][:processingMeasures])
+      load_comments(data[:relationships][:processingComments])
     end
 
     def load_attributes(attributes)
@@ -24,11 +26,23 @@ module Cropster::Response
     end
 
     def load_measures(measures)
-      @measures = measures
+      return if measures.nil?
+      return if measures[:data].nil?
+
+      @measures = []
+      measures[:data].each do |measure|
+        @measures << measure[:id]
+      end
     end
 
     def load_comments(comments)
-      @comments = comments
+      return if comments.nil?
+      return if comments[:data].nil?
+
+      @comments = []
+      comments[:data].each do |comment|
+        @comments << comment[:id]
+      end
     end
 
     def total_green_weight_grams

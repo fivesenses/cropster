@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class Cropster::Response::ProcessingMeasureTest < Test::Unit::TestCase
   def test_initialize
@@ -10,23 +10,23 @@ class Cropster::Response::ProcessingMeasureTest < Test::Unit::TestCase
 
   def valid_response
     {
-      "type": "processingMeasures",
-      "id": "AA",
-      "attributes": {
-        "name": "chargeTemperature",
-        "measure": {
-          "amount": 411.9,
-          "unit": "FAHRENHEIT"
+      type: "processingMeasures",
+      id: "AA",
+      attributes: {
+        name: "chargeTemperature",
+        measure: {
+          amount: 411.9,
+          unit: "FAHRENHEIT"
         }
       },
-      "relationships": {
-        "processing": {
-          "links": {
-            "related": "https://c-sar.cropster.com/api/v2/processingMeasures/AA/processing"
+      relationships: {
+        processing: {
+          links: {
+            related: "https://c-sar.cropster.com/api/v2/processingMeasures/AA/processing"
           },
-          "data": {
-            "type": "processings",
-            "id": "AA"
+          data: {
+            type: "processings",
+            id: "AA"
           }
         }
       }

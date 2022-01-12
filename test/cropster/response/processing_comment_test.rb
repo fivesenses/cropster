@@ -7,6 +7,7 @@ class Cropster::Response::ProcessingCommentTest < Test::Unit::TestCase
     assert_not_nil comment.created_at
     assert_not_nil comment.time
     assert_match(/Foo Bar/, comment.note)
+    assert_equal("AA", comment.processing_id)
   end
 
   def valid_response
