@@ -16,7 +16,7 @@ module Cropster::Response
       :result_samples_count,
       :result_spread_min,
       :result_spread_max,
-      :active,
+      :isactive,
       :category,
       :lab,
       :result_type,
@@ -42,9 +42,9 @@ module Cropster::Response
       @last_modified_at = load_date(attributes[:lastModifiedDate])
       @sample_code = attributes[:sampleCode]
       @schedule_date = load_date(attributes[:scheduleDate])
-      @idtag = attributes[:idtag]
+      @id_tag = attributes[:idtag]
       @description = attributes[:description]
-      @active = attributes[:active]
+      @is_active = attributes[:isactive]
       @category = attributes[:category]
       @lab = attributes[:lab]
       @weight = load_weight(attributes[:weight])
