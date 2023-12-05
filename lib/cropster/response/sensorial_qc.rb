@@ -42,9 +42,9 @@ module Cropster::Response
       @last_modified_at = load_date(attributes[:lastModifiedDate])
       @sample_code = attributes[:sampleCode]
       @schedule_date = load_date(attributes[:scheduleDate])
-      @id_tag = attributes[:idtag]
+      @id_tag = attributes[:idTag]
       @description = attributes[:description]
-      @is_active = attributes[:isactive]
+      @is_active = attributes[:isActive]
       @category = attributes[:category]
       @lab = attributes[:lab]
       @weight = load_weight(attributes[:weight])
