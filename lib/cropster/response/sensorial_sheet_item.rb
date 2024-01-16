@@ -20,6 +20,7 @@ module Cropster::Response
       :quality_min,
       :quality_step,
       :sensorial_sheet_id
+      :data
 
     def load_from_data(data)
       super
@@ -27,23 +28,26 @@ module Cropster::Response
     end
 
     def load_attributes(attributes)
-      @name = attributes[:name]
-      @allowed_flavors = attributes[:allowedFlavors]
-      @formula = attributes[:formula]
-      @grouping = attributes[:grouping]
-      @has_descriptors = attributes[:hasDescriptors]
-      @has_intensity = attributes[:hasIntensity]
-      @has_quality = attributes[:hasQuality]
-      @input_type = attributes[:inputType]
-      @intensity_max = attributes[:intensityMax]
-      @intensity_min = attributes[:intensityMin]
-      @intensity_step = attributes[:intensityStep]
-      @is_general_descriptors_item = attributes[:isGeneralDescriptorsItem]
-      @note = attributes[:note]
-      @position = attributes[:position]
-      @quality_max = attributes[:qualityMax]
-      @quality_min = attributes[:qualityMin]
-      @quality_step = attributes[:qualityStep]
+      
+      # gets returned as an array.
+      @data = attributes
+      # @name = attributes[:name]
+      # @allowed_flavors = attributes[:allowedFlavors]
+      # @formula = attributes[:formula]
+      # @grouping = attributes[:grouping]
+      # @has_descriptors = attributes[:hasDescriptors]
+      # @has_intensity = attributes[:hasIntensity]
+      # @has_quality = attributes[:hasQuality]
+      # @input_type = attributes[:inputType]
+      # @intensity_max = attributes[:intensityMax]
+      # @intensity_min = attributes[:intensityMin]
+      # @intensity_step = attributes[:intensityStep]
+      # @is_general_descriptors_item = attributes[:isGeneralDescriptorsItem]
+      # @note = attributes[:note]
+      # @position = attributes[:position]
+      # @quality_max = attributes[:qualityMax]
+      # @quality_min = attributes[:qualityMin]
+      # @quality_step = attributes[:qualityStep]
     end
 
     def load_sensorial_sheet(data)

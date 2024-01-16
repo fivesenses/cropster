@@ -75,6 +75,14 @@ module Cropster
     def process(response)
     end
 
+
+    # URL is passed down from the parent response. 
+    def get_all_by_url(object_url)
+      response = get_by_url(object_url)
+      handle_error(response)
+      process(response)
+    end
+
     protected
 
     # Builds the filter URL from the provided options

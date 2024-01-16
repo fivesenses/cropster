@@ -125,7 +125,7 @@ module Cropster
 
         @sensorial_sheet_items = []
         sensorial_sheet_items[:data].each do |item|
-          @sensorial_sheet_items << Cropster::Response::SensorialSheetItem.new(item)
+        @sensorial_sheet_items << Cropster::Response::SensorialSheetItem.new(item)
         end
       end
 

@@ -15,11 +15,13 @@ module Cropster::Response
       :score_maximum,
       :score_minimum,
       :sensorial_sheet_items
+      :sensorial_sheet_items_path
 
     def load_from_data(data)
       super(data)
       @sensorial_sheet_items = []
       load_sensorial_sheet_items(data[:relationships][:sensorialSheetItems])
+      load_sensorial_result_path(data[:relationships][:sensorialSheetItems])
     end
 
     def load_attributes(attributes)
@@ -35,6 +37,15 @@ module Cropster::Response
       @roast_levels_step = attributes[:roastLevelsStep]
       @score_maximum = attributes[:scoreMaximum]
       @score_minimum = attributes[:scoreMinimum]
+    end
+
+
+    def load_sensorial_result_path(items)
+      return if items.nil?
+      return if items[:links].nil?
+
+      @sensorial_sheet_items_path = items[:links][:related]
+
     end
 
     def load_sensorial_sheet_items(items)
