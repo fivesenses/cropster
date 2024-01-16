@@ -3,7 +3,7 @@
 #
 
 module Cropster
-  class stageRecords < Cropster::Base
+  class StageRecords < Cropster::Base
     # Find a single SensorialQc
     #
     # @param [String] id
