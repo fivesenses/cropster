@@ -3,13 +3,7 @@
 #
 module Cropster::Response
   class Stages < Cropster::Response::FormattedResponseItem
-    attr_accessor 
-    :name, 
-    :created, 
-    :last_modified, 
-    :sort, 
-    :targe_duration, 
-    :type
+    attr_accessor  :name, :created, :last_modified, :sort, :targe_duration, :type
 
     def load_attributes(attributes)
       return if attributes.nil?

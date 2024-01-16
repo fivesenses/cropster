@@ -3,11 +3,7 @@
 #
 module Cropster::Response
   class PhysicalSheetDefects < Cropster::Response::FormattedResponseItem
-    attr_accessor 
-    :calculated_value,
-    :count,
-    :weight_amount,
-    :weight_unit,
+    attr_accessor  :calculated_value, :count, :weight_amount, :weight_unit
 
     def load_attributes(attributes)
       return if attributes.nil?

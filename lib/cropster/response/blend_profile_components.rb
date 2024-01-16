@@ -3,8 +3,7 @@
 #
 module Cropster::Response
   class BlendProfileComponents < Cropster::Response::FormattedResponseItem
-    attr_accessor 
-    :percentage,
+    attr_accessor :percentage
 
     def load_attributes(attributes)
       return if attributes.nil?

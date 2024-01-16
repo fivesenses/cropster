@@ -3,14 +3,7 @@
 #
 module Cropster::Response
   class StageRecordMeasurements < Cropster::Response::FormattedResponseItem
-    attr_accessor 
-    :created,
-    :date,
-    :lastModified,
-    :type,
-    :value_amount,
-    :value_unit,
-    :value_amount_si,
+    attr_accessor  :created, :date, :lastModified, :type, :value_amount, :value_unit, :value_amount_si
 
     def load_attributes(attributes)
       return if attributes.nil?

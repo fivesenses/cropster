@@ -3,9 +3,7 @@
 #
 module Cropster::Response
   class Facilities < Cropster::Response::FormattedResponseItem
-    attr_accessor 
-    :acronym,
-    :is_active,
+    attr_accessor :acronym, :is_active
 
     def load_attributes(attributes)
       return if attributes.nil?

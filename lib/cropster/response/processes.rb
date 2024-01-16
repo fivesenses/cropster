@@ -3,27 +3,7 @@
 #
 module Cropster::Response
   class Processes < Cropster::Response::FormattedResponseItem
-    attr_accessor 
-    :name,
-    :created,
-    :final_form,
-    :final_weight_amount,
-    :final_weight_unit,
-    :final_weight_amount_si,
-    :intermediate_form,
-    :intermediate_weight_source_amount,
-    :intermediate_weight_source_unit,
-    :intermediate_weight_source_amount_si,
-    :intermediate_weight_target_amount,
-    :intermediate_weight_target_unit,
-    :intermediate_weight_target_amount_si,
-    :is_active,
-    :last_modified,
-    :processin_method,
-    :received_form,
-    :received_weight_amount,
-    :received_weight_unit,
-    :received_weight_amount_si,
+    attr_accessor  :name, :created, :final_form, :final_weight_amount, :final_weight_unit, :final_weight_amount_si, :intermediate_form, :intermediate_weight_source_amount, :intermediate_weight_source_unit, :intermediate_weight_source_amount_si, :intermediate_weight_target_amount, :intermediate_weight_target_unit, :intermediate_weight_target_amount_si, :is_active, :last_modified, :processin_method, :received_form, :received_weight_amount, :received_weight_unit, :received_weight_amount_si
 
     def load_attributes(attributes)
       return if attributes.nil?

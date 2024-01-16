@@ -2,25 +2,7 @@
 
 module Cropster::Response
   class SensorialSheetItem < Cropster::Response::FormattedResponseItem
-    attr_accessor :name,
-      :allowed_flavors,
-      :formula,
-      :grouping,
-      :has_descriptors,
-      :has_intensity,
-      :has_quality,
-      :input_type,
-      :intensity_max,
-      :intensity_min,
-      :intensity_step,
-      :is_general_descriptors_item,
-      :note,
-      :position,
-      :quality_max,
-      :quality_min,
-      :quality_step,
-      :sensorial_sheet_id
-      :data
+    attr_accessor  :name, :allowed_flavors, :formula, :grouping, :has_descriptors, :has_intensity, :has_quality, :input_type, :intensity_max, :intensity_min, :intensity_step, :is_general_descriptors_item, :note, :position, :quality_max, :quality_min, :quality_step, :sensorial_sheet_id, :data
 
     def load_from_data(data)
       super

@@ -1,12 +1,6 @@
 module Cropster::Response
   class AdjustWeightActions < Cropster::Response::FormattedResponseItem
-    attr_accessor 
-    :comment,
-    :current_weight_amount,
-    :current_weight_unit,
-    :new_weight_amount,
-    :new_weight_unit,
-    :is_reset_initial_weight,
+    attr_accessor :comment, :current_weight_amount, :current_weight_unit, :new_weight_amount, :new_weight_unit, :is_reset_initial_weight
 
     def load_attributes(attributes)
       return if attributes.nil?

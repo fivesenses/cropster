@@ -3,13 +3,7 @@
 #
 module Cropster::Response
   class ProductionOrderItems < Cropster::Response::FormattedResponseItem
-    attr_accessor 
-    :format,
-    :quantity_amount,
-    :quantity_unit,
-    :quantity_amount_si,
-    :sku,
-    :variant_info,
+    attr_accessor  :format, :quantity_amount, :quantity_unit, :quantity_amount_si, :sku, :variant_info
 
     def load_attributes(attributes)
       return if attributes.nil?

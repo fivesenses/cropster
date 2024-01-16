@@ -4,33 +4,7 @@
 module Cropster
   module Response
     class FormattedResponseItem
-      attr_accessor :id,
-        :name,
-        :type,
-        :link,
-        :source_contacts,
-        :contact,
-        :contact_role,
-        :projects,
-        :varieties,
-        :groups,
-        :certificates,
-        :alerts,
-        :locations,
-        :processings,
-        :machines,
-        :profiles,
-        :lot,
-        :lots,
-        :processing,
-        :profile_components,
-        :sensorial_qc,
-        :sensorial_qcs,
-        :sensorial_results,
-        :sensorial_result_items,
-        :sensorial_sheets,
-        :sensorial_sheet_items,
-        :sensorial_sessions
+      attr_accessor :id, :name, :type, :link, :source_contacts, :contact, :contact_role, :projects, :varieties, :groups, :certificates, :alerts, :locations, :processings, :machines, :profiles, :lot, :lots, :processing, :profile_components, :sensorial_qc, :sensorial_qcs, :sensorial_results, :sensorial_result_items, :sensorial_sheets, :sensorial_sheet_items, :sensorial_sessions
 
       # Constructor
       # @param data [Hash] the data to convert into a Cropster::Response subclass

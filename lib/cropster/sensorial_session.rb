@@ -23,30 +23,3 @@ module Cropster
     end
   end
 end
-
-
-
-[
-    "adjust_weight_actions",
-    "classifications",
-    "blend_profile_components",
-    "blend_profiles",
-    "physical_result_defects",
-    "physical_results",
-    "physical_sheet_defects",
-    "physical_sheets",
-    "batch_mixes",
-    "batches",
-    "facilities",
-    "processes",
-    "reception_items",
-    "receptions",
-    "stage_measurement_requirements",
-    "stage_record_measurement_requirements",
-    "stage_record_measurements",
-    "stage_records",
-    "stages",
-    "orderable_products",
-    "production_order_items",
-    "production_orders"
-]

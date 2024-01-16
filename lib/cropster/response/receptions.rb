@@ -3,10 +3,7 @@
 #
 module Cropster::Response
   class Receptions < Cropster::Response::FormattedResponseItem
-    attr_accessor 
-    :coffee_form,
-    :is_active,
-    :reception_date,
+    attr_accessor  :coffee_form, :is_active, :reception_date
 
     def load_attributes(attributes)
       return if attributes.nil?

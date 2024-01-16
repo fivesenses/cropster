@@ -2,10 +2,7 @@
 #
 module Cropster::Response
   class BatchMixes < Cropster::Response::FormattedResponseItem
-    attr_accessor 
-    :name,
-    :is_active,
-    :is_committed
+    attr_accessor :name, :is_active, :is_committed
 
     def load_attributes(attributes)
       return if attributes.nil?

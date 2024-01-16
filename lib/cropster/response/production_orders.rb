@@ -3,21 +3,7 @@
 #
 module Cropster::Response
   class ProductionOrders < Cropster::Response::FormattedResponseItem
-    attr_accessor 
-    :id_tag,
-    :created,
-    :customer,
-    :customer_type,
-    :external_id,
-    :externa_reference,
-    :external_status,
-    :is_archived,
-    :is_status_manually_changed,
-    :last_modified_date,
-    :last_status_change_date,
-    :order_date,
-    :sales_person,
-    :status,
+    attr_accessor  :id_tag, :created, :customer, :customer_type, :external_id, :externa_reference, :external_status, :is_archived, :is_status_manually_changed, :last_modified_date, :last_status_change_date, :order_date, :sales_person, :status
 
     def load_attributes(attributes)
       return if attributes.nil?

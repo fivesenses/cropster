@@ -3,11 +3,7 @@
 #
 module Cropster::Response
   class StageMeasurementRequirements < Cropster::Response::FormattedResponseItem
-    attr_accessor 
-    :minimum_readings, 
-    :last_modified
-    :created, 
-    :type, 
+    attr_accessor  :minimum_readings, :last_modified, :created, :type
 
     def load_attributes(attributes)
       return if attributes.nil?

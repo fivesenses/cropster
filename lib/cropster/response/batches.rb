@@ -3,31 +3,7 @@
 #
 module Cropster::Response
   class Batches < Cropster::Response::FormattedResponseItem
-    attr_accessor 
-    :id_tag,
-    :active,
-    :crop_year,
-    :harvest_date,
-    :final_weight_amount,
-    :final_weight_unit,
-    :final_weight_override_amount,
-    :final_weight_override_unit,
-    :intermediate_weight_amount,
-    :intermediate_weight_unit,
-    :intermediate_weight_source_override_amount,
-    :intermediate_weight_source_override_unit,
-    :intermediate_weight_target_override_amount,
-    :intermediate_weight_target_override_unit,
-    :received_weight_amount,
-    :received_weight_unit,
-    :received_weight_override_amount,
-    :received_weight_override_unit,
-    :is_piled,
-    :milling_date,
-    :notes,
-    :part,
-    :reception_date,
-    :storage_date,
+    attr_accessor  :id_tag, :active, :crop_year, :harvest_date, :final_weight_amount, :final_weight_unit, :final_weight_override_amount, :final_weight_override_unit, :intermediate_weight_amount, :intermediate_weight_unit, :intermediate_weight_source_override_amount, :intermediate_weight_source_override_unit, :intermediate_weight_target_override_amount, :intermediate_weight_target_override_unit, :received_weight_amount, :received_weight_unit, :received_weight_override_amount, :received_weight_override_unit, :is_piled, :milling_date, :notes, :part, :reception_date, :storage_date
 
     def load_attributes(attributes)
       return if attributes.nil?
