@@ -10,13 +10,11 @@ module Cropster::Response
       
       @is_active = attributes[:isActive]
       @part = attributes[:part]
-      
       @gross_weight = load_weight(attributes[:grossWeight])
       @price = load_weight(attributes[:price])
       @price_base = load_weight(attributes[:priceBase])
       @weight = load_weight(attributes[:weight])
-
-      @price_currency = attributes[:price][:currenty]
+    #   @price_currency = attributes[:price][:currenty]
 
     end
   end
