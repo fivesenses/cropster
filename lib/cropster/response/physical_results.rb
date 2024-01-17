@@ -3,11 +3,12 @@
 #
 module Cropster::Response
   class PhysicalResults < Cropster::Response::FormattedResponseItem
-    attr_accessor :id_tag,:category,:color_overall,:color_uniformity,:comment,:density,:evaluation_date,:evaluator,:lab,:peaberry_screen_sizes,:quaker_count,:screen_size_summary,:screen_sizes,:smell,:water_activity,:density_volume_amount,:density_volume_unit,:density_volume_amount_si,:density_weight_amount,:density_weight_unit,:density_weight_amount_si,:milling_weight_difference_amount,:milling_weight_difference_units,:milling_weight_difference_amount_si,:roasted_weight_amount,:roasted_weight_unit,:moisture_unit,:moisture_amount,:parchment_weight_unit,:parchment_weight_amount,:green_weight_unit,:green_weight_amount,:temperature_unit,:temperature_amount
+    attr_accessor :remove_id, :id_tag,:category,:color_overall,:color_uniformity,:comment,:density,:evaluation_date,:evaluator,:lab,:peaberry_screen_sizes,:quaker_count,:screen_size_summary,:screen_sizes,:smell,:water_activity,:density_volume_amount,:density_volume_unit,:density_volume_amount_si,:density_weight_amount,:density_weight_unit,:density_weight_amount_si,:milling_weight_difference_amount,:milling_weight_difference_units,:milling_weight_difference_amount_si,:roasted_weight_amount,:roasted_weight_unit,:moisture_unit,:moisture_amount,:parchment_weight_unit,:parchment_weight_amount,:green_weight_unit,:green_weight_amount,:temperature_unit,:temperature_amount
 
     def load_attributes(attributes)
       return if attributes.nil?
-      @id_tag = attributes [:idTag]
+      @id_tag = attributes[:idTag]
+      @remote_id = attributes[:id]
       @category = attributes [:category]
       @color_overall = attributes [:colorOverall]
       @color_uniformity = attributes [:colorUniformity]
