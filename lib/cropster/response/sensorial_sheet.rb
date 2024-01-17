@@ -20,6 +20,7 @@ module Cropster::Response
     def load_from_data(data)
       super(data)
       @sensorial_sheet_items = []
+      @sensorial_sheet_items_path = ''
       load_sensorial_sheet_items(data[:relationships][:sensorialSheetItems])
       load_sensorial_result_path(data[:relationships][:sensorialSheetItems])
     end
@@ -41,8 +42,7 @@ module Cropster::Response
 
 
     def load_sensorial_result_path(items)
-      return if items.nil?
-      return if items[:links].nil?
+
 
       @sensorial_sheet_items_path = items[:links][:related]
 
