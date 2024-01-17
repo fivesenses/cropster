@@ -16,6 +16,12 @@ module Cropster
       find_collection("physicalSheetDefects", opts)
     end
 
+
+    def physical_sheet_defects_by_url(url)
+        get_all_by_url(url)
+    end
+
+
     def process(response)
       Cropster::Response::ResponseHandler
         .new("PhysicalSheetDefects", data_set(response))

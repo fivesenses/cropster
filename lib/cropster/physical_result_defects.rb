@@ -16,6 +16,10 @@ module Cropster
       find_collection("physicalResultDefects", opts)
     end
 
+    def physical_results_defects_by_url(url)
+        get_all_by_url(url)
+    end
+
     def process(response)
       Cropster::Response::ResponseHandler
         .new("PhysicalResultDefects", data_set(response))

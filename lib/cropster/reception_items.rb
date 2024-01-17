@@ -16,6 +16,10 @@ module Cropster
       find_collection("receptionItems", opts)
     end
 
+    def reception_items_by_url(url)
+        get_all_by_url(url)
+    end
+
     def process(response)
       Cropster::Response::ResponseHandler
         .new("ReceptionItems", data_set(response))

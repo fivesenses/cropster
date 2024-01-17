@@ -16,6 +16,11 @@ module Cropster
       find_collection("productionOrderItems", opts)
     end
 
+    def production_order_items_by_url(url)
+        get_all_by_url(url)
+    end
+
+
     def process(response)
       Cropster::Response::ResponseHandler
         .new("ProductionOrderItems", data_set(response))
