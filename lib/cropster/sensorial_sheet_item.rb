@@ -15,9 +15,11 @@ module Cropster
       find_collection("sensorialSheetItems", opts)
     end
 
+    # Pull data from URL given by Cropster API response.
     def sensorial_result_items_by_url(url)
       get_all_by_url(url)
     end
+
 
     def process(response)
       Cropster::Response::ResponseHandler
