@@ -3,11 +3,12 @@
 #
 module Cropster::Response
   class PhysicalSheetDefects < Cropster::Response::FormattedResponseItem
-    attr_accessor  :name, :formula, :measurement_type, :position, :sheet_group
+    attr_accessor  :id, :name, :formula, :measurement_type, :position, :sheet_group
 
     def load_attributes(attributes)
       return if attributes.nil?
-      @name =  attributes[:name ]
+      @remote_id = attributes[:id]
+      @name = attributes[:name]
       @formula = attributes[:formula]
       @measurement_type = attributes[:measurementType]
       @position = attributes[:position]

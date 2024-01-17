@@ -3,15 +3,13 @@
 #
 module Cropster::Response
   class OrderableProducts < Cropster::Response::FormattedResponseItem
-    attr_accessor  :name, :created_date, :external_id, :is_archived, :is_ignored, :is_post_roast_blend, :is_product_bundle, :is_unreviewed, :last_modified_date, :notes, :on_hand_inventory_amount, :on_hand_inventory_unit
+    attr_accessor  :name, :created_date, :external_id, :is_archived, :is_ignored, :is_post_roast_blend, :is_product_bundle, :is_unreviewed, :last_modified_date, :notes, :weight,:on_hand_inventory
 
     def load_attributes(attributes)
       return if attributes.nil?
 
       @calculated_value = attributes[:calculatedValue]
-      @count = attributes[:count]
-      @weight_amount = attributes[:weight][:amount]
-      @weight_unit = attributes[:weight][:unit]
+      @count = attributes[:count]      
       @name = attributes[:name]
       @created_date = attributes[:createdDate]
       @external_id = attributes[:externalId]
@@ -22,9 +20,8 @@ module Cropster::Response
       @is_unreviewed = attributes[:isUnreviewed]
       @last_modified_date = attributes[:lastModifiedDate]
       @notes = attributes[:notes]
-      @on_hand_inventory_amount[:onHandInventory][:amount]
-      @on_hand_inventory_unit[:onHandInventory][:unit]
-
+      @weight = load_weight(attributes[:weight])
+      @on_hand_inventory = load_weight(attributes[:onHandInventory])
     end
   end
 end
