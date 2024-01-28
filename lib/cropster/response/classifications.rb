@@ -8,7 +8,7 @@ module Cropster::Response
     def load_attributes(attributes)
       return if attributes.nil?
       @name = attributes[:name]
-      @above_maximum_screen_size_proportion = attributes[:aboveMaximumScreenSizeProportion ]
+      @above_maximum_screen_size_proportion = attributes[:aboveMaximumScreenSizeProportion]
       @below_minimum_screen_size_proportion = attributes[:belowMinimumScreenSizeProportion]
       @ceiling_screen_size = attributes[:ceilingScreenSize]
       @default_yield_sactor = attributes[:defaultYieldFactor]

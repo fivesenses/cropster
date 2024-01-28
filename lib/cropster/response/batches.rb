@@ -13,6 +13,7 @@ module Cropster::Response
       @active = attributes[:active]
       @crop_year = attributes[:cropYear]
       @harvest_date = attributes[:harvestDate]
+
       @final_weight = load_weight(attributes[:finalWeight])
       @final_weight_override = load_weight(attributes[:finalWeightOverride])
       @intermediate_weight = load_weight(attributes[:intermediateWeight])
@@ -20,6 +21,7 @@ module Cropster::Response
       @received_weight_override = load_weight(attributes[:receivedWeightOverride])
       @intermediate_weight_target_override = load_weight(attributes[:intermediateWeightTargetOverride])
       @received_weight = load_weight(attributes[:receivedWeight])
+      
       @is_piled = attributes[:isPiled]
       @milling_date = attributes[:millingDate]
       @notes = attributes[:notes]

@@ -12,10 +12,12 @@ module Cropster::Response
       @created = attributes[:created]
       @final_form = attributes[:finalForm]
       @intermediate_form = attributes[:intermediateForm]
+      
       @intermediate_weight_source = load_weight(attributes[:intermediateWeightSource])
       @final_weight = load_weight(attributes[:finalWeight])
       @intermediate_weight_target = load_weight(attributes[:intermediateWeightTarget])
       @received_weight = load_weight(attributes[:receivedWeight])
+      
       @is_active = attributes[:isActive]
       @last_modified = attributes[:lastModified]
       @processing_method = attributes[:processingMethod]
