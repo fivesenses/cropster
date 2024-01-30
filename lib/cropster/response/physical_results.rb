@@ -37,7 +37,7 @@ module Cropster::Response
     def load_from_data(data)
       super
       @defects_path = ""
-      load_path(data[:relationships][:sensorialSheetItems])
+      load_path(data[:relationships][:physicalResultDefects])
 
     end
 
