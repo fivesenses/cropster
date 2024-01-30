@@ -3,12 +3,21 @@
 
 module Cropster::Response
   class SensorialDescriptor < Cropster::Response::FormattedResponseItem
-    attr_accessor :intensity, :is_positive, :flavor_id
+    attr_accessor :intensity, :is_positive, :flavor_id, :sensorial_result_item
 
-    def initialize(data)
-      @values = []
-      super(data)
+
+    def load_from_data(data)
+      super
+      @sensorial_result_item = ''
+      load_path(date[:relationships][:sensorialResultItem])
     end
+
+    def load_path(item)
+      return if item.nil?
+      @sensorial_result_item = item[:data][:id]
+    
+    end
+
 
     def load_attributes(attributes)
       return if attributes.nil?
