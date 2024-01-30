@@ -15,6 +15,13 @@ module Cropster
         load_from_data(data)
       end
 
+
+      def load_qc_data(data)
+        @id = data[:id]
+        @type = data[:type]
+        load_attributes(data[:attributes])
+      end
+
       # Copies the data from the Hash into the object attributes
       # @param data [Hash]
       def load_from_data(data, nothing = {})
