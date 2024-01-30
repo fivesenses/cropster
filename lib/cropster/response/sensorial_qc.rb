@@ -30,9 +30,9 @@ module Cropster::Response
     def load_from_data(data)
       super
       @sensorial_results = []
-      load_lot(data[:relationships][:lot])
-      load_sensorial_session(data[:relationships][:sensorialSession])
-      load_sensorial_sheet(data[:relationships][:sensorialSheet])
+      # load_lot(data[:relationships][:lot])
+      # load_sensorial_session(data[:relationships][:sensorialSession])
+      # load_sensorial_sheet(data[:relationships][:sensorialSheet])
       load_path(data[:relationships][:sensorialResults])
     end
 
