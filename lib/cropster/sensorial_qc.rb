@@ -13,13 +13,13 @@ module Cropster
     end
 
     def sensorial_qcs(opts = {})
+      puts "inside sensorial_qcs #{opts}"
       find_collection("sensorialQcs", opts)
     end
 
     def process(response)
-      Cropster::Response::ResponseHandler
-        .new("SensorialQc", data_set(response))
-        .compiled_data
+      puts "#{response} response inside module QC "
+      Cropster::Response::ResponseHandler.new("SensorialQc", data_set(response)).compiled_data
     end
   end
 end
