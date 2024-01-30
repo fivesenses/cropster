@@ -27,8 +27,9 @@ module Cropster::Response
       :sensorial_results_link,
 
 
-    def load_from_data(data)
+    def load_from_data(data, nothing)
       super(data)
+      puts "DATA INSIDE #{data}"
       @sensorial_results = []
       # load_lot(data[:relationships][:lot])
       # load_sensorial_session(data[:relationships][:sensorialSession])
