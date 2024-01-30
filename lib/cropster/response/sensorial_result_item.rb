@@ -17,6 +17,7 @@ module Cropster::Response
     def load_attributes(attributes)
       return if attributes.nil?
 
+      
       @sensorial_result_id = attributes[:sensorialResultId]
       @sensorial_sheet_id = attributes[:sensorialSheetId]
       @calculated_quality = attributes[:calculatedQuality]

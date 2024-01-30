@@ -4,7 +4,7 @@
 module Cropster
   module Response
     class FormattedResponseItem
-      attr_accessor :id, :name, :type, :link, :source_contacts, :contact, :contact_role, :projects, :varieties, :groups, :certificates, :alerts, :locations, :processings, :machines, :profiles, :lot, :lots, :processing, :profile_components, :sensorial_qc, :sensorial_qcs, :sensorial_results, :sensorial_result_items, :sensorial_sheets, :sensorial_sheet_items, :sensorial_sheet_items_path,  :sensorial_sessions
+      attr_accessor :id, :name, :type, :link, :source_contacts, :contact, :contact_role, :projects, :varieties, :groups, :certificates, :alerts, :locations, :processings, :machines, :profiles, :lot, :lots, :processing, :profile_components, :sensorial_qc, :sensorial_qcs, :sensorial_results, :sensorial_result_items, :sensorial_sheets, :sensorial_sheet_items, :sensorial_sheet_items_path,  :sensorial_sessions, :path
 
       # Constructor
       # @param data [Hash] the data to convert into a Cropster::Response subclass
@@ -100,6 +100,10 @@ module Cropster
       
       end
 
+
+      def load_path(url)
+        @path = url
+      end
 
       def load_sensorial_sheet_items(sensorial_sheet_items)
         return [] if sensorial_sheet_items.nil?
