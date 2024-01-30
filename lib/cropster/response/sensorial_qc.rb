@@ -23,15 +23,19 @@ module Cropster::Response
       :lot_id,
       :sensorial_session_id,
       :sensorial_sheet_id,
-      :sensorial_results
+      :sensorial_results,
+      :sensorial_results_path
 
     def load_from_data(data)
       super
       @sensorial_results = []
+      @sensorial_results_path = ''
       load_lot(data[:relationships][:lot])
       load_sensorial_session(data[:relationships][:sensorialSession])
       load_sensorial_sheet(data[:relationships][:sensorialSheet])
       load_sensorial_results(data[:relationships][:sensorialResults])
+      load_path(data[:relationships][:sensorialResults])
+
     end
 
     # @param [:Hash] attributes
@@ -55,6 +59,11 @@ module Cropster::Response
       @result_type = attributes[:resultType]
     end
 
+    def load_path(item)
+      return if item.nil?
+      @sensorial_results_path = item[:links][:related]
+    end 
+    
     def load_sensorial_results(items)
       return if items.nil?
       return if items[:data].nil?
