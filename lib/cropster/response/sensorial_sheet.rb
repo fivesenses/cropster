@@ -42,10 +42,7 @@ module Cropster::Response
 
 
     def load_sensorial_result_path(items)
-
-
       @sensorial_sheet_items_path = items[:links][:related]
-
     end
 
     def load_sensorial_sheet_items(items)

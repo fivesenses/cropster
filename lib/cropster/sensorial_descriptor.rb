@@ -12,6 +12,10 @@ module Cropster
       find_by_id("sensorialDescriptors", id).first
     end
 
+    def sensorial_descriptor_by_url(url)
+      get_all_by_url(url)
+    end
+
     def process(response)
       Cropster::Response::ResponseHandler
         .new("SensorialDescriptor", data_set(response))
