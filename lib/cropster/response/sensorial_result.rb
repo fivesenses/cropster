@@ -15,7 +15,8 @@ module Cropster::Response
       :sensorial_result_items_data,
       :sensorial_result_items,
       :sensorial_session_id,
-      :sensorial_sheet_id
+      :sensorial_sheet_id,
+      :sensorial_sheet_item_link
 
     def load_from_data(data)
       super(data)
@@ -41,14 +42,9 @@ module Cropster::Response
       @roast_level = attributes[:roastLevel]
     end
 
-    def load_sensorial_result_items(items)
-      return if items.nil?
-      return if items[:data].nil?
-
-      @sensorial_result_items = []
-      items[:data].each do |item|
-        @sensorial_result_items << item[:id]
-      end
+    def load_sensorial_result_items(path)
+      return if path.nil?
+      @sensorial_sheet_item_link = path[:links][:related];
     end
   end
 end

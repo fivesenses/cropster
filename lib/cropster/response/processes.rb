@@ -5,7 +5,6 @@ module Cropster::Response
   class Processes < Cropster::Response::FormattedResponseItem
     attr_accessor  :name, :created, :final_form,  :intermediate_form,   :is_active, :last_modified, :processin_method, :received_form ,:intermediate_weight_source,:final_weight,:intermediate_weight_target,:received_weight
 
-
     def load_attributes(attributes)
       return if attributes.nil?
       @name = attributes[:name]
@@ -25,15 +24,3 @@ module Cropster::Response
     end
   end
 end
-  
-
-
-
-
-
-
-
-
-
-
-

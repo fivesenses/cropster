@@ -15,6 +15,10 @@ module Cropster
       find_collection("sensorialResults", opts)
     end
 
+    def sensorial_result_by_url(url)
+      get_all_by_url(url)
+    end
+
     def process(response)
       Cropster::Response::ResponseHandler
         .new("SensorialResult", data_set(response))
