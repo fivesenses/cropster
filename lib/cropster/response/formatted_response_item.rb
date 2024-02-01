@@ -192,9 +192,8 @@ module Cropster
       # @param relationship [Hash] the relationship data {id: string | null}
       # @return Cropster::Response::Parent
       def load_parent(data)
-        Cropster::Response::Parent.new(attributes)
+        Cropster::Response::Parent.new(data)
       end
-
     end
   end
 end
