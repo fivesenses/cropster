@@ -187,6 +187,14 @@ module Cropster
       def load_weight(attributes)
         Cropster::Response::Weight.new(attributes)
       end
+
+      # Converts the parent relationship hash into to Cropster::Response::Parent object
+      # @param relationship [Hash] the relationship data {id: string | null}
+      # @return Cropster::Response::Parent
+      def load_parent(data)
+        Cropster::Response::Parent.new(attributes)
+      end
+
     end
   end
 end

@@ -71,6 +71,7 @@ require "cropster/response/formatted_response_item"
 require "cropster/response/price"
 require "cropster/response/source"
 require "cropster/response/weight"
+require "cropster/response/parent"
 
 require "cropster/response/contact"
 require "cropster/response/certificate"
