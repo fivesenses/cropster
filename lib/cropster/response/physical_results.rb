@@ -35,17 +35,15 @@ module Cropster::Response
     end
 
     def load_from_data(data)
-      super
+      super(data)
       
 
       load_path(data[:relationships][:physicalResultDefects])
-      # load_physical_sheet_data(data[:relationships][:physicalSheet])
-      # load_lot_data(data[:relationships][:lot])
+      load_physical_sheet_data(data[:relationships][:physicalSheet])
+      load_lot_data(data[:relationships][:lot])
     end
 
     def load_physical_sheet_data(parent)
-      @defects_path = "";
-
       @physical_sheet = "";
 
       return if parent.nil?

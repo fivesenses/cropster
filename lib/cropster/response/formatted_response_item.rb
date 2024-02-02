@@ -109,6 +109,12 @@ module Cropster
         @path = url
       end
 
+      def load_physical_sheet_data(data)
+      end
+
+      def load_lot_data(data)
+      end
+
       def load_sensorial_sheet_items(sensorial_sheet_items)
         return [] if sensorial_sheet_items.nil?
         return [] if sensorial_sheet_items[:data].nil?
