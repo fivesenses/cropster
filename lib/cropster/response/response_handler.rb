@@ -20,10 +20,17 @@ module Cropster::Response
     # Builds the object to be compiled
     # @param klass [String] the class being converted
     def compile_data(klass)
-      model = Object.const_get("Cropster::Response::" + klass)
+      className = klass_check[klass] ? klass_check[klass] : klass
+      model = Object.const_get("Cropster::Response::" + className)
 
       process(model, @data_set)
       @compiled_data
+    end
+
+    def klass_check
+      {
+        "PhysicalSheetDefects" => "Defects"
+      }
     end
 
     # Processes the Hash or Array from the API into ruby objects

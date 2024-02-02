@@ -109,6 +109,8 @@ require "cropster/response/classifications"
 require "cropster/response/blend_profile_components"
 require "cropster/response/blend_profiles"
 require "cropster/response/physical_result_defects"
+require "cropster/response/defects"
+
 require "cropster/response/physical_results"
 require "cropster/response/physical_sheet_defects"
 require "cropster/response/physical_sheets"
