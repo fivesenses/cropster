@@ -9,7 +9,7 @@ module Cropster::Response
 
 
     def load_from_data(data)
-      super 
+      super(data)
       load_parent_data(data[:relationships][:physicalSheet])
       load_attributes(data[:attributes])
     end
