@@ -19,18 +19,12 @@ module Cropster::Response
     # Builds the object to be compiled
     # @param klass [String] the class being converted
     def compile_data(klass)
-      className = klass_check[klass] ? klass_check[klass] : klass
       model = Object.const_get("Cropster::Response::" + klass)
 
       process(model, @data_set)
       @compiled_data
     end
 
-    def klass_check
-      {
-        "PhysicalSheetDefects" => "Defects"
-      }
-    end
 
     # Processes the Hash or Array from the API into ruby objects
     # @param model [Object] the object being constructed
@@ -49,19 +43,17 @@ module Cropster::Response
     # @param model [Object] the object being constructed
     # @param data [Hash] the data to be converted
     def process_data(model, data)
-      begin
-        puts "model => #{model}   data => #{data}"
-        data.deep_symbolize_keys!
-        if data.empty?
-          puts " EMPTY DATA CAN'T NOT BUILD"
-        end
-        build = model.new(data);
-        puts "YES #{build}"
-        
-        @compiled_data << build
-        puts "compile data here -> #{@compiled_data}"
-      rescue StandardError => e
-        puts "error #{e}"
+      puts "model => #{model}   data => #{data}"
+      data.deep_symbolize_keys!
+
+      if data.empty?
+        puts " EMPTY DATA CAN'T NOT BUILD"
+      end
+      build = model.new(data);
+      puts "YES #{build}"
+      
+      @compiled_data << build
+      puts "compile data here -> #{@compiled_data}"
     end
   end
 end
