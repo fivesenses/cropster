@@ -46,9 +46,10 @@ module Cropster::Response
       puts "model => #{model}   data => #{data}"
       data.deep_symbolize_keys!
       puts "DEEP SYMBOL KEYS #{data.deep_symbolize_keys!}"
+      build = model.new(data);
+      puts "YES #{build}"
       
-      
-      @compiled_data << model.new(data) unless data.empty?
+      @compiled_data << build
       puts "compile data here -> #{@compiled_data}"
     end
   end
