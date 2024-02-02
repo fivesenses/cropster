@@ -20,9 +20,13 @@ module Cropster
       # Copies the data from the Hash into the object attributes
       # @param data [Hash]
       def load_from_data(data, nothing = {})
-        puts "nothing "
+        puts "nothing #{data}"
         @id = data[:id]
         @type = data[:type]
+
+        puts "init fucn id #{id} type #{type}"
+        puts "DATA ATTRIBUTES #{data[:attributes]}"
+
         load_attributes(data[:attributes])
         load_relationships(data[:relationships])
         load_links(data[:links])
