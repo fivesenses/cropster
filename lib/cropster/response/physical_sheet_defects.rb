@@ -11,6 +11,7 @@ module Cropster::Response
     def load_from_data(data)
       super 
       load_parent_data(data[:relationships][:physicalSheet])
+      load_attributes(data[:attributes])
     end
 
     def load_parent_data(parent)
