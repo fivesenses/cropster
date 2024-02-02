@@ -13,15 +13,14 @@ module Cropster::Response
     def initialize(klass, data_set)
       @compiled_data = []
       @data_set = data_set
-      data = compile_data(klass)
-      puts "coccc #{data}"
+      compile_data(klass)
     end
 
     # Builds the object to be compiled
     # @param klass [String] the class being converted
     def compile_data(klass)
       className = klass_check[klass] ? klass_check[klass] : klass
-      model = Object.const_get("Cropster::Response::" + className)
+      model = Object.const_get("Cropster::Response::" + klass)
 
       process(model, @data_set)
       @compiled_data
@@ -52,13 +51,9 @@ module Cropster::Response
     def process_data(model, data)
       puts "model => #{model}   data => #{data}"
       data.deep_symbolize_keys!
-      puts "DEEP SYMBOL KEYS #{data.deep_symbolize_keys!}"
-      puts " jfkd;akd f"
-      puts 'fdad'
-      b = Cropster::Response::Defects.new(data)
-      puts "a  ||  b#{b}"
-      puts "fdad"
-      
+      if data.empty?
+        puts " EMPTY DATA CAN'T NOT BUILD"
+      end
       build = model.new(data);
       puts "YES #{build}"
       
