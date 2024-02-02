@@ -11,31 +11,31 @@ module Cropster::Response
     :physical_sheet,
 
 
-    def load_from_data(data)
-      super(data)
-      @defects_path = "";
-      @physical_sheet = "";
-      @lot = "";
+    # def load_from_data(data)
+    #   super(data)
+    #   @defects_path = "";
+    #   @physical_sheet = "";
+    #   @lot = "";
 
-      load_path(data[:relationships][:physicalResultDefects])
-      load_physical_sheet_data(data[:relationships][:physicalSheet])
-      load_lot_data(data[:relationships][:lot])
-    end
+    #   load_path(data[:relationships][:physicalResultDefects])
+    #   load_physical_sheet_data(data[:relationships][:physicalSheet])
+    #   load_lot_data(data[:relationships][:lot])
+    # end
 
-    def load_physical_sheet_data(parent)
-      return if parent.nil?
-      @physical_sheet = load_parent(parent[:data])
-    end
+    # def load_physical_sheet_data(parent)
+    #   return if parent.nil?
+    #   @physical_sheet = load_parent(parent[:data])
+    # end
 
-    def load_lot_data(parent)
-      return if parent.nil?
-      @lot = load_parent(parent[:data])
-    end
+    # def load_lot_data(parent)
+    #   return if parent.nil?
+    #   @lot = load_parent(parent[:data])
+    # end
 
-    def load_path(item)
-      return if item.nil?
-      @defects_path = item[:links][:related]
-    end
+    # def load_path(item)
+    #   return if item.nil?
+    #   @defects_path = item[:links][:related]
+    # end
 
 
     def load_attributes(attributes)
@@ -65,9 +65,6 @@ module Cropster::Response
       @smell = attributes[:smell]
       @water_activity = attributes[:waterActivity]    
     end
-
-
-
   end
 end
   
