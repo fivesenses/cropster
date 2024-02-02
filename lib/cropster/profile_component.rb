@@ -13,6 +13,14 @@ module Cropster
       find_by_id("profileComponents", id).first
     end
 
+
+
+    def profile_components_by_url(url)
+      get_all_by_url(url)
+    end
+
+
+
     # Find a collection of ProfileComponent objects. Because profileComponents uses a
     # different filter syntax, we need to manually build the query string
     #

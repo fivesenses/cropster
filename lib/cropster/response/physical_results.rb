@@ -3,7 +3,12 @@
 #
 module Cropster::Response
   class PhysicalResults < Cropster::Response::FormattedResponseItem
-    attr_accessor :remote_id, :id_tag,:category,:color_overall,:color_uniformity,:comment,:density,:evaluation_date,:evaluator,:lab,:peaberry_screen_sizes,:quaker_count,:screen_size_summary,:screen_sizes,:smell,:water_activity, :green_weight, :moisture, :parchment, :roasted_weight, :temperature, :density_volume, :density_weight, :milling_weight_difference, :defects_path
+    attr_accessor :remote_id, :id_tag,:category,:color_overall,:color_uniformity,:comment,:density,:evaluation_date,:evaluator,:lab,:peaberry_screen_sizes,:quaker_count,:screen_size_summary,:screen_sizes,:smell,:water_activity, :green_weight, :moisture, :parchment, :roasted_weight, :temperature, :density_volume, 
+    :density_weight, 
+    :milling_weight_difference, 
+    :defects_path,
+    :lot,
+    :physical_sheet,
 
 
     def load_attributes(attributes)
@@ -15,7 +20,7 @@ module Cropster::Response
       @color_uniformity = attributes [:colorUniformity]
       @comment = attributes [:comment]
       @density = attributes [:density]
-      @evaluation_date = attributes [:evaluationDate]
+      @evaluation_date = attributes[:evaluationDate]
       @evaluator = attributes [:evaluator]
       @green_weight = load_weight(attributes[:greenWeight])
       @moisture = load_weight(attributes[:moisture])
@@ -36,9 +41,23 @@ module Cropster::Response
 
     def load_from_data(data)
       super
-      @defects_path = ""
-      load_path(data[:relationships][:physicalResultDefects])
+      @defects_path = "";
+      @physical_sheet = "";
+      @lot = "";
 
+      load_path(data[:relationships][:physicalResultDefects])
+      load_physical_sheet_data(data[:relationships][:physicalSheet])
+      load_lot_data(data[:relationships][:lot])
+    end
+
+    def load_physical_sheet_data(parent)
+      return if parent.nil?
+      @physical_sheet = load_parent(parent[:data])
+    end
+
+    def load_lot_data(parent)
+      return if parent.nil?
+      @lot = load_parent(parent[:data])
     end
 
     def load_path(item)

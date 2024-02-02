@@ -32,8 +32,9 @@ module Cropster::Response
 
     def load_profile_components(profile_components)
       return if profile_components.nil?
+      return if profile_components[:links].nil?
 
-      @profile_components = profile_components[:data]
+      @profile_components = profile_components[:links][:related]
     end
   end
 end

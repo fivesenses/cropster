@@ -3,13 +3,14 @@
 #
 module Cropster::Response
   class PhysicalSheetDefects < Cropster::Response::FormattedResponseItem
-    attr_accessor  :name, :formula, :measurement_type, :position, :sheet_group, :physical_sheet_id
+    attr_accessor  :name, :formula, :measurement_type, :position, 
+    :sheet_group, 
+    :physical_sheet_id,
 
 
     def load_from_data(data)
       super 
       load_parent_data(data[:relationships][:physicalSheet])
-    
     end
 
     def load_parent_data(parent)
@@ -26,6 +27,8 @@ module Cropster::Response
       @measurement_type = attributes[:measurementType]
       @position = attributes[:position]
       @sheet_group = attributes[:sheetGroup]
+
+
     end
   end
 end
