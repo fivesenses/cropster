@@ -115,6 +115,15 @@ module Cropster
       def load_lot_data(data)
       end
 
+      def load_physical_sheet_defect_data(data)
+      end
+
+      def load_physical_result_data(data)
+      end
+
+      def load_parent_data(data)
+      end
+
       def load_sensorial_sheet_items(sensorial_sheet_items)
         return [] if sensorial_sheet_items.nil?
         return [] if sensorial_sheet_items[:data].nil?

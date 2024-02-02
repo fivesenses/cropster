@@ -6,7 +6,6 @@ module Cropster::Response
     attr_accessor :remote_id, :id_tag,:category,:color_overall,:color_uniformity,:comment,:density,:evaluation_date,:evaluator,:lab,:peaberry_screen_sizes,:quaker_count,:screen_size_summary,:screen_sizes,:smell,:water_activity, :green_weight, :moisture, :parchment, :roasted_weight, :temperature, :density_volume, :density_weight, :milling_weight_difference, :defects_path,:lot,:physical_sheet
 
     def load_attributes(attributes)
-      puts "loading them here attributes =>>> #{attributes}"
       return if attributes.nil?
       @id_tag = attributes[:idTag]
       @remote_id = attributes[:id]
