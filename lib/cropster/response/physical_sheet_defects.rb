@@ -3,7 +3,7 @@
 #
 module Cropster::Response
   class PhysicalSheetDefects < Cropster::Response::FormattedResponseItem
-    attr_accessor  :name, :formula, :measurement_type, :position, :sheet_group, :physical_sheet_id,
+    attr_accessor  :name, :formula, :measurement_type, :position, :sheet_group
 
     def load_attributes(attributes)
       return if attributes.nil?

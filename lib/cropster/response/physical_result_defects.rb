@@ -3,7 +3,7 @@
 #
 module Cropster::Response
   class PhysicalResultDefects < Cropster::Response::FormattedResponseItem
-    attr_accessor  :calculated_value, :count, :weight, :physical_result, :physical_sheet_defect
+    attr_accessor  :calculated_value, :count, :weight
 
 
 
