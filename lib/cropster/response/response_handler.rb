@@ -13,7 +13,8 @@ module Cropster::Response
     def initialize(klass, data_set)
       @compiled_data = []
       @data_set = data_set
-      compile_data(klass)
+      data = compile_data(klass)
+      puts "coccc #{data}"
     end
 
     # Builds the object to be compiled
@@ -44,8 +45,9 @@ module Cropster::Response
     def process_data(model, data)
       puts "model => #{model}   data => #{data}"
       data.deep_symbolize_keys!
-      puts "compile data here -> #{@compiled_data}"
+      
       @compiled_data << model.new(data) unless data.empty?
+      puts "compile data here -> #{@compiled_data}"
     end
   end
 end

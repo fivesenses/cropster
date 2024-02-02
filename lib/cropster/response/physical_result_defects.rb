@@ -7,8 +7,9 @@ module Cropster::Response
 
 
     def load_from_data(data)
-      puts "daaaaata #{data}"
       super
+      puts "daaaaata #{data}"
+      
       @physical_result = ''
       @physical_sheet_defect = ''
       load_physical_result_data(data[:relationships][:physicalResult])
