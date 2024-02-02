@@ -11,6 +11,33 @@ module Cropster::Response
     :physical_sheet,
 
 
+    def load_from_data(data)
+      super(data)
+      @defects_path = "";
+      @physical_sheet = "";
+      @lot = "";
+
+      load_path(data[:relationships][:physicalResultDefects])
+      load_physical_sheet_data(data[:relationships][:physicalSheet])
+      load_lot_data(data[:relationships][:lot])
+    end
+
+    def load_physical_sheet_data(parent)
+      return if parent.nil?
+      @physical_sheet = load_parent(parent[:data])
+    end
+
+    def load_lot_data(parent)
+      return if parent.nil?
+      @lot = load_parent(parent[:data])
+    end
+
+    def load_path(item)
+      return if item.nil?
+      @defects_path = item[:links][:related]
+    end
+
+
     def load_attributes(attributes)
       return if attributes.nil?
       @id_tag = attributes[:idTag]
@@ -39,31 +66,7 @@ module Cropster::Response
       @water_activity = attributes[:waterActivity]    
     end
 
-    def load_from_data(data)
-      super
-      @defects_path = "";
-      @physical_sheet = "";
-      @lot = "";
 
-      load_path(data[:relationships][:physicalResultDefects])
-      load_physical_sheet_data(data[:relationships][:physicalSheet])
-      load_lot_data(data[:relationships][:lot])
-    end
-
-    def load_physical_sheet_data(parent)
-      return if parent.nil?
-      @physical_sheet = load_parent(parent[:data])
-    end
-
-    def load_lot_data(parent)
-      return if parent.nil?
-      @lot = load_parent(parent[:data])
-    end
-
-    def load_path(item)
-      return if item.nil?
-      @defects_path = item[:links][:related]
-    end
 
   end
 end
