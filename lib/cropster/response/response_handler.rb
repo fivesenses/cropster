@@ -54,10 +54,9 @@ module Cropster::Response
       data.deep_symbolize_keys!
       puts "DEEP SYMBOL KEYS #{data.deep_symbolize_keys!}"
       puts " jfkd;akd f"
-      a = Cropster::Response::Defects.new()
       puts 'fdad'
       b = Cropster::Response::Defects.new(data)
-      puts "a #{a} ||  b#{b}"
+      puts "a  ||  b#{b}"
       puts "fdad"
       
       build = model.new(data);
