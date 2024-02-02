@@ -3,7 +3,7 @@
 #
 
 module Cropster
-  class PhysicalResultsDefects < Cropster::Base
+  class PhysicalResultDefects < Cropster::Base
     # Find a single SensorialQc
     #
     # @param [String] id

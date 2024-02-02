@@ -45,6 +45,8 @@ module Cropster::Response
     def process_data(model, data)
       puts "model => #{model}   data => #{data}"
       data.deep_symbolize_keys!
+      puts "DEEP SYMBOL KEYS #{data.deep_symbolize_keys!}"
+      
       
       @compiled_data << model.new(data) unless data.empty?
       puts "compile data here -> #{@compiled_data}"
