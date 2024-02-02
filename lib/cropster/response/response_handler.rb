@@ -49,16 +49,19 @@ module Cropster::Response
     # @param model [Object] the object being constructed
     # @param data [Hash] the data to be converted
     def process_data(model, data)
-      puts "model => #{model}   data => #{data}"
-      data.deep_symbolize_keys!
-      if data.empty?
-        puts " EMPTY DATA CAN'T NOT BUILD"
-      end
-      build = model.new(data);
-      puts "YES #{build}"
-      
-      @compiled_data << build
-      puts "compile data here -> #{@compiled_data}"
+      begin
+        puts "model => #{model}   data => #{data}"
+        data.deep_symbolize_keys!
+        if data.empty?
+          puts " EMPTY DATA CAN'T NOT BUILD"
+        end
+        build = model.new(data);
+        puts "YES #{build}"
+        
+        @compiled_data << build
+        puts "compile data here -> #{@compiled_data}"
+      rescue StandardError => e
+        puts "error #{e}"
     end
   end
 end
