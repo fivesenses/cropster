@@ -9,7 +9,7 @@ module Cropster::Response
     def load_from_data(data)
       super
 
-      puts "PhysicalSheetDefects LOADING DATA "
+      puts "PhysicalSheetDefects LOADING DATA #{data}"
 
       @phyiscal_sheet = ''
       phyiscal_sheet = data[:relationships][:phyiscalSheet]
