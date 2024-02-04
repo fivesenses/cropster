@@ -9,6 +9,9 @@ module Cropster::Response
     def load_from_data(data)
       super
 
+      puts "PhysicalSheetDefects LOADING DATA "
+
+      @phyiscal_sheet = ''
       phyiscal_sheet = data[:relationships][:phyiscalSheet]
       if phyiscal_sheet
        @phyiscal_sheet = phyiscal_sheet[:links][:related]
