@@ -16,9 +16,14 @@ module Cropster::Response
       puts "physicalSheet data id #{data[:relationships][:physicalSheet][:data][:id]}"
 
       @physical_sheet_parent = ''
-      @physical_sheet_parent = data[:relationships][:physicalSheet][:data][:id]
-      puts @physical_sheet_parent
-      puts " end PhysicalSheetDefects"
+      # @physical_sheet_parent = data[:relationships][:physicalSheet][:data][:id]
+      # puts @physical_sheet_parent
+      # puts " end PhysicalSheetDefects"
+      get_parent(data[:relationships][:physicalSheet])
+    end
+
+    def get_parent(item)
+      @physical_sheet_parent = load_parent(item[:data])
     end
 
     def load_attributes(attributes)
