@@ -5,6 +5,17 @@ module Cropster::Response
   class PhysicalSheetDefects < Cropster::Response::FormattedResponseItem
     attr_accessor  :name, :formula, :measurement_type, :position, :sheet_group, :physical_sheet
 
+
+    def load_from_data(data)
+      super
+
+      phyiscal_sheet = data[:relationships][:phyiscalSheet]
+      if phyiscal_sheet
+       @phyiscal_sheet = phyiscal_sheet[:links][:related]
+      end
+      
+    end
+
     def load_attributes(attributes)
       return if attributes.nil?
       
