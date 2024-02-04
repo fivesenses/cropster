@@ -45,10 +45,6 @@ module Cropster::Response
     def process_data(model, data)
       puts "model => #{model}   data => #{data}"
       data.deep_symbolize_keys!
-
-      if data.empty?
-        puts " EMPTY DATA CAN'T NOT BUILD"
-      end
       build = model.new(data);
       puts "YES #{build}"
       

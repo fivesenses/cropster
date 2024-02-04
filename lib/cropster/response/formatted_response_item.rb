@@ -9,7 +9,6 @@ module Cropster
       # Constructor
       # @param data [Hash] the data to convert into a Cropster::Response subclass
       def initialize(data)
-        puts "#{data} init res"
         @sources = []
         @certifications = []
         load_from_data(data)
@@ -20,12 +19,8 @@ module Cropster
       # Copies the data from the Hash into the object attributes
       # @param data [Hash]
       def load_from_data(data, nothing = {})
-        puts "nothing #{data}"
         @id = data[:id]
         @type = data[:type]
-
-        puts "init fucn id #{id} type #{type}"
-        puts "DATA ATTRIBUTES #{data[:attributes]}"
 
         load_attributes(data[:attributes])
         load_relationships(data[:relationships])
