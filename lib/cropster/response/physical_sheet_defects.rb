@@ -12,10 +12,7 @@ module Cropster::Response
       puts "PhysicalSheetDefects LOADING DATA #{data}"
 
       @phyiscal_sheet = ''
-      phyiscal_sheet = data[:relationships][:phyiscalSheet]
-      if phyiscal_sheet
-       @phyiscal_sheet = phyiscal_sheet[:links][:related]
-      end
+      @phyiscal_sheet = data[:relationships][:physicalSheet][:data][:id]
       
     end
 
