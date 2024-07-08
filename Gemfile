@@ -1,4 +1,5 @@
-source "https://rubygems.org"
+ruby '3.1.0'
 
-# Specify your gem"s dependencies in cropster.gemspec
-gemspec
+source 'https://rubygems.org' do
+  gem 'minitest', '~> 5.14'
+end
