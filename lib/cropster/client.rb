@@ -95,5 +95,33 @@ module Cropster
     def host
       @test_mode ? Cropster::SERVER_TEST : Cropster::SERVER_PRODUCTION
     end
+        def get(endpoint)
+      response = RestClient.get(endpoint, headers)
+      handle_response(response)
+    rescue RestClient::ExceptionWithResponse => e
+      handle_error(e)
+    end
+
+    private
+
+    def handle_response(response)
+      case response.code
+      when 200
+        JSON.parse(response.body)
+      else
+        raise Error, "Unexpected response code: #{response.code}"
+      end
+    end
+
+    def handle_error(error)
+      case error.http_code
+      when 401
+        raise Error, 'Unauthorized: Invalid API key'
+      when 404
+        raise Error, 'Not Found: The requested resource could not be found'
+      else
+        raise Error, "HTTP error: #{error.http_code}"
+      end
+    end
   end
 end
