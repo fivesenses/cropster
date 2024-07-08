@@ -5,6 +5,7 @@ require 'minitest/autorun'
 require 'webmock'
 require 'webmock/fixtures'
 require 'webmock/test_unit'
+require 'webmock/minitest'
 
 require 'rubygems'
 require 'bundler'
