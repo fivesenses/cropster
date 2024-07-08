@@ -2,11 +2,10 @@ require 'simplecov'
 SimpleCov.start
 
 require 'minitest/autorun'
-require 'webmock'
+# require 'webmock'
 require 'webmock/minitest'
 # require 'webmock/fixtures'
 # require 'webmock/test_unit'
-
 
 require 'rubygems'
 require 'bundler'
