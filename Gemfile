@@ -3,4 +3,5 @@ source 'https://rubygems.org' do
   gem 'minitest', '~> 5.14'
   gem 'rake', '~> 13.0'
   gem 'simplecov', require: false
+  gem 'webmock', require: false
 end
