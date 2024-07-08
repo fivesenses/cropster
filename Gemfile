@@ -10,5 +10,7 @@ gem 'activesupport', '~> 6.1'
 group :test do
   gem 'simplecov', require: false
   gem 'webmock', require: false
+  gem 'webmock-fixtures', require: false
   gem 'test-unit', '~> 3.3'
 end
+
