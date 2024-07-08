@@ -1,3 +1,3 @@
 module Cropster
-  VERSION = "0.1.9.7"
+  VERSION = "0.1.21"
 end

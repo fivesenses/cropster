@@ -1,8 +1,8 @@
-require 'typhoeus'
-require 'json'
-require 'active_support/all'
+require "typhoeus"
+require "json"
+require "active_support/all"
 
-require 'cropster/constants'
+require "cropster/constants"
 require "cropster/base"
 require "cropster/hash"
 require "cropster/string"
@@ -12,54 +12,127 @@ require "cropster/uri_options_builder"
 
 require "cropster/contact"
 require "cropster/certificate"
-require 'cropster/group'
-require 'cropster/group_membership'
-require 'cropster/lot'
-require 'cropster/location'
-require 'cropster/machine'
-require 'cropster/permission'
-require 'cropster/processing'
-require 'cropster/processing_comment'
-require 'cropster/processing_curve'
-require 'cropster/processing_measure'
-require 'cropster/profile'
-require 'cropster/profile_component'
-require 'cropster/profile_lot_reference'
-require 'cropster/project'
-require 'cropster/property'
-require 'cropster/roasting_action'
-require 'cropster/source_contact'
-require 'cropster/user'
-require 'cropster/variety'
+require "cropster/flavor"
+require "cropster/group"
+require "cropster/group_membership"
+require "cropster/lot"
+require "cropster/location"
+require "cropster/machine"
+require "cropster/permission"
+require "cropster/processing"
+require "cropster/processing_comment"
+require "cropster/processing_curve"
+require "cropster/processing_measure"
+require "cropster/profile"
+require "cropster/profile_component"
+require "cropster/profile_lot_reference"
+require "cropster/project"
+require "cropster/property"
+require "cropster/roasting_action"
+require "cropster/sensorial_qc"
+require "cropster/sensorial_descriptor"
+require "cropster/sensorial_result"
+require "cropster/sensorial_result_item"
+require "cropster/sensorial_session"
+require "cropster/sensorial_sheet"
+require "cropster/sensorial_sheet_item"
+require "cropster/source_contact"
+require "cropster/user"
+require "cropster/variety"
 
-require 'cropster/response/response_handler'
-require 'cropster/response/formatted_response_item'
-require 'cropster/response/price'
-require 'cropster/response/source'
-require 'cropster/response/weight'
 
-require 'cropster/response/contact'
-require 'cropster/response/certificate'
-require 'cropster/response/group'
-require 'cropster/response/group_membership'
-require 'cropster/response/lot'
-require 'cropster/response/location'
-require 'cropster/response/machine'
-require 'cropster/response/permission'
-require 'cropster/response/processing'
-require 'cropster/response/processing_comment'
-require 'cropster/response/processing_curve'
-require 'cropster/response/processing_measure'
-require 'cropster/response/profile'
-require 'cropster/response/profile_component'
-require 'cropster/response/profile_lot_reference'
-require 'cropster/response/project'
-require 'cropster/response/property'
-require 'cropster/response/relationship'
-require 'cropster/response/relationship_data'
-require 'cropster/response/roasting_action'
-require 'cropster/response/source_contact'
-require 'cropster/response/user'
-require 'cropster/response/variety'
+require "cropster/adjust_weight_actions"
+require "cropster/classifications"
+require "cropster/blend_profile_components"
+require "cropster/blend_profiles"
+require "cropster/physical_result_defects"
+require "cropster/physical_results"
+require "cropster/physical_sheet_defects"
+require "cropster/physical_sheets"
+require "cropster/batch_mixes"
+require "cropster/batches"
+require "cropster/facilities"
+require "cropster/processes"
+require "cropster/reception_items"
+require "cropster/receptions"
+require "cropster/stage_measurement_requirements"
+require "cropster/stage_record_measurement_requirements"
+require "cropster/stage_record_measurements"
+require "cropster/stage_records"
+require "cropster/stages"
+require "cropster/orderable_products"
+require "cropster/production_order_items"
+require "cropster/production_orders"
+
+
+
+require "cropster/response/response_handler"
+require "cropster/response/formatted_response_item"
+require "cropster/response/price"
+require "cropster/response/source"
+require "cropster/response/weight"
+require "cropster/response/parent"
+
+require "cropster/response/contact"
+require "cropster/response/certificate"
+require "cropster/response/flavor"
+require "cropster/response/group"
+require "cropster/response/group_membership"
+require "cropster/response/lot"
+require "cropster/response/location"
+require "cropster/response/machine"
+require "cropster/response/permission"
+require "cropster/response/processing"
+require "cropster/response/processing_comment"
+require "cropster/response/processing_curve"
+require "cropster/response/processing_measure"
+require "cropster/response/profile"
+require "cropster/response/profile_component"
+require "cropster/response/profile_lot_reference"
+require "cropster/response/project"
+require "cropster/response/property"
+require "cropster/response/relationship"
+require "cropster/response/relationship_data"
+require "cropster/response/roasting_action"
+require "cropster/response/sensorial_qc"
+require "cropster/response/sensorial_descriptor"
+require "cropster/response/sensorial_result"
+require "cropster/response/sensorial_result_item"
+require "cropster/response/sensorial_session"
+require "cropster/response/sensorial_sheet"
+require "cropster/response/sensorial_sheet_item"
+require "cropster/response/source_contact"
+require "cropster/response/user"
+require "cropster/response/variety"
+require "cropster/response/adjust_weight_actions"
+require "cropster/response/classifications"
+require "cropster/response/blend_profile_components"
+require "cropster/response/blend_profiles"
+require "cropster/response/physical_result_defects"
+require "cropster/response/defects"
+
+require "cropster/response/physical_results"
+require "cropster/response/physical_sheet_defects"
+require "cropster/response/physical_sheets"
+require "cropster/response/batch_mixes"
+require "cropster/response/batches"
+require "cropster/response/facilities"
+require "cropster/response/processes"
+require "cropster/response/reception_items"
+require "cropster/response/receptions"
+require "cropster/response/stage_measurement_requirements"
+require "cropster/response/stage_record_measurement_requirements"
+require "cropster/response/stage_record_measurements"
+require "cropster/response/stage_records"
+require "cropster/response/stages"
+require "cropster/response/orderable_products"
+require "cropster/response/production_order_items"
+require "cropster/response/production_orders"
+
+
+
+
 
 CropsterUnavailableError = Class.new(StandardError)
+CropsterBadRequestError = Class.new(StandardError)
+CropsterNotFoundError = Class.new(StandardError)

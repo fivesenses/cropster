@@ -32,6 +32,18 @@ module Cropster
       )
     end
 
+    # Perform the HTTP GET request
+    #
+    # @param url [String] the url to GET, overwrites the base_url as we passing the api
+    # url provided by the api response from Cropster. Used only for Items calls.
+    # @return [Typhoeus::Response]
+    def get_by_url(url)
+      Typhoeus::Request.get(
+        url,
+        userpwd: authentication
+      )
+    end
+
     # Perform the HTTP POST request
     #
     # @param url [String] the url to POST data to

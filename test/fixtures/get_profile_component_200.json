@@ -1,0 +1,19 @@
+HTTP/1.1 200 OK
+Content-Type: application/vnd.api+json;charset=utf-8
+Content-Length: 635
+Connection: close
+Date: Thu, 11 Nov 2021 03:11:32 GMT
+Server: openresty/1.15.8.2
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: DENY
+X-Content-Type-Options: nosniff
+Vary: Accept-Encoding
+X-Cache: Miss from cloudfront
+Via: 1.1 1cfb7ce7b17aec05ed3d7cd725b078c2.cloudfront.net (CloudFront)
+X-Amz-Cf-Pop: PER50-C1
+X-Amz-Cf-Id: ixxZGJnIl0CC1uMMaqzfcSf1maR24QQ5Gcf3_5CY3a1X4ZO_kB4rVw==
+
+{"data":{"id":"6XdV8","type":"profileComponents","attributes":{"percentage":1,"name":null},"relationships":{"lots":{"data":[{"id":"WbyyYN","type":"lots"}],"links":{"self":"https://c-sar.cropster.com/api/v2/profileComponents/6XdV8/relationships/lots","related":"https://c-sar.cropster.com/api/v2/profileComponents/6XdV8/lots"}},"profile":{"data":{"id":"bGaX2","type":"profiles"},"links":{"self":"https://c-sar.cropster.com/api/v2/profileComponents/6XdV8/relationships/profile","related":"https://c-sar.cropster.com/api/v2/profileComponents/6XdV8/profile"}}},"links":{"self":"https://c-sar.cropster.com/api/v2/profileComponents/6XdV8"}}}

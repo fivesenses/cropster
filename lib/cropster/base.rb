@@ -71,6 +71,15 @@ module Cropster
       process(response)
     end
 
+
+    # URL is passed down from the parent response. 
+    def get_all_by_url(object_url)
+      response = get_by_url(object_url)
+      handle_error(response)
+      process(response)
+    end
+
+
     # A method to be overridden to process the data returned via the API
     def process(response)
     end
@@ -102,12 +111,18 @@ module Cropster
 
     # Raises an error if the API returns an error code
     def handle_error(response)
-      raise CropsterUnavailableError unless response.code == 200
+      raise CropsterBadRequestError, response.body if response.code == 400
+      raise CropsterNotFoundError, response.body if response.code == 404
+      raise CropsterUnavailableError, response.body unless response.code == 200
     end
 
     # Perform the actual interaction with the Cropster API
     def get(url)
       @client.get(url)
+    end
+
+    def get_by_url(url)
+      @client.get_by_url(url)
     end
 
     def post(url, data)

@@ -4,11 +4,7 @@
 module Cropster
   module Response
     class FormattedResponseItem
-      attr_accessor :id, :type, :link
-      attr_accessor :source_contacts, :sensorial_qcs, :projects,
-        :varieties, :groups, :certificates, :alerts, :locations,
-        :processings, :machines, :profiles, :lots, :contact, :lot, :contact_role,
-        :processing
+      attr_accessor :id, :name, :type, :link, :source_contacts, :contact, :contact_role, :projects, :varieties, :groups, :certificates, :alerts, :locations, :processings, :machines, :profiles, :lot, :lots, :processing, :profile_components, :sensorial_qc, :sensorial_qcs, :sensorial_results, :sensorial_result_items, :sensorial_sheets, :sensorial_sheet_items, :sensorial_sheet_items_path,  :sensorial_sessions, :path
 
       # Constructor
       # @param data [Hash] the data to convert into a Cropster::Response subclass
@@ -18,11 +14,14 @@ module Cropster
         load_from_data(data)
       end
 
+
+
       # Copies the data from the Hash into the object attributes
       # @param data [Hash]
-      def load_from_data(data)
+      def load_from_data(data, nothing = {})
         @id = data[:id]
         @type = data[:type]
+
         load_attributes(data[:attributes])
         load_relationships(data[:relationships])
         load_links(data[:links])
@@ -44,22 +43,111 @@ module Cropster
       # @param relationships [Hash] the hash returned with the object attributes
       def load_relationships(relationships)
         relationships = Cropster::Response::Relationship.new(relationships).result
-        @source_contacts = relationships[:source_contacts]
-        @sensorial_qcs = relationships[:sensorial_qcs]
-        @projects = relationships[:projects]
-        @varieties = relationships[:varieties]
-        @groups = relationships[:groups]
-        @certificates = relationships[:certificates]
         @alerts = relationships[:alerts]
+        @certificates = relationships[:certificates]
+        @contact = relationships[:contact]
+        @contact_role = relationships[:contactRole]
+        @groups = relationships[:groups]
         @locations = relationships[:locations]
+        @lots = relationships[:lots]
+        @machines = relationships[:machines]
         @processings = relationships[:processings]
         @processing = relationships[:processing] # if relationships.has_key?(:processing)
-        @machines = relationships[:machines]
         @profiles = relationships[:profiles]
-        @lots = relationships[:lots]
-        @contact = relationships[:contact]
-        @lot = relationships[:lot]
-        @contact_role = relationships[:contactRole]
+        @profile_components = relationships[:profileComponents]
+        @projects = relationships[:projects]
+        @sensorial_qcs = relationships[:sensorialQCs]
+        @sensorial_qc = relationships[:sensorialQc]
+        @sensorial_results = relationships[:sensorialResults]
+        @sensorial_result_items = relationships[:sensorialResultItems]
+        @sensorial_sheets = relationships[:sensorialSheets]
+        @sensorial_sheet_items = relationships[:sensorialSheetItems]
+        @sensorial_sessions = relationships[:sensorialSessions]
+        @source_contacts = relationships[:source_contacts]
+        @varieties = relationships[:varieties]
+
+        @lot = load_lot(relationships[:lot])
+      end
+
+      def load_lot(lot)
+        return if lot.nil?
+
+        @lot_id = lot[:data][:id]
+      end
+
+      def load_sensorial_qc(sensorial_qc)
+        return if sensorial_qc.nil?
+        return if sensorial_qc[:data].nil?
+
+        @sensorial_qc_id = sensorial_qc[:data][:id]
+      end
+
+      def load_sensorial_session(sensorial_session)
+        return if sensorial_session.nil?
+        return if sensorial_session[:data].nil?
+
+        @sensorial_session_id = sensorial_session[:data][:id]
+      end
+
+      def load_sensorial_sheet(sensorial_sheet)
+        return if sensorial_sheet.nil?
+        return if sensorial_sheet[:data].nil?
+
+        @sensorial_sheet_id = sensorial_sheet[:data][:id]
+      end
+
+
+      def load_sensorial_result_path(url)
+        puts url
+        @sensorial_sheet_items_path = url
+      
+      end
+
+
+      def load_path(url)
+        @path = url
+      end
+
+      def load_physical_sheet_data(data)
+      end
+
+      def load_lot_data(data)
+      end
+
+      def load_physical_sheet_defect_data(data)
+      end
+
+      def load_physical_result_data(data)
+      end
+
+      def load_parent_data(data)
+      end
+
+      def load_sensorial_sheet_items(sensorial_sheet_items)
+        return [] if sensorial_sheet_items.nil?
+        return [] if sensorial_sheet_items[:data].nil?
+
+        @sensorial_sheet_items = []
+        sensorial_sheet_items[:data].each do |item|
+        @sensorial_sheet_items << Cropster::Response::SensorialSheetItem.new(item)
+        end
+      end
+
+      def load_sensorial_results(sensorial_results)
+        return if sensorial_results.nil?
+        return if sensorial_results[:data].nil?
+
+        @sensorial_result_id = sensorial_results[:data][:id]
+      end
+
+      def load_sensorial_result_items(sensorial_result_items)
+        return [] if sensorial_result_items.nil?
+        return [] if sensorial_result_items[:data].nil?
+
+        @sensorial_result_items = []
+        sensorial_result_items[:data].each do |item|
+          @sensorial_result_items << Cropster::Response::SensorialResultItem.new(item)
+        end
       end
 
       def load_project(data)
@@ -112,6 +200,13 @@ module Cropster
       # @return Cropster::Response::Weight
       def load_weight(attributes)
         Cropster::Response::Weight.new(attributes)
+      end
+
+      # Converts the parent relationship hash into to Cropster::Response::Parent object
+      # @param relationship [Hash] the relationship data {id: string | null}
+      # @return Cropster::Response::Parent
+      def load_parent(data)
+        Cropster::Response::Parent.new(data)
       end
     end
   end

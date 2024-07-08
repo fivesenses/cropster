@@ -6,7 +6,12 @@ module Cropster::Response
     attr_accessor :batch_size, :calculated_weight_change,
       :created_at, :erp_id, :is_active, :is_archived, :last_modified_at,
       :name, :new_lot_name, :notes, :profile_lot_references_last_modified_at,
-      :weight_change
+      :weight_change, :profile_components
+
+    def load_from_data(data)
+      super
+      load_profile_components(data[:relationships][:profileComponents])
+    end
 
     def load_attributes(attributes)
       return if attributes.nil?
@@ -23,6 +28,13 @@ module Cropster::Response
       @profile_lot_references_last_modified_at =
         load_date(attributes[:profileLotReferencesLastModifiedDate])
       @weight_change = attributes[:weightChange]
+    end
+
+    def load_profile_components(profile_components)
+      return if profile_components.nil?
+      return if profile_components[:links].nil?
+
+      @profile_components = profile_components[:links][:related]
     end
   end
 end

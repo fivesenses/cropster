@@ -1,0 +1,18 @@
+HTTP/1.1 200 OK
+Content-Type: application/vnd.api+json;charset=utf-8
+Transfer-Encoding: chunked
+Connection: close
+Date: Tue, 09 Nov 2021 04:02:40 GMT
+Server: openresty/1.15.8.2
+Cache-Control: no-cache, no-store, must-revalidate
+Expires: 0
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: DENY
+X-Content-Type-Options: nosniff
+Vary: Accept-Encoding
+X-Cache: Miss from cloudfront
+Via: 1.1 36bebb77fa82eae977b303c38c8716ed.cloudfront.net (CloudFront)
+X-Amz-Cf-Pop: PER50-C1
+X-Amz-Cf-Id: QoI3cKujb7P2wx1QAOGr_I54hHVnAsZlhlua7mU9Ayu7nMGq-QjEhQ==
+
+{"data":[{"id":"PaV","type":"profileComponents","attributes":{"percentage":1,"name":"Comp 1"},"relationships":{"lots":{"data":[{"id":"joJNK","type":"lots"}],"links":{"self":"https://c-sar.cropster.com/api/v2/profileComponents/PaV/relationships/lots","related":"https://c-sar.cropster.com/api/v2/profileComponents/PaV/lots"}},"profile":{"data":{"id":"YBrm","type":"profiles"},"links":{"self":"https://c-sar.cropster.com/api/v2/profileComponents/PaV/relationships/profile","related":"https://c-sar.cropster.com/api/v2/profileComponents/PaV/profile"}}},"links":{"self":"https://c-sar.cropster.com/api/v2/profileComponents/PaV"}},{"id":"mEoaA","type":"profileComponents","attributes":{"percentage":1,"name":null},"relationships":{"lots":{"data":[{"id":"OwLyd7","type":"lots"}],"links":{"self":"https://c-sar.cropster.com/api/v2/profileComponents/mEoaA/relationships/lots","related":"https://c-sar.cropster.com/api/v2/profileComponents/mEoaA/lots"}},"profile":{"data":{"id":"1GgZ","type":"profiles"},"links":{"self":"https://c-sar.cropster.com/api/v2/profileComponents/mEoaA/relationships/profile","related":"https://c-sar.cropster.com/api/v2/profileComponents/mEoaA/profile"}}},"links":{"self":"https://c-sar.cropster.com/api/v2/profileComponents/mEoaA"}},{"id":"KGgB","type":"profileComponents","attributes":{"percentage":1,"name":"Zero"},"relationships":{"lots":{"data":[{"id":"mqvdxq","type":"lots"}],"links":{"self":"https://c-sar.cropster.com/api/v2/profileComponents/KGgB/relationships/lots","related":"https://c-sar.cropster.com/api/v2/profileComponents/KGgB/lots"}},"profile":{"data":{"id":"Bjob","type":"profiles"},"links":{"self":"https://c-sar.cropster.com/api/v2/profileComponents/KGgB/relationships/profile","related":"https://c-sar.cropster.com/api/v2/profileComponents/KGgB/profile"}}},"links":{"self":"https://c-sar.cropster.com/api/v2/profileComponents/KGgB"}},{"id":"NVvG0","type":"profileComponents","attributes":{"percentage":1,"name":null},"relationships":{"lots":{"data":[{"id":"86jKgp","type":"lots"}],"links":{"self":"https://c-sar.cropster.com/api/v2/profileComponents/NVvG0/relationships/lots","related":"https://c-sar.cropster.com/api/v2/profileComponents/NVvG0/lots"}},"profile":{"data":{"id":"A6zV","type":"profiles"},"links":{"self":"https://c-sar.cropster.com/api/v2/profileComponents/NVvG0/relationships/profile","related":"https://c-sar.cropster.com/api/v2/profileComponents/NVvG0/profile"}}},"links":{"self":"https://c-sar.cropster.com/api/v2/profileComponents/NVvG0"}}]}

@@ -25,6 +25,7 @@ module Cropster::Response
       @compiled_data
     end
 
+
     # Processes the Hash or Array from the API into ruby objects
     # @param model [Object] the object being constructed
     # @data_set [Hash | Array] the data to be converted
@@ -42,8 +43,13 @@ module Cropster::Response
     # @param model [Object] the object being constructed
     # @param data [Hash] the data to be converted
     def process_data(model, data)
+      puts "model => #{model}   data => #{data}"
       data.deep_symbolize_keys!
-      @compiled_data << model.new(data) unless data.empty?
+      build = model.new(data);
+      puts "YES #{build}"
+      
+      @compiled_data << build
+      puts "compile data here -> #{@compiled_data}"
     end
   end
 end

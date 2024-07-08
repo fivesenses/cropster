@@ -21,6 +21,12 @@ module Cropster
       find_collection("processingComments", opts)
     end
 
+
+    def processing_comments_by_url(url)
+      get_all_by_url(url)
+    end
+    
+
     # Process the response from Cropster into appriate objects
     #
     # @param response [Typhoeus::Response]
