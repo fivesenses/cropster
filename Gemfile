@@ -5,4 +5,5 @@ source 'https://rubygems.org' do
   gem 'simplecov', require: false
   gem 'webmock', require: false
   gem 'test-unit', '~> 3.3'
+  gem 'typhoeus'
 end
