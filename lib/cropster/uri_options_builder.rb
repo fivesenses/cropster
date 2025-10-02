@@ -50,13 +50,17 @@ module Cropster
     end
 
     def build_page_options
-      if @opts.has_key?(:page) || @opts.has_key?("page")
-        @page_opts = if @opts[:page].has_key?(:size)
-          {page: @opts[:page]}.to_query
-        else
-          {page: @opts[:page].merge({size: DEFAULT_PAGE_SIZE})}.to_query
-        end
-      end
+      return unless @opts.has_key?(:page) || @opts.has_key?("page")
+      
+      page_params = @opts[:page].dup
+      
+      # Remove nil values to prevent empty query parameters (e.g., page[size]=)
+      page_params.reject! { |_k, v| v.nil? }
+      
+      # Add default page size if not specified (after nil values have been removed)
+      page_params[:size] ||= DEFAULT_PAGE_SIZE
+      
+      @page_opts = {page: page_params}.to_query
     end
 
     def build_include_options
