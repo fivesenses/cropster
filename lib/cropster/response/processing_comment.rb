@@ -1,29 +1,38 @@
-##
-# Converts a Hash into a Cropster::Response::ProcessingComment
-#
-module Cropster::Response
-  class ProcessingComment < Cropster::Response::FormattedResponseItem
-    attr_accessor :note, :created_at, :time, :event, :processing_id
+# frozen_string_literal: true
 
-    def load_from_data(data)
-      super(data)
-      load_processing(data[:relationships][:processing])
-    end
+# Converts a Hash into a Cropster::Response::ProcessingComment object
+module Cropster
+  module Response
+    class ProcessingComment < Cropster::Response::FormattedResponseItem
+      # Attributes
+      attr_accessor :created_date,
+        :event,
+        :note,
+        :time
 
-    def load_attributes(attributes)
-      return if attributes.nil?
+      # Relationships
+      attr_accessor :processing_id
 
-      @note = attributes[:note]
-      @created_at = load_date(attributes[:createdDate])
-      @event = attributes[:event]
-      @time = load_time(attributes[:time])
-    end
+      def load_from_data(data)
+        super
+        load_processing(data[:relationships][:processing])
+      end
 
-    def load_processing(processing)
-      return if processing.nil?
-      return if processing[:data].nil?
+      def load_attributes(attributes)
+        return if attributes.nil?
 
-      @processing_id = processing[:data][:id]
+        @created_date = load_date(attributes[:createdDate])
+        @event = attributes[:event]
+        @note = attributes[:note]
+        @time = attributes[:time]
+      end
+
+      private
+
+      def load_processing(processing)
+        return if processing.nil? || processing[:data].nil?
+        @processing_id = processing[:data][:id]
+      end
     end
   end
 end

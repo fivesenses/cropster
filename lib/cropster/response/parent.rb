@@ -1,6 +1,7 @@
-##
-# Converts a Hash into a Cropster::Response::Base object
-# Base is the parent element to the child 
+# frozen_string_literal: true
+
+# Converts a Hash into a Cropster::Response::Parent object
+# Parent is a helper for loading parent relationship data
 #
 
 module Cropster::Response

@@ -1,5 +1,6 @@
 # Cropster
-Cropster ruby gem. Make API calls to cropster to pull green and roasted coffee data.
+
+Ruby gem for the Cropster API. Supports all documented API entities with full CRUD operations, pagination, and rate limiting.
 
 ## Installation
 
@@ -15,7 +16,9 @@ Or install it yourself as:
 
     $ gem install cropster
 
-Setup Initializer
+## Configuration
+
+Setup client:
 
     client = Cropster::Client.new({
       api_key:    ENV['CROPSTER_API_KEY'],
@@ -23,79 +26,83 @@ Setup Initializer
       group_code: ENV['CROPSTER_GROUP_CODE']
     })
 
-Optional keys for the client initialization include:
+Optional initialization parameters:
 
     test_mode: (true | false)
     api_path: "api/v2"
+    user_agent: "YourApp-Cropster-Integration"
+    rate_limit: (true | false) # default: true
+    requests_per_minute: 120 # default: 120
 
 ## Usage
 
-### Certificates
-#### List Certificates
-    Cropster::Certificate.new(client).certificates({})
-#### Get a Certificate
-    Cropster::Certificate.new(client).certificate("ID")
-#### Create a Certificate
-    Cropster::Certificate.new(client).create_certificat(certificate_data)
-#### Update a Certificate
-    Cropster::Certificate.new(client).
-      update_certificate("ID", certificate_data)
+### Basic Operations
 
-### Contacts
-#### List Contacts
-    Cropster::Contact.new(client).contacts({})
-#### Get a Contact
-    Cropster::Contact.new(client).contact("ID")
+All entities support standard CRUD operations where documented by the API:
 
-### Groups
-#### List Groups
-    Cropster::Group.new(client).groups({})
-#### Get a Group
-    Cropster::Group.new(client).group("CROR")
-
-### Locations
-#### List Locations
-    Cropster::Location.new(client).locations({})
-#### Get a Location
-    Cropster::Location.new(client).location("ID")
-
-### Lots
-#### Get a Lot
+    # Get single entity
     Cropster::Lot.new(client).lot("ID")
-#### List Lots
+    
+    # Get collection
     Cropster::Lot.new(client).lots
-#### Create a Lot
-    Cropster::Lot.new(client).create_lot(lot_data)
-#### Update a Lot
-    Cropster::Lot.new(client).update_lot("ID", lot_data)
+    
+    # Get multiple by IDs
+    Cropster::Lot.new(client).lots_by_ids("ID1,ID2,ID3")
+    
+    # Create (where supported)
+    Cropster::Lot.new(client).create_lot(data)
+    
+    # Update (where supported)
+    Cropster::Lot.new(client).update_lot("ID", data)
+    
+    # Delete (where supported)
+    Cropster::Lot.new(client).delete_lot("ID")
 
-### Machines
-#### Get a Machine
-    Cropster::Machine.new(client).machine("ID")
-#### List Machines
-    Cropster::Machine.new(client).machines
+### Pagination
+
+    # Get specific page
+    Cropster::Lot.new(client).lots_paginated(0, 50)
+    
+    # Get next page
+    Cropster::Lot.new(client).lots_next_page(current_page)
+    
+    # Get all (use carefully)
+    Cropster::Lot.new(client).all_lots({}, max_pages: 10)
+
+### Filtering and Options
+
+    # Filter results
+    Cropster::Lot.new(client).lots(filter: {lots: {processingStep: "GREEN"}})
+    
+    # Include relationships
+    Cropster::Lot.new(client).lots(include: {lots: "project,location"})
+    
+    # Sort results
+    Cropster::Lot.new(client).lots(sort: {lots: {name: "asc"}})
+
+## Supported Entities
+
+### Accounts
+- ContactRoles, Contacts, GroupMemberships, Groups, Locations, Users
+
+### Order
+- OrderableProducts, ProductionOrderItems, ProductionOrders
+
+### Origin
+- BatchMixes, Batches, Facilities, Processes, ReceptionItems, Receptions
+- StageMeasurementRequirements, StageRecordMeasurementRequirements, StageRecordMeasurements, StageRecords, Stages
+
+### Physical
+- PhysicalResultDefects, PhysicalResults, PhysicalSheetDefects, PhysicalSheets
 
 ### Processing
-#### List Processings
-    Cropster::Processing.new(client).processings({})
-#### Get a Processing (roast)
-    Cropster::Processing.new(client).processing("ID")
+- BlendProfileComponents, BlendProfiles, Machines, ProcessingComments, ProcessingCurves, ProcessingMeasures, Processing
 
-### Projects
-#### List Projects
-    Cropster::Project.new(client).projects({})
-#### Get a Project
-    Cropster::Project.new(client).project("ID")
+### Production
+- AdjustWeightActions, Certificates, Lots, ProductTypes, ProfileComponents, ProfileGroups, ProfileLotReferences, Profiles, Projects, SourceContacts, Varieties
 
-### Source Contacts
-#### Get a Source Contact
-    Cropster::SourceContact.new(client).source_contact("ID")
-
-### Varieties
-#### List Varieties
-    Cropster::Variety.new(client).varieties({})
-#### Get a Variety
-    Cropster::Variety.new(client).variety("ID")
+### Quality
+- Classifications, Flavors, SensorialDescriptors, SensorialQcs, SensorialResultItems, SensorialResults, SensorialSessions, SensorialSheetItems, SensorialSheets
 
 ## Contributing
 

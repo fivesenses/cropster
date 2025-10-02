@@ -1,6 +1,7 @@
-##
-# Converts a hash containing Weight information from Cropster into a Weight
-# object, and performs unit conversions where necessary.
+# frozen_string_literal: true
+
+# Converts a hash containing Weight information from Cropster into a Weight object
+# and performs unit conversions where necessary.
 #
 module Cropster::Response
   class Weight

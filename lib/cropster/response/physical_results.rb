@@ -1,67 +1,102 @@
-##
-# Converts a Hash into a Cropster::Response::User object
-#
-module Cropster::Response
-  class PhysicalResults < Cropster::Response::FormattedResponseItem
-    attr_accessor :remote_id, :id_tag,:category,:color_overall,:color_uniformity,:comment,:density,:evaluation_date,:evaluator,:lab,:peaberry_screen_sizes,:quaker_count,:screen_size_summary,:screen_sizes,:smell,:water_activity, :green_weight, :moisture, :parchment, :roasted_weight, :temperature, :density_volume, :density_weight, :milling_weight_difference, :defects_path,:lot,:physical_sheet
+# frozen_string_literal: true
 
-    def load_attributes(attributes)
-      return if attributes.nil?
-      @id_tag = attributes[:idTag]
-      @remote_id = attributes[:id]
-      @category = attributes [:category]
-      @color_overall = attributes [:colorOverall]
-      @color_uniformity = attributes [:colorUniformity]
-      @comment = attributes [:comment]
-      @density = attributes [:density]
-      @evaluation_date = attributes[:evaluationDate]
-      @evaluator = attributes [:evaluator]
-      @green_weight = load_weight(attributes[:greenWeight])
-      @moisture = load_weight(attributes[:moisture])
-      @parchment = load_weight(attributes[:parchment])
-      @roasted_weight = load_weight(attributes[:roastedWeight])
-      @temperature = load_weight(attributes[:temperature])
-      @density_volume = load_weight(attributes[:densityVolume])
-      @density_weight = load_weight(attributes[:densityWeight])
-      @milling_weight_difference = load_weight(attributes[:millingWeightDifference])
-      @lab = attributes [:lab]
-      @peaberry_screen_sizes = attributes [:peaberryScreenSizes]
-      @quaker_count = attributes[:quakerCount]
-      @screen_size_summary = attributes[:screenSizeSummary]
-      @screen_sizes = attributes[:screenSizes]
-      @smell = attributes[:smell]
-      @water_activity = attributes[:waterActivity]    
+# Converts a Hash into a Cropster::Response::PhysicalResults object
+module Cropster
+  module Response
+    class PhysicalResults < Cropster::Response::FormattedResponseItem
+      # Attributes
+      attr_accessor :id_tag,
+        :category,
+        :color_overall,
+        :color_uniformity,
+        :comment,
+        :density,
+        :density_volume,
+        :density_weight,
+        :evaluation_date,
+        :evaluator,
+        :green_weight,
+        :lab,
+        :milling_weight_difference,
+        :moisture,
+        :parchment_weight,
+        :peaberry_screen_sizes,
+        :quaker_count,
+        :roasted_weight,
+        :screen_size_summary,
+        :screen_sizes,
+        :smell,
+        :temperature,
+        :water_activity
+
+      # Relationships
+      attr_accessor :group_id,
+        :lot_id,
+        :physical_result_defects,
+        :physical_sheet_id
+
+      def load_from_data(data)
+        super
+        load_group(data[:relationships][:group])
+        load_lot(data[:relationships][:lot])
+        load_physical_result_defects(data[:relationships][:physicalResultDefects])
+        load_physical_sheet(data[:relationships][:physicalSheet])
+      end
+
+      def load_attributes(attributes)
+        return if attributes.nil?
+
+        @id_tag = attributes[:idTag]
+        @category = attributes[:category]
+        @color_overall = attributes[:colorOverall]
+        @color_uniformity = attributes[:colorUniformity]
+        @comment = attributes[:comment]
+        @density = attributes[:density]
+        @evaluation_date = load_date(attributes[:evaluationDate])
+        @evaluator = attributes[:evaluator]
+        @lab = attributes[:lab]
+        @peaberry_screen_sizes = attributes[:peaberryScreenSizes]
+        @quaker_count = attributes[:quakerCount]
+        @screen_size_summary = attributes[:screenSizeSummary]
+        @screen_sizes = attributes[:screenSizes]
+        @smell = attributes[:smell]
+        @water_activity = attributes[:waterActivity]
+
+        # Weight/measure attributes
+        @density_volume = load_weight(attributes[:densityVolume])
+        @density_weight = load_weight(attributes[:densityWeight])
+        @green_weight = load_weight(attributes[:greenWeight])
+        @milling_weight_difference = load_weight(attributes[:millingWeightDifference])
+        @moisture = load_weight(attributes[:moisture])
+        @parchment_weight = load_weight(attributes[:parchmentWeight])
+        @roasted_weight = load_weight(attributes[:roastedWeight])
+        @temperature = load_weight(attributes[:temperature])
+      end
+
+      private
+
+      def load_group(group)
+        return if group.nil? || group[:data].nil?
+        @group_id = group[:data][:id]
+      end
+
+      def load_lot(lot)
+        return if lot.nil? || lot[:data].nil?
+        @lot_id = lot[:data][:id]
+      end
+
+      def load_physical_result_defects(physical_result_defects)
+        return if physical_result_defects.nil? || physical_result_defects[:data].nil?
+        @physical_result_defects = []
+        physical_result_defects[:data].each do |defect|
+          @physical_result_defects << defect[:id]
+        end
+      end
+
+      def load_physical_sheet(physical_sheet)
+        return if physical_sheet.nil? || physical_sheet[:data].nil?
+        @physical_sheet_id = physical_sheet[:data][:id]
+      end
     end
-
-    def load_from_data(data)
-      super(data)
-      
-
-      load_path(data[:relationships][:physicalResultDefects])
-      load_physical_sheet_data(data[:relationships][:physicalSheet])
-      load_lot_data(data[:relationships][:lot])
-    end
-
-    def load_physical_sheet_data(parent)
-      @physical_sheet = "";
-
-      return if parent.nil?
-      @physical_sheet = load_parent(parent[:data])
-    end
-
-    def load_lot_data(parent)
-      @lot = "";
-      return if parent.nil?
-      @lot = load_parent(parent[:data])
-    end
-
-    def load_path(item)
-      return if item.nil?
-      @defects_path = item[:links][:related]
-    end
-
-
-
   end
 end
-  

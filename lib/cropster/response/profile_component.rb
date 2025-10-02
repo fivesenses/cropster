@@ -1,39 +1,44 @@
-##
+# frozen_string_literal: true
+
 # Converts a Hash into a Cropster::Response::ProfileComponent object
-#
-module Cropster::Response
-  class ProfileComponent < Cropster::Response::FormattedResponseItem
-    attr_accessor :percentage, :name, :profile_id, :profile_type,
-      :lot_id, :lot_type
+module Cropster
+  module Response
+    class ProfileComponent < Cropster::Response::FormattedResponseItem
+      # Attributes
+      attr_accessor :name,
+        :percentage
 
-    def load_attributes(attributes)
-      return if attributes.nil?
+      # Relationships
+      attr_accessor :lots,
+        :profile_id
 
-      @percentage = attributes[:percentage]
-      @name = attributes[:name]
-    end
+      def load_from_data(data)
+        super
+        load_lots(data[:relationships][:lots])
+        load_profile(data[:relationships][:profile])
+      end
 
-    def load_lots(lots)
-      return if lots.nil?
+      def load_attributes(attributes)
+        return if attributes.nil?
 
-      @lot_id = lots[:id]
-      @lot_type = lots[:type]
-    end
+        @name = attributes[:name]
+        @percentage = attributes[:percentage]
+      end
 
-    # @param relationships [Hash]
-    def load_relationships(relationships)
-      return if relationships.nil?
+      private
 
-      load_profile(relationships[:profile])
-      load_lots(relationships[:lots][:data]&.first)
-    end
+      def load_lots(lots)
+        return if lots.nil? || lots[:data].nil?
+        @lots = []
+        lots[:data].each do |lot|
+          @lots << lot[:id]
+        end
+      end
 
-    # @param profile [Hash]
-    def load_profile(profile)
-      return if profile.nil?
-
-      @profile_id = profile[:data][:id]
-      @profile_type = profile[:data][:type]
+      def load_profile(profile)
+        return if profile.nil? || profile[:data].nil?
+        @profile_id = profile[:data][:id]
+      end
     end
   end
 end

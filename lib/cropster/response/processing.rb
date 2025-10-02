@@ -1,58 +1,107 @@
-##
-# Converts a Hash into a Cropster::Response::Processing object that represents
-# a Roast instance
-#
-module Cropster::Response
-  class Processing < Cropster::Response::FormattedResponseItem
-    attr_accessor :worker, :started_at, :ended_at, :duration,
-      :notes, :start_weight, :end_weight, :measures, :comments
+# frozen_string_literal: true
 
-    def load_from_data(data)
-      super
-      @comments = ''
-      @measures = []
-      load_measures(data[:relationships][:processingMeasures])
-      load_comments(data[:relationships][:processingComments])
-    end
+# Converts a Hash into a Cropster::Response::Processing object
+# Represents a roast instance
+module Cropster
+  module Response
+    class Processing < Cropster::Response::FormattedResponseItem
+      # Attributes
+      attr_accessor :duration,
+        :end_date,
+        :end_weight,
+        :notes,
+        :start_date,
+        :start_weight,
+        :worker
 
-    def load_attributes(attributes)
-      @worker = attributes[:worker]
-      @started_at = load_date(attributes[:startDate])
-      @ended_at = load_date(attributes[:endDate])
-      @duration = attributes[:duration]
-      @notes = attributes[:notes]
-      @start_weight = load_weight(attributes[:startWeight])
-      @end_weight = load_weight(attributes[:endWeight])
-    end
+      # Relationships
+      attr_accessor :lot_id,
+        :machine_id,
+        :processing_comments,
+        :processing_curves,
+        :processing_measures,
+        :profile_id
 
-    def load_measures(measures)
-      return if measures.nil?
-      return if measures[:data].nil?
-
-      @measures = []
-      measures[:data].each do |measure|
-        @measures << measure[:id]
+      def load_from_data(data)
+        super
+        load_lot(data[:relationships][:lot])
+        load_machine(data[:relationships][:machine])
+        load_processing_comments(data[:relationships][:processingComments])
+        load_processing_curves(data[:relationships][:processingCurves])
+        load_processing_measures(data[:relationships][:processingMeasures])
+        load_profile(data[:relationships][:profile])
       end
-    end
 
-    def load_comments(comments)
-      return if comments.nil?
-      return if comments[:links].nil?
+      def load_attributes(attributes)
+        return if attributes.nil?
 
-      @comments = comments[:links][:related]
+        @duration = attributes[:duration]
+        @end_date = load_date(attributes[:endDate])
+        @notes = attributes[:notes]
+        @start_date = load_date(attributes[:startDate])
+        @worker = attributes[:worker]
+        
+        # Weight attributes
+        @end_weight = load_weight(attributes[:endWeight])
+        @start_weight = load_weight(attributes[:startWeight])
+      end
 
-    end
+      # Helper method to calculate total green weight
+      def total_green_weight_grams
+        start_weight&.grams || 0
+      end
 
-    def total_green_weight_grams
-      sources.sum { |s| s.weight.grams }
-    end
+      # Helper method to calculate total roasted weight
+      def total_roasted_weight_grams
+        end_weight&.grams || 0
+      end
 
-    def total_roasted_weight_grams
-      weight.grams
-    end
+      # Helper method to calculate weight loss percentage
+      def green_to_roasted_weight_loss_percentage
+        return 0 if total_green_weight_grams.zero?
+        ((1 - total_roasted_weight_grams.to_f / total_green_weight_grams) * 10000).round / 100.0
+      end
 
-    def green_to_roasted_weight_loss_percentage
-      ((1 - total_roasted_weight_grams / total_green_weight_grams) * 10000).round / 100.0
+      private
+
+      def load_lot(lot)
+        return if lot.nil? || lot[:data].nil?
+        @lot_id = lot[:data][:id]
+      end
+
+      def load_machine(machine)
+        return if machine.nil? || machine[:data].nil?
+        @machine_id = machine[:data][:id]
+      end
+
+      def load_processing_comments(processing_comments)
+        return if processing_comments.nil? || processing_comments[:data].nil?
+        @processing_comments = []
+        processing_comments[:data].each do |comment|
+          @processing_comments << comment[:id]
+        end
+      end
+
+      def load_processing_curves(processing_curves)
+        return if processing_curves.nil? || processing_curves[:data].nil?
+        @processing_curves = []
+        processing_curves[:data].each do |curve|
+          @processing_curves << curve[:id]
+        end
+      end
+
+      def load_processing_measures(processing_measures)
+        return if processing_measures.nil? || processing_measures[:data].nil?
+        @processing_measures = []
+        processing_measures[:data].each do |measure|
+          @processing_measures << measure[:id]
+        end
+      end
+
+      def load_profile(profile)
+        return if profile.nil? || profile[:data].nil?
+        @profile_id = profile[:data][:id]
+      end
     end
   end
 end

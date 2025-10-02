@@ -1,7 +1,9 @@
-#
+# frozen_string_literal: true
+
+# Helper class for defects data
 module Cropster::Response
   class Defects < Cropster::Response::FormattedResponseItem
-    attr_accessor  :name, :formula, :measurement_type, :position, :sheet_group, :physical_sheet_id,
+    attr_accessor :name, :formula, :measurement_type, :position, :sheet_group, :physical_sheet_id
 
     def load_attributes(attributes)
       return if attributes.nil?

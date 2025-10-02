@@ -1,4 +1,5 @@
-#
+# frozen_string_literal: true
+
 # Parses the relationship results from Cropster
 #
 

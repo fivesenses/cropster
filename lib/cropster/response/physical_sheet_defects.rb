@@ -1,48 +1,40 @@
-##
-# Converts a Hash into a Cropster::Response::User object
-#
-module Cropster::Response
-  class PhysicalSheetDefects < Cropster::Response::FormattedResponseItem
-    attr_accessor  :name, :formula, :measurement_type, :position, :sheet_group, :physical_sheet_parent
+# frozen_string_literal: true
 
+# Converts a Hash into a Cropster::Response::PhysicalSheetDefects object
+module Cropster
+  module Response
+    class PhysicalSheetDefects < Cropster::Response::FormattedResponseItem
+      # Attributes
+      attr_accessor :name,
+        :formula,
+        :measurement_type,
+        :position,
+        :sheet_group
 
-    def load_from_data(data)
-      super
+      # Relationships
+      attr_accessor :physical_sheet_id
 
-      puts "Start PhysicalSheetDefects LOADING DATA #{data}"
-      puts "relationships #{data[:relationships]}"
-      puts "physicalSheet #{data[:relationships][:physicalSheet]}"
-      puts "physicalSheet data #{data[:relationships][:physicalSheet][:data]}"
-      puts "physicalSheet data id #{data[:relationships][:physicalSheet][:data][:id]}"
+      def load_from_data(data)
+        super
+        load_physical_sheet(data[:relationships][:physicalSheet])
+      end
 
-      @physical_sheet_parent = ''
-      # @physical_sheet_parent = data[:relationships][:physicalSheet][:data][:id]
-      # puts @physical_sheet_parent
-      # puts " end PhysicalSheetDefects"
-      get_parent(data[:relationships][:physicalSheet])
-    end
+      def load_attributes(attributes)
+        return if attributes.nil?
 
-    def get_parent(item)
-      @physical_sheet_parent = load_parent(item[:data])
-    end
+        @name = attributes[:name]
+        @formula = attributes[:formula]
+        @measurement_type = attributes[:measurementType]
+        @position = attributes[:position]
+        @sheet_group = attributes[:sheetGroup]
+      end
 
-    def load_attributes(attributes)
-      return if attributes.nil?
-      
-      @name = attributes[:name]
-      @formula = attributes[:formula]
-      @measurement_type = attributes[:measurementType]
-      @position = attributes[:position]
-      @sheet_group = attributes[:sheetGroup]
+      private
 
-
+      def load_physical_sheet(physical_sheet)
+        return if physical_sheet.nil? || physical_sheet[:data].nil?
+        @physical_sheet_id = physical_sheet[:data][:id]
+      end
     end
   end
 end
-  
-
-
-
-
-
- 

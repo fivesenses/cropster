@@ -1,6 +1,6 @@
-##
-# Converts a hash containing Price information from Cropster into a Price
-# Object
+# frozen_string_literal: true
+
+# Converts a hash containing Price information from Cropster into a Price object
 #
 
 module Cropster::Response

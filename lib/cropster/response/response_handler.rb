@@ -1,4 +1,5 @@
-##
+# frozen_string_literal: true
+
 # Provides the interface between the results from the API query and the
 # conversion of the Hash to a Ruby object
 #

@@ -1,4 +1,5 @@
-##
+# frozen_string_literal: true
+
 # Converts a Hash into a Cropster::Response::Relationship object
 #
 module Cropster::Response

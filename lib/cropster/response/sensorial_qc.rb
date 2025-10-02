@@ -1,76 +1,84 @@
-#
+# frozen_string_literal: true
+
 # Converts a Hash into a Cropster::Response::SensorialQc object
-#
-module Cropster::Response
-  class SensorialQc < Cropster::Response::FormattedResponseItem
-    attr_accessor :id,
-      :type,
-      :created_at,
-      :last_modified_at,
-      :sample_code,
-      :schedule_date,
-      :id_tag,
-      :description,
-      :weight,
-      :result_average_score,
-      :result_samples_count,
-      :result_spread_min,
-      :result_spread_max,
-      :is_active,
-      :category,
-      :lab,
-      :result_type,
-      :lot_id,
-      :sensorial_session_id,
-      :sensorial_sheet_id,
-      :sensorial_results,
-      :sensorial_results_path
+module Cropster
+  module Response
+    class SensorialQc < Cropster::Response::FormattedResponseItem
+      # Attributes
+      attr_accessor :id_tag,
+        :category,
+        :created_date,
+        :description,
+        :is_active,
+        :lab,
+        :last_modified_date,
+        :result_summary,
+        :result_type,
+        :sample_code,
+        :schedule_date,
+        :weight
 
-    def load_from_data(data)
-      super
-      @sensorial_results = []
-      @sensorial_results_path = ''
-      load_lot(data[:relationships][:lot])
-      load_sensorial_session(data[:relationships][:sensorialSession])
-      load_sensorial_sheet(data[:relationships][:sensorialSheet])
-      load_sensorial_results(data[:relationships][:sensorialResults])
-      load_path(data[:relationships][:sensorialResults])
+      # Relationships
+      attr_accessor :group_id,
+        :lot_id,
+        :sensorial_results,
+        :sensorial_session_id,
+        :sensorial_sheet_id
 
-    end
+      def load_from_data(data)
+        super
+        load_group(data[:relationships][:group])
+        load_lot(data[:relationships][:lot])
+        load_sensorial_results(data[:relationships][:sensorialResults])
+        load_sensorial_session(data[:relationships][:sensorialSession])
+        load_sensorial_sheet(data[:relationships][:sensorialSheet])
+      end
 
-    # @param [:Hash] attributes
-    def load_attributes(attributes)
-      return if attributes.nil?
+      def load_attributes(attributes)
+        return if attributes.nil?
 
-      @created_at = load_date(attributes[:createdDate])
-      @last_modified_at = load_date(attributes[:lastModifiedDate])
-      @sample_code = attributes[:sampleCode]
-      @schedule_date = load_date(attributes[:scheduleDate])
-      @id_tag = attributes[:idTag]
-      @description = attributes[:description]
-      @is_active = attributes[:isActive]
-      @category = attributes[:category]
-      @lab = attributes[:lab]
-      @weight = load_weight(attributes[:weight])
-      @result_average_score = attributes[:resultSummary][:averageScore]&.to_f
-      @result_samples_count = attributes[:resultSummary][:samplesCount]&.to_i
-      @result_spread_min = attributes[:resultSummary][:minSpread]
-      @result_spread_max = attributes[:resultSummary][:maxSpread]
-      @result_type = attributes[:resultType]
-    end
+        @id_tag = attributes[:idTag]
+        @category = attributes[:category]
+        @created_date = load_date(attributes[:createdDate])
+        @description = attributes[:description]
+        @is_active = attributes[:isActive]
+        @lab = attributes[:lab]
+        @last_modified_date = load_date(attributes[:lastModifiedDate])
+        @result_summary = attributes[:resultSummary]
+        @result_type = attributes[:resultType]
+        @sample_code = attributes[:sampleCode]
+        @schedule_date = load_date(attributes[:scheduleDate])
+        @weight = load_weight(attributes[:weight])
+      end
 
-    def load_path(item)
-      return if item.nil?
-      @sensorial_results_path = item[:links][:related]
-    end 
-    
-    def load_sensorial_results(items)
-      return if items.nil?
-      return if items[:data].nil?
+      private
 
-      @sensorial_results = []
-      items[:data].each do |item|
-        @sensorial_results << item[:id]
+      def load_group(group)
+        return if group.nil? || group[:data].nil?
+        @group_id = group[:data][:id]
+      end
+
+      def load_lot(lot)
+        return if lot.nil? || lot[:data].nil?
+        @lot_id = lot[:data][:id]
+      end
+
+      def load_sensorial_results(sensorial_results)
+        return if sensorial_results.nil? || sensorial_results[:data].nil?
+        @sensorial_results = []
+        sensorial_results[:data].each do |result|
+          @sensorial_results << result[:id]
+        end
+      end
+
+      def load_sensorial_session(sensorial_session)
+        return if sensorial_session.nil? || sensorial_session[:data].nil?
+        @sensorial_session_id = sensorial_session[:data][:id]
+      end
+
+      def load_sensorial_sheet(sensorial_sheet)
+        return if sensorial_sheet.nil? || sensorial_sheet[:data].nil?
+        @sensorial_sheet_id = sensorial_sheet[:data][:id]
       end
     end
   end
