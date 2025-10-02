@@ -175,23 +175,25 @@ module Cropster
 
       # Make the request with retry logic
       attempt = 0
-      begin
+      loop do
         attempt += 1
-        response = yield
+        begin
+          response = yield
 
-        # Check for rate limiting errors (HTTP 429)
-        if response.code == 429 && attempt <= @max_retries
-          sleep(@retry_delay * attempt) # Exponential backoff
-          retry
-        end
+          # Check for rate limiting errors (HTTP 429)
+          if response.code == 429 && attempt <= @max_retries
+            sleep(@retry_delay * attempt) # Exponential backoff
+            next # Retry the loop
+          end
 
-        response
-      rescue => e
-        if attempt <= @max_retries
-          sleep(@retry_delay * attempt)
-          retry
-        else
-          raise e
+          return response
+        rescue => e
+          if attempt <= @max_retries
+            sleep(@retry_delay * attempt)
+            next # Retry the loop
+          else
+            raise e
+          end
         end
       end
     end
