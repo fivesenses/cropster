@@ -92,6 +92,20 @@ module Cropster
       end
     end
 
+    # Perform the HTTP DELETE request
+    #
+    # @param url [String] the url to delete
+    # @return Typhoeus::Response
+    def delete(url)
+      make_request do
+        Typhoeus::Request.delete(
+          base_url + url,
+          userpwd: authentication,
+          headers: request_headers
+        )
+      end
+    end
+
     # Extract the data from the response
     #
     # @param response [Typoeus::Response]

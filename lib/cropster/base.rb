@@ -143,6 +143,16 @@ module Cropster
       process(response)
     end
 
+    # DELETEs an object via the Cropster::Client
+    #
+    # @param object_url [String] the REST url for the object (eg "lots")
+    # @param id [String] the ID of the object to be deleted
+    # @return [Boolean] true if successful
+    def delete(object_url, id)
+      response = delete_request("/#{object_url}/#{id}")
+      handle_error(response)
+      response.code == 200
+    end
 
     # URL is passed down from the parent response. 
     def get_all_by_url(object_url)
@@ -250,6 +260,10 @@ module Cropster
 
     def patch(url, data)
       @client.patch(url, data)
+    end
+
+    def delete_request(url)
+      @client.delete(url)
     end
 
     def base_url
