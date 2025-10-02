@@ -49,7 +49,13 @@ module Cropster
         :source_batch_id,
         :source_batch_mix_id,
         :source_lots,
-        :used_in_profiles
+        :used_in_profiles,
+        :blend_profile_id,
+        :certificates,
+        :classification_id,
+        :group_id,
+        :physical_results,
+        :varieties
 
       def load_from_data(data)
         super
@@ -66,6 +72,12 @@ module Cropster
         load_source_lots(data[:relationships][:sourceLots])
         load_destination_lots(data[:relationships][:destinationLots])
         load_used_in_profiles(data[:relationships][:usedInProfiles])
+        load_blend_profile(data[:relationships][:blendProfile])
+        load_certificates(data[:relationships][:certificates])
+        load_classification(data[:relationships][:classification])
+        load_group(data[:relationships][:group])
+        load_physical_results(data[:relationships][:physicalResults])
+        load_varieties(data[:relationships][:varieties])
       end
 
       def load_attributes(attributes)
@@ -205,6 +217,16 @@ module Cropster
         @source_batch_mix_id = source_batch_mix[:data][:id]
       end
 
+      def load_source_contacts(source_contacts)
+        return if source_contacts.nil?
+        return if source_contacts[:data].nil?
+
+        @source_contacts = []
+        source_contacts[:data].each do |source_contact|
+          @source_contacts << source_contact[:id]
+        end
+      end
+
       def load_source_lots(source_lots)
         return if source_lots.nil?
         return if source_lots[:data].nil?
@@ -232,6 +254,57 @@ module Cropster
         @used_in_profiles = []
         used_in_profiles[:data].each do |profile|
           @used_in_profiles << profile[:id]
+        end
+      end
+
+      def load_blend_profile(blend_profile)
+        return if blend_profile.nil?
+        return if blend_profile[:data].nil?
+
+        @blend_profile_id = blend_profile[:data][:id]
+      end
+
+      def load_certificates(certificates)
+        return if certificates.nil?
+        return if certificates[:data].nil?
+
+        @certificates = []
+        certificates[:data].each do |certificate|
+          @certificates << certificate[:id]
+        end
+      end
+
+      def load_classification(classification)
+        return if classification.nil?
+        return if classification[:data].nil?
+
+        @classification_id = classification[:data][:id]
+      end
+
+      def load_group(group)
+        return if group.nil?
+        return if group[:data].nil?
+
+        @group_id = group[:data][:id]
+      end
+
+      def load_physical_results(physical_results)
+        return if physical_results.nil?
+        return if physical_results[:data].nil?
+
+        @physical_results = []
+        physical_results[:data].each do |result|
+          @physical_results << result[:id]
+        end
+      end
+
+      def load_varieties(varieties)
+        return if varieties.nil?
+        return if varieties[:data].nil?
+
+        @varieties = []
+        varieties[:data].each do |variety|
+          @varieties << variety[:id]
         end
       end
     end
