@@ -6,6 +6,7 @@ module Cropster
     class Lot < Cropster::Response::FormattedResponseItem
       attr_accessor :id_tag,
         :name,
+        :accepted,
         :created_at,
         :consumed_at,
         :location,
@@ -30,7 +31,25 @@ module Cropster
         :has_running_out_estimation,
         :processing_id,
         :latest_sensorial_qc_id,
-        :sensorial_qcs
+        :sensorial_qcs,
+        :erp_id,
+        :expected_weight,
+        :ico_number,
+        :is_active,
+        :is_sample,
+        :last_modified_at,
+        :price_base_unit,
+        :rating_notes,
+        :sample_type,
+        :unbalanced_weight
+
+      attr_accessor :destination_lots,
+        :latest_sample_group_sensorial_qc_id,
+        :latest_sensorial_qc_of_root_lots_id,
+        :source_batch_id,
+        :source_batch_mix_id,
+        :source_lots,
+        :used_in_profiles
 
       def load_from_data(data)
         super
@@ -38,30 +57,48 @@ module Cropster
         load_project(data[:relationships][:project])
         load_location(data[:relationships][:location])
         load_latest_sensorial_qc(data[:relationships][:latestSensorialQc])
+        load_latest_sample_group_sensorial_qc(data[:relationships][:latestSampleGroupSensorialQc])
+        load_latest_sensorial_qc_of_root_lots(data[:relationships][:latestSensorialQcOfRootLots])
         load_sensorial_qcs(data[:relationships][:sensorialQcs])
+        load_source_batch(data[:relationships][:sourceBatch])
+        load_source_batch_mix(data[:relationships][:sourceBatchMix])
+        load_source_contacts(data[:relationships][:sourceContacts])
+        load_source_lots(data[:relationships][:sourceLots])
+        load_destination_lots(data[:relationships][:destinationLots])
+        load_used_in_profiles(data[:relationships][:usedInProfiles])
       end
 
       def load_attributes(attributes)
         return if attributes.nil?
         @is_sample = attributes[:isSample]
+        @is_active = attributes[:isActive]
         @id_tag = attributes[:idTag]
         @tracking_number = attributes[:trackingNumber]
         @name = attributes[:name]
+        @accepted = attributes[:accepted]
         @notes = attributes[:notes]
         @sales_number = attributes[:salesNumber]
         @grade = attributes[:grade]
         @processing_step = attributes[:processingStep]
         @purchase_order_number = attributes[:purchaseOrderNumber]
         @created_at = load_date(attributes[:creationDate])
+        @last_modified_at = load_date(attributes[:lastModifiedDate])
         @consumed_at = load_date(attributes[:consumedDate])
         @weight = load_weight(attributes[:actualWeight])
         @initial_weight = load_weight(attributes[:initialWeight])
+        @expected_weight = load_weight(attributes[:expectedWeight])
+        @unbalanced_weight = load_weight(attributes[:unbalancedWeight])
         @price = load_price(attributes[:price], attributes[:priceBaseUnit])
+        @price_base_unit = load_weight(attributes[:priceBaseUnit])
         @arrived_at = load_date(attributes[:arrivalDate])
         @source_contacts = attributes[:sourceContacts]
         @processing_methods = attributes[:processingMethods]
         @countries_of_origin = attributes[:countriesOfOrigin]
         @crop_year = attributes[:cropYear]
+        @erp_id = attributes[:erpId]
+        @ico_number = attributes[:icoNumber]
+        @rating_notes = attributes[:ratingNotes]
+        @sample_type = attributes[:sampleType]
         @shipping_container_number = attributes[:shippingContainerNumber]
         @low_stock_threshold = load_weight(attributes[:lowStockThreshold])
         @estimated_number_of_weeks_until_running_out = attributes[:estimatedNumberOfWeeksUntilRunningOut]
@@ -137,6 +174,64 @@ module Cropster
           name_raw_ico_component.tr("/", "-").gsub("--", "-")
         else
           ""
+        end
+      end
+
+      def load_latest_sample_group_sensorial_qc(sensorial_qcs)
+        return if sensorial_qcs.nil?
+        return if sensorial_qcs[:data].nil?
+
+        @latest_sample_group_sensorial_qc_id = sensorial_qcs[:data][:id]
+      end
+
+      def load_latest_sensorial_qc_of_root_lots(sensorial_qcs)
+        return if sensorial_qcs.nil?
+        return if sensorial_qcs[:data].nil?
+
+        @latest_sensorial_qc_of_root_lots_id = sensorial_qcs[:data][:id]
+      end
+
+      def load_source_batch(source_batch)
+        return if source_batch.nil?
+        return if source_batch[:data].nil?
+
+        @source_batch_id = source_batch[:data][:id]
+      end
+
+      def load_source_batch_mix(source_batch_mix)
+        return if source_batch_mix.nil?
+        return if source_batch_mix[:data].nil?
+
+        @source_batch_mix_id = source_batch_mix[:data][:id]
+      end
+
+      def load_source_lots(source_lots)
+        return if source_lots.nil?
+        return if source_lots[:data].nil?
+
+        @source_lots = []
+        source_lots[:data].each do |source_lot|
+          @source_lots << source_lot[:id]
+        end
+      end
+
+      def load_destination_lots(destination_lots)
+        return if destination_lots.nil?
+        return if destination_lots[:data].nil?
+
+        @destination_lots = []
+        destination_lots[:data].each do |destination_lot|
+          @destination_lots << destination_lot[:id]
+        end
+      end
+
+      def load_used_in_profiles(used_in_profiles)
+        return if used_in_profiles.nil?
+        return if used_in_profiles[:data].nil?
+
+        @used_in_profiles = []
+        used_in_profiles[:data].each do |profile|
+          @used_in_profiles << profile[:id]
         end
       end
     end

@@ -3,6 +3,29 @@
 # API.
 #
 module Cropster
+  # Base class for all Cropster API models
+  #
+  # IMPORTANT: API Rate Limiting Best Practices
+  # ===========================================
+  # The Cropster API has rate limiting to ensure system stability.
+  # Please follow these guidelines to avoid having your API access revoked:
+  #
+  # 1. AVOID unthrottled loops - Use pagination and batch requests
+  # 2. AVOID requesting many objects by ID in loops - Use filters and multiple IDs in one request
+  # 3. AVOID including too many relationships in one request - Request relationships separately when possible
+  # 4. RESPECT pagination limits - Default is 50 items per page, max recommended is 100
+  # 5. USE appropriate delays between requests - Default rate limit is 120 requests/minute
+  #
+  # Example of good practice:
+  #   # Instead of: (many individual requests)
+  #   ids.each { |id| client.lot(id) }
+  #
+  #   # Do this: (one request with multiple IDs)
+  #   client.lots_by_ids(ids.join(','))
+  #
+  #   # Or use pagination for large datasets:
+  #   lots = client.lots_paginated(page: 0, size: 50)
+  #
   class Base
     attr_reader :client
 
@@ -48,6 +71,55 @@ module Cropster
       process(response)
     end
 
+    # Finds a paginated collection of API objects
+    #
+    # @param object_url [String] the REST url for the object (eg "lots")
+    # @param page_number [Integer] the page number to retrieve (default: 0)
+    # @param page_size [Integer] the number of items per page (default: 50)
+    # @param opts [Hash] additional options for filtering, sorting, or including relationships
+    # @return [Array] An array of the
+    # `Cropster::Response::FormattedResponseItem` subclass objects
+    def find_paginated_collection(object_url, page_number = 0, page_size = 50, opts = {})
+      pagination_opts = opts.merge(page: { number: page_number, size: page_size })
+      find_collection(object_url, pagination_opts)
+    end
+
+    # Finds the next page of results
+    #
+    # @param object_url [String] the REST url for the object (eg "lots")
+    # @param current_page [Integer] the current page number
+    # @param opts [Hash] additional options for filtering, sorting, or including relationships
+    # @return [Array] An array of the
+    # `Cropster::Response::FormattedResponseItem` subclass objects
+    def find_next_page(object_url, current_page, opts = {})
+      find_paginated_collection(object_url, current_page + 1, nil, opts)
+    end
+
+    # Finds all objects by iterating through all pages
+    # WARNING: This can make many API requests and should be used carefully
+    #
+    # @param object_url [String] the REST url for the object (eg "lots")
+    # @param opts [Hash] options to be added to URL to filter the requests
+    # @param max_pages [Integer] maximum number of pages to fetch (default: nil for all pages)
+    # @return [Array] An array of all
+    # `Cropster::Response::FormattedResponseItem` subclass objects
+    def find_all_pages(object_url, opts = {}, max_pages = nil)
+      all_results = []
+      page = 0
+
+      loop do
+        break if max_pages && page >= max_pages
+
+        page_results = find_paginated_collection(object_url, page, nil, opts)
+        break if page_results.empty?
+
+        all_results.concat(page_results)
+        page += 1
+      end
+
+      all_results
+    end
+
     # POSTs data to the API via Cropster::Client
     #
     # @param object_url [String] the REST url for the object (eg "lots")
@@ -84,6 +156,33 @@ module Cropster
     def process(response)
     end
 
+    # Configure rate limiting for this client instance
+    #
+    # @param requests_per_minute [Integer] maximum requests per minute
+    # @param max_retries [Integer] maximum retry attempts for failed requests
+    # @param retry_delay [Float] delay between retries in seconds
+    def configure_rate_limiting(requests_per_minute = nil, max_retries = nil, retry_delay = nil)
+      if requests_per_minute
+        @client.instance_variable_set(:@requests_per_minute, requests_per_minute)
+        @client.instance_variable_set(:@rate_limiter, Cropster::RateLimiter.new(requests_per_minute))
+      end
+
+      @client.instance_variable_set(:@max_retries, max_retries) if max_retries
+      @client.instance_variable_set(:@retry_delay, retry_delay) if retry_delay
+    end
+
+    # Disable rate limiting for this client instance
+    def disable_rate_limiting
+      @client.instance_variable_set(:@rate_limit_enabled, false)
+      @client.instance_variable_set(:@rate_limiter, nil)
+    end
+
+    # Enable rate limiting for this client instance
+    def enable_rate_limiting
+      @client.instance_variable_set(:@rate_limit_enabled, true)
+      @client.instance_variable_set(:@rate_limiter, Cropster::RateLimiter.new(@client.instance_variable_get(:@requests_per_minute)))
+    end
+
     protected
 
     # Builds the filter URL from the provided options
@@ -103,6 +202,26 @@ module Cropster
 
     def data_set(response)
       @client.data_set(response)
+    end
+
+    def included_resources(response)
+      @client.included_resources(response)
+    end
+
+    def response_links(response)
+      @client.response_links(response)
+    end
+
+    def response_meta(response)
+      @client.response_meta(response)
+    end
+
+    def response_errors(response)
+      @client.response_errors(response)
+    end
+
+    def full_response(response)
+      @client.full_response(response)
     end
 
     def uri_options(filter, opts)

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-# Provides an interface to the Cropster API Lot system
+# Provides an interface to the Cropster API Lots system
 #
-# https://cropstercore.docs.apiary.io/#reference/production-&-lots/lot
+# https://cropstercore.docs.apiary.io/#reference/production/lots
 #
 module Cropster
   class Lot < Cropster::Base
@@ -38,8 +38,13 @@ module Cropster
       create("lots", data).first
     end
 
-    # Updates an existing lot, currently only supports updating
-    # @name and @accepted attributes.
+    # Updates an existing Lot
+    # Supports updating all writable attributes including:
+    # name, accepted, actualWeight, arrivalDate, consumedDate, countriesOfOrigin,
+    # cropYear, erpId, expectedWeight, grade, icoNumber, location, lowStockThreshold,
+    # notes, price, priceBaseUnit, processingMethods, processingStep,
+    # purchaseOrderNumber, ratingNotes, salesNumber, sampleType,
+    # shippingContainerNumber, trackingNumber
     #
     # @param id [String] the ID of the Lot to be updated
     # @param data [Hash] containing the fields to be updated
@@ -48,7 +53,36 @@ module Cropster
       update("lots", id, data).first
     end
 
-    # Process the response from Cropster into appriate objects
+    # Finds a paginated collection of Lot objects
+    #
+    # @param page_number [Integer] the page number to retrieve (default: 0)
+    # @param page_size [Integer] the number of items per page (default: 50)
+    # @param opts [Hash] additional options for filtering, sorting, or including relationships
+    # @return [Array] An array of Cropster::Response::Lot objects
+    def lots_paginated(page_number = 0, page_size = 50, opts = {})
+      find_paginated_collection("lots", page_number, page_size, opts)
+    end
+
+    # Finds the next page of Lot results
+    #
+    # @param current_page [Integer] the current page number
+    # @param opts [Hash] additional options for filtering, sorting, or including relationships
+    # @return [Array] An array of Cropster::Response::Lot objects
+    def lots_next_page(current_page, opts = {})
+      find_next_page("lots", current_page, opts)
+    end
+
+    # Finds all Lots by iterating through all pages
+    # WARNING: This can make many API requests and should be used carefully
+    #
+    # @param opts [Hash] options for filtering, sorting, or including relationships
+    # @param max_pages [Integer] maximum number of pages to fetch (default: nil for all pages)
+    # @return [Array] An array of all Cropster::Response::Lot objects
+    def all_lots(opts = {}, max_pages = nil)
+      find_all_pages("lots", opts, max_pages)
+    end
+
+    # Process the response from Cropster into appropriate objects
     #
     # @param response [Typhoeus::Response]
     def process(response)
